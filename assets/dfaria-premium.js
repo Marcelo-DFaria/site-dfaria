@@ -208,7 +208,10 @@
 
     container.innerHTML = gridHtml;
 
-    if (finalSection && finalSection.parentNode) {
+    const firstSection = main.querySelector('section');
+    if (firstSection && firstSection.nextSibling) {
+      firstSection.parentNode.insertBefore(container, firstSection.nextSibling);
+    } else if (finalSection && finalSection.parentNode) {
       finalSection.parentNode.insertBefore(container, finalSection);
     } else {
       main.appendChild(container);
