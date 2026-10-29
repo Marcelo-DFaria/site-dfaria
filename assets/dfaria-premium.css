@@ -16,6 +16,14 @@
   --df-ivory: #fcfaf5;
   --df-ivory-dim: rgba(252, 250, 245, 0.78);
   --df-gold-gradient: linear-gradient(135deg, #cfa853 0%, #fae8b4 50%, #b88e36 100%);
+  /* Normalização definitiva das variáveis globais herdadas do Tailwind para Dark Luxury */
+  --graphite: #fcfaf5 !important;
+  --foreground: #fcfaf5 !important;
+  --stone: rgba(252, 250, 245, 0.82) !important;
+  --muted-foreground: rgba(252, 250, 245, 0.82) !important;
+  --green: #f5df9e !important;
+  --greendeep: #cfa853 !important;
+  --border: rgba(207, 168, 83, 0.22) !important;
 }
 
 /* Base Global — Elimina visual bege/areia datado */
@@ -134,48 +142,245 @@ header.sticky nav a.nav-link:hover {
   transform: translateY(-3px);
 }
 
-/* TRANSFORMAÇÃO DE TODAS AS SEÇÕES PARA DARK LUXURY (ESTILO SOUS RÉSERVE) */
+/* ==========================================================================
+   SISTEMA GLOBAL DE LEGIBILIDADE, CONTRASTE E TIPOGRAFIA EDITORIAL DARK LUXURY
+   Elimina 100% dos textos invisíveis, garante conformidade WCAG 2.2 AA
+   e assegura visibilidade imediata sem dependência de hover em todas as páginas.
+   ========================================================================== */
 
-/* Seções com fundo claro antigo agora são dark luxury */
+/* 1. SEÇÕES E CONTÊINERES GLOBAIS EM DARK LUXURY */
+main,
+section,
+article,
+aside,
 section.bg-ivory,
 section.bg-sand,
 section.green-texture,
-section.green-texture-soft {
+section.green-texture-soft,
+div.bg-sand,
+div.bg-ivory {
   background: linear-gradient(180deg, #07150a 0%, #0a1e0f 50%, #07150a 100%) !important;
-  color: var(--df-ivory) !important;
-  border-bottom: 1px solid rgba(207, 168, 83, 0.12) !important;
+  color: #fcfaf5 !important;
+  border-color: rgba(207, 168, 83, 0.14) !important;
 }
 
-/* Remover faixas divisórias desnecessárias */
+/* Remover divisórias claras antigas */
 div[aria-hidden="true"].bg-gradient-to-b {
   display: none !important;
 }
 
-/* Títulos das seções em estilo editorial refinado */
-section h2.font-display {
-  font-family: 'Cormorant Garamond', Georgia, serif !important;
-  font-size: 2.8rem !important;
-  font-weight: 400 !important;
-  letter-spacing: -0.015em !important;
+/* 2. HIERARQUIA EDITORIAL DE TÍTULOS (H1, H2, H3, H4) */
+h1,
+main h1,
+section h1,
+.font-display.text-4xl,
+.font-display.text-3xl {
+  font-family: 'Cormorant Garamond', Garamond, Georgia, serif !important;
   color: #ffffff !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.018em !important;
   line-height: 1.15 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-@media (min-width: 1024px) {
-  section h2.font-display {
-    font-size: 3.4rem !important;
-  }
+h2,
+main h2,
+section h2,
+section h2.font-display,
+.font-display.text-2xl,
+.font-display.text-3xl {
+  font-family: 'Cormorant Garamond', Garamond, Georgia, serif !important;
+  color: #ffffff !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.012em !important;
+  line-height: 1.2 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-section p.text-stone,
-section p.text-graphite,
-section dd.text-stone {
-  color: var(--df-ivory-dim) !important;
-  font-size: 1rem !important;
-  line-height: 1.7 !important;
+h3,
+main h3,
+section h3,
+.font-display.text-xl,
+.font-display.text-lg {
+  font-family: 'Cormorant Garamond', Garamond, Georgia, serif !important;
+  color: var(--df-gold-light, #f5df9e) !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.005em !important;
+  line-height: 1.25 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-/* CARTÕES DE EVENTOS (Casamentos, Corporativos, Formaturas, etc.) */
+h4, h5, h6 {
+  font-family: 'Outfit', sans-serif !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 3. PARÁGRAFOS E TEXTOS CORRIDOS COM ALTO CONTRASTE */
+p,
+section p,
+main p,
+p.text-stone,
+p.text-graphite,
+dd.text-stone,
+dd.text-graphite,
+dt {
+  font-family: 'Outfit', 'Inter', -apple-system, sans-serif !important;
+  color: rgba(252, 250, 245, 0.88) !important;
+  font-size: 1.02rem !important;
+  line-height: 1.72 !important;
+  max-width: 68ch;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Subtítulos e rótulos overline (ex: "EVENTOS", "GASTRONOMIA", "DESDE 2016") */
+p.text-xs.uppercase,
+span.text-xs.uppercase,
+.tracking-\[0\.3em\],
+.tracking-\[0\.24em\],
+.tracking-\[0\.28em\] {
+  font-family: 'Outfit', sans-serif !important;
+  color: var(--df-gold, #cfa853) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.28em !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 4. CORREÇÃO CRÍTICA DE CLASSES UTILITÁRIAS DO TAILWIND */
+.text-graphite,
+.text-graphite\/90,
+.text-graphite\/85,
+.text-graphite\/80,
+.text-graphite\/70 {
+  color: #fcfaf5 !important;
+}
+
+.text-stone,
+.text-stone\/90,
+.text-stone\/85,
+.text-stone\/80,
+.text-stone\/70 {
+  color: rgba(252, 250, 245, 0.82) !important;
+}
+
+.text-green,
+.text-greendeep,
+.text-greenforest,
+.text-greenmoss {
+  color: var(--df-gold-light, #f5df9e) !important;
+}
+
+/* 5. LISTAS E INCLUSÕES DE SERVIÇO (Casamentos, Cardápios, Buffets) */
+ul.divide-y li,
+ol.divide-y li,
+article ul li,
+article ol li,
+main li.text-graphite,
+main li.text-stone,
+main li {
+  color: rgba(252, 250, 245, 0.92) !important;
+  font-size: 1.02rem !important;
+  line-height: 1.65 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.divide-graphite\/10 > :not([hidden]) ~ :not([hidden]),
+.divide-graphite\/15 > :not([hidden]) ~ :not([hidden]),
+.border-graphite\/10,
+.border-graphite\/15,
+.border-graphite\/20,
+.divide-y {
+  border-color: rgba(207, 168, 83, 0.16) !important;
+}
+
+/* 6. LINKS INFORMATIVOS — ESTADO PADRÃO 100% VISÍVEL (SEM DEPENDÊNCIA DE HOVER) */
+main a:not(.animated-button):not(.df-btn-primary):not(#btn-whatsapp-flutuante),
+main aside a,
+main article a,
+main nav a,
+main ul a:not(.animated-button),
+main ol a:not(.animated-button),
+a.font-display,
+a.text-graphite,
+a.text-stone {
+  color: var(--df-gold-light, #f5df9e) !important;
+  text-decoration: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.25s ease !important;
+}
+
+/* Efeito de hover como refinamento elegante, NUNCA condição de visibilidade */
+main a:not(.animated-button):not(.df-btn-primary):not(#btn-whatsapp-flutuante):hover,
+main aside a:hover,
+main article a:hover,
+main nav a:hover,
+main ul a:not(.animated-button):hover,
+main ol a:not(.animated-button):hover,
+a.font-display:hover,
+a.text-graphite:hover,
+a.text-stone:hover {
+  color: #ffffff !important;
+  text-shadow: 0 0 12px rgba(207, 168, 83, 0.5) !important;
+}
+
+/* 7. PÍLULAS E BADGES DE CIDADES / REGIÕES ATENDIDAS */
+a.rounded-full.border,
+a.rounded-full.ring-1,
+span.rounded-full.border,
+span.rounded-full.ring-1 {
+  background: rgba(14, 38, 20, 0.75) !important;
+  border: 1px solid rgba(207, 168, 83, 0.3) !important;
+  color: var(--df-gold-light, #f5df9e) !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 500 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+a.rounded-full.border:hover,
+a.rounded-full.ring-1:hover {
+  background: rgba(207, 168, 83, 0.22) !important;
+  border-color: var(--df-gold, #cfa853) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7), 0 0 16px rgba(207, 168, 83, 0.3) !important;
+}
+
+/* 8. BREADCRUMBS / TRILHA DE NAVEGAÇÃO */
+nav[aria-label="Trilha de navegação"],
+nav[aria-label="Trilha de navegação"] ol,
+nav[aria-label="Trilha de navegação"] li,
+nav[aria-label="Trilha de navegação"] a,
+nav[aria-label="Trilha de navegação"] span {
+  font-family: 'Outfit', sans-serif !important;
+  color: rgba(252, 250, 245, 0.78) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+nav[aria-label="Trilha de navegação"] a:hover {
+  color: var(--df-gold-light, #f5df9e) !important;
+}
+
+nav[aria-label="Trilha de navegação"] span[aria-current="page"] {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+/* 9. CARTÕES DE EVENTOS (Casamentos, Corporativos, Formaturas, etc.) */
 section a.bg-sand\/50,
 section a.bg-sand {
   background: var(--df-bg-card) !important;
@@ -183,6 +388,8 @@ section a.bg-sand {
   border-radius: 0.85rem !important;
   backdrop-filter: blur(12px) !important;
   padding: 1.25rem !important;
+  opacity: 1 !important;
+  visibility: visible !important;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
@@ -199,9 +406,42 @@ section a.bg-sand span.text-graphite {
   color: #ffffff !important;
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-size: 1.45rem !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-/* CARTÕES DE GASTRONOMIA (Churrasco, Parrilla, Frios) */
+/* Setas de navegação nos cartões sempre visíveis */
+span.text-gold.opacity-0 {
+  opacity: 0.8 !important;
+  transform: translateX(0) !important;
+  transition: opacity 0.3s ease, transform 0.3s ease !important;
+}
+
+.group:hover span.text-gold.opacity-0 {
+  opacity: 1 !important;
+  transform: translateX(4px) !important;
+}
+
+/* 10. LEGENDAS DA GALERIA SEMPRE VISÍVEIS */
+.group .bg-graphite\/70.opacity-0,
+.group:hover .bg-graphite\/70.opacity-0,
+span.bg-graphite\/70 {
+  opacity: 1 !important;
+  visibility: visible !important;
+  background: rgba(6, 18, 8, 0.85) !important;
+  color: #fcfaf5 !important;
+  backdrop-filter: blur(8px) !important;
+  border-top: 1px solid rgba(207, 168, 83, 0.25) !important;
+  transition: background 0.3s ease, border-color 0.3s ease !important;
+}
+
+.group:hover span.bg-graphite\/70 {
+  background: rgba(14, 38, 20, 0.95) !important;
+  border-top-color: var(--df-gold, #cfa853) !important;
+  color: #ffffff !important;
+}
+
+/* 11. CARTÕES DE GASTRONOMIA */
 section a.group.ed-r,
 section div.aspect-\[16\/10\] a,
 section div.aspect-\[16\/12\] a,
@@ -222,7 +462,7 @@ section div.aspect-\[4\/5\] a:hover {
   transform: translateY(-4px) scale(1.01) !important;
 }
 
-/* ESTATÍSTICAS E NÚMEROS (38+ ANOS, 2.000 EVENTOS, 8.500 CONVIDADOS) */
+/* 12. ESTATÍSTICAS E NÚMEROS DE IMPACTO */
 .gold-foil {
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-size: 4.8rem !important;
@@ -232,32 +472,33 @@ section div.aspect-\[4\/5\] a:hover {
   letter-spacing: -0.02em !important;
 }
 
-/* SEÇÃO DE OPERAÇÃO E DIFERENCIAIS */
+/* 13. SEÇÃO DE OPERAÇÃO E DIFERENCIAIS */
 dl div.border-t {
   border-color: rgba(207, 168, 83, 0.18) !important;
   padding: 1.8rem 0 !important;
 }
 
-dl dt.text-greendeep {
+dl dt.text-greendeep,
+dl dt {
   color: var(--df-gold-light) !important;
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-size: 1.55rem !important;
 }
 
-/* RETRATO DO CHEF CRISTIANO */
+/* 14. RETRATO DO CHEF CRISTIANO */
 figure.ed-r {
   border: 1px solid var(--df-gold-border) !important;
   border-radius: 1.25rem !important;
   box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.9) !important;
 }
 
-/* LISTA DE REGIÕES E CIDADES ATENDIDAS */
+/* 15. LISTA DE REGIÕES E CIDADES ATENDIDAS */
 ul.sm\:grid-cols-2 li {
   border-color: rgba(207, 168, 83, 0.15) !important;
 }
 
 ul.sm\:grid-cols-2 a {
-  color: rgba(252, 250, 245, 0.85) !important;
+  color: rgba(252, 250, 245, 0.9) !important;
   font-size: 1.05rem !important;
   transition: all 0.3s ease !important;
 }
@@ -267,39 +508,66 @@ ul.sm\:grid-cols-2 a:hover {
   transform: translateX(4px);
 }
 
-/* PERGUNTAS FREQUENTES (FAQ ACCORDIONS) */
-details.group {
-  background: rgba(14, 38, 20, 0.45) !important;
-  border: 1px solid rgba(207, 168, 83, 0.18) !important;
+/* 16. PERGUNTAS FREQUENTES (FAQ ACCORDIONS) */
+details.group,
+details {
+  background: rgba(14, 38, 20, 0.5) !important;
+  border: 1px solid rgba(207, 168, 83, 0.2) !important;
   border-radius: 0.65rem !important;
   margin-bottom: 0.75rem !important;
   transition: all 0.3s ease !important;
 }
 
-details.group[open] {
-  background: rgba(18, 48, 25, 0.7) !important;
+details.group[open],
+details[open] {
+  background: rgba(18, 48, 25, 0.75) !important;
   border-color: rgba(207, 168, 83, 0.45) !important;
   box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.5) !important;
 }
 
-details.group summary {
+details.group summary,
+details summary {
   color: #ffffff !important;
+  font-size: 1.2rem !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  cursor: pointer;
+  padding: 0.5rem 0;
+}
+
+details.group p,
+details p,
+details div {
+  color: rgba(252, 250, 245, 0.88) !important;
+  font-size: 1rem !important;
+  line-height: 1.7 !important;
+}
+
+/* 17. DEPOIMENTOS E CITAÇÕES */
+blockquote,
+blockquote p {
+  color: rgba(252, 250, 245, 0.92) !important;
+  font-style: italic !important;
   font-size: 1.15rem !important;
+  line-height: 1.75 !important;
+}
+
+figcaption,
+cite {
+  color: var(--df-gold-light, #f5df9e) !important;
   font-family: 'Outfit', sans-serif !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
 }
 
-details.group p {
-  color: var(--df-ivory-dim) !important;
-}
-
-/* RODAPÉ MONOLÍTICO DE LUXO */
+/* 18. RODAPÉ MONOLÍTICO DE LUXO */
 footer.border-t-2 {
   background: #040c05 !important;
   border-top: 1px solid var(--df-gold-border) !important;
   color: var(--df-ivory) !important;
 }
 
-footer .footer-title {
+footer .footer-title,
+footer h2 {
   color: var(--df-gold-light) !important;
   font-family: 'Outfit', sans-serif !important;
   letter-spacing: 0.16em !important;
@@ -307,8 +575,12 @@ footer .footer-title {
   text-transform: uppercase !important;
 }
 
+footer p {
+  color: rgba(252, 250, 245, 0.78) !important;
+}
+
 footer a {
-  color: rgba(252, 250, 245, 0.7) !important;
+  color: rgba(252, 250, 245, 0.78) !important;
   transition: color 0.3s ease !important;
 }
 
@@ -316,7 +588,7 @@ footer a:hover {
   color: var(--df-gold-light) !important;
 }
 
-/* BOTÃO FLUTUANTE DE WHATSAPP OFICIAL (ÚNICO E PROTEGIDO) */
+/* 19. BOTÃO FLUTUANTE DE WHATSAPP OFICIAL (ÚNICO E PROTEGIDO) */
 #btn-whatsapp-flutuante,
 .whatsapp-floating-direct {
   background: #25d366 !important;
@@ -324,6 +596,7 @@ footer a:hover {
   border: 2px solid rgba(255, 255, 255, 0.3) !important;
   z-index: 9999 !important;
 }
+
 
 /* ==========================================================================
    MODAL DE ORÇAMENTO (MANTIDO E PRESERVADO INTEGRALMENTE CONFORME REGRA 1)
