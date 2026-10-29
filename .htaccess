@@ -1,0 +1,96 @@
+# Hospedagem Apache (HostGator) — configuração do site do D'Faria.
+# Copie este arquivo para a raiz pública (public_html) junto com o conteúdo
+# gerado em dist/client.
+#
+# ESTRATÉGIA ÚNICA DE REDIRECT: todos os 301 de URLs antigas ficam AQUI.
+# A aplicação não faz mais redirects próprios — nada de cadeias nem loops.
+
+Options -MultiViews
+DirectorySlash Off
+RewriteEngine On
+
+# ------------------------------------------------------------------
+# 1. HTTPS
+# ------------------------------------------------------------------
+# www -> domínio principal em um único 301 (já em HTTPS, sem cadeia)
+RewriteCond %{HTTP_HOST} ^www\.dfariagastronomia\.com\.br$ [NC]
+RewriteRule ^ https://dfariagastronomia.com.br%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ------------------------------------------------------------------
+# 2. REDIRECTS 301 DE MIGRAÇÃO (URLs do site anterior)
+#    Sempre apontando direto para o destino final.
+# ------------------------------------------------------------------
+RewriteRule ^nossos-momentos/?$ /galeria [R=301,L]
+RewriteRule ^38-anos-de-experiencia/?$ /o-dfaria [R=301,L]
+RewriteRule ^38-anos-de-experi(ê|%C3%AA)ncia/?$ /o-dfaria [R=301,L]
+# Ao mudar alguma URL no futuro, registre aqui e em MIGRACAO-SEO.md:
+# RewriteRule ^url-antiga/?$ /url-nova [R=301,L]
+
+# ------------------------------------------------------------------
+# 3. URL canônica sem barra final (exceto a home)
+# ------------------------------------------------------------------
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+# ------------------------------------------------------------------
+# 4. Páginas estáticas: /galeria -> /galeria/index.html (sem redirect)
+# ------------------------------------------------------------------
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+RewriteRule ^(.*)$ /$1/index.html [L]
+
+# ------------------------------------------------------------------
+# 5. 404 REAL para qualquer URL que não exista (sem fallback de SPA)
+# ------------------------------------------------------------------
+ErrorDocument 404 /404.html
+
+# ------------------------------------------------------------------
+# 5b. SEGURANÇA BÁSICA
+#     A chave do Google fica em api/config.php e nunca pode ser servida.
+# ------------------------------------------------------------------
+<FilesMatch "^(config\.php|config\.sample\.php|README-PUBLICACAO\.txt)$">
+  Require all denied
+</FilesMatch>
+
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+Options -Indexes
+ServerSignature Off
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-XSS-Protection "1; mode=block"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://places.googleapis.com; frame-src 'none'; object-src 'none'; media-src 'self'; form-action 'self'; base-uri 'self'"
+</IfModule>
+
+
+# ------------------------------------------------------------------
+# 6. Cache e compressão
+# ------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/avif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType video/mp4 "access plus 1 year"
+  ExpiresByType video/webm "access plus 1 year"
+  ExpiresByType text/html "access plus 10 minutes"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript image/svg+xml application/json
+</IfModule>

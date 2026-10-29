@@ -1,0 +1,1 @@
+var e=`/assets/foto-17-D_iKGajp.webp`;export{e as t};

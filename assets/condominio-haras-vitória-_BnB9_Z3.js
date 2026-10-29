@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-BkSabwWG.js";import{l as t}from"./index-YE_qGe-u.js";import{t as n}from"./RegionPage-C1Wl328n.js";var r=e(),i=()=>(0,r.jsx)(n,{region:t});export{i as component};

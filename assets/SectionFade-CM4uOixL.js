@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-BkSabwWG.js";var t=e(),n={ivory:`from-ivory`,sand:`from-sand`,green:`from-greendeep`},r={ivory:`to-ivory`,sand:`to-sand`,green:`to-greendeep`};function i({a:e,b:i,height:a=`h-16 lg:h-24`}){return(0,t.jsx)(`div`,{"aria-hidden":`true`,className:`w-full bg-gradient-to-b ${n[e]} ${r[i]} ${a}`})}export{i as t};

@@ -1,0 +1,1 @@
+var e=`/assets/foto-11-B0c1RCgJ.webp`,t=`/assets/foto-31-COvha9rE.webp`;export{e as n,t};

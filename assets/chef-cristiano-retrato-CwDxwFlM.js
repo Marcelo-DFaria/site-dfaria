@@ -1,0 +1,1 @@
+var e=`/assets/foto-28-DUSPJ_tg.webp`,t=`/assets/foto-48-CnxJVKAN.webp`,n=`/assets/chef-cristiano-retrato-CHdHYViL.webp`;export{t as n,e as r,n as t};

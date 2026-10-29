@@ -1,0 +1,1 @@
+var e=`/assets/foto-05-BpBS85sN.webp`;export{e as t};

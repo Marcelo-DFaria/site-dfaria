@@ -1,0 +1,1 @@
+var e=`/assets/foto-47-JzxW1tax.webp`;export{e as t};

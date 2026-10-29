@@ -1,0 +1,1 @@
+var e=`/assets/foto-08-DICMDLK9.webp`;export{e as t};
