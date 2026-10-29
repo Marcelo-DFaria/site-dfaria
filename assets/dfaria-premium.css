@@ -605,3 +605,194 @@ footer a:hover {
   transform: translateY(-2px);
   box-shadow: 0 14px 34px -6px rgba(37, 211, 102, 0.6);
 }
+
+
+/* ==========================================================================
+   QUADROS DE ESCULTURAS EM FRUTAS (GALERIA PREMIUM COM ANIMAÇÕES)
+   ========================================================================== */
+
+.df-sculpture-section {
+  background: linear-gradient(180deg, #07150a 0%, #0a1e0f 50%, #07150a 100%) !important;
+  color: var(--df-ivory) !important;
+  padding: 5rem 1.5rem !important;
+  border-bottom: 1px solid rgba(207, 168, 83, 0.15) !important;
+}
+
+.df-sculpture-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.75rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 640px) {
+  .df-sculpture-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .df-sculpture-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.25rem;
+  }
+}
+
+.df-sculpture-frame {
+  position: relative;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: rgba(14, 38, 20, 0.55);
+  border: 1px solid rgba(207, 168, 83, 0.25);
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.8);
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.df-sculpture-frame:hover {
+  transform: translateY(-6px) scale(1.015);
+  border-color: rgba(207, 168, 83, 0.7);
+  box-shadow: 0 22px 50px -10px rgba(0, 0, 0, 0.95), 0 0 30px rgba(207, 168, 83, 0.25);
+}
+
+.df-sculpture-img-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #040c05;
+}
+
+.df-sculpture-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.df-sculpture-frame:hover .df-sculpture-img {
+  transform: scale(1.08);
+}
+
+.df-sculpture-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(6, 18, 8, 0.85);
+  border: 1px solid rgba(207, 168, 83, 0.4);
+  color: var(--df-gold-light);
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  backdrop-filter: blur(8px);
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.df-sculpture-info {
+  padding: 1.4rem 1.6rem 1.6rem;
+  background: linear-gradient(180deg, rgba(14, 38, 20, 0.7) 0%, rgba(7, 21, 10, 0.95) 100%);
+  border-top: 1px solid rgba(207, 168, 83, 0.15);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.df-sculpture-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.45rem;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.25;
+  transition: color 0.3s ease;
+}
+
+.df-sculpture-frame:hover .df-sculpture-title {
+  color: var(--df-gold-light);
+}
+
+.df-sculpture-desc {
+  font-size: 0.85rem;
+  color: rgba(252, 250, 245, 0.7);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* LIGHTBOX DE ALTA RESOLUÇÃO */
+.df-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 12, 5, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.35s ease;
+}
+
+.df-lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.df-lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.df-lightbox-img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 1rem;
+  border: 1px solid rgba(207, 168, 83, 0.4);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95);
+  object-fit: contain;
+}
+
+.df-lightbox-caption {
+  margin-top: 1rem;
+  color: var(--df-gold-light);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.df-lightbox-close {
+  position: absolute;
+  top: -3rem;
+  right: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(207, 168, 83, 0.4);
+  color: #ffffff;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.25s ease;
+}
+
+.df-lightbox-close:hover {
+  background: var(--df-gold);
+  color: #061208;
+  transform: rotate(90deg);
+}

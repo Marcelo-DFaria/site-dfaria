@@ -327,3 +327,66 @@
     initScrollEffects();
   }
 })();
+
+
+  /* ==========================================================================
+     4. LIGHTBOX INTERATIVO PARA ESCULTURAS EM FRUTAS
+     ========================================================================== */
+  function initLightbox() {
+    if (document.getElementById('df-lightbox-modal')) return;
+
+    const lbHtml = `
+      <div id="df-lightbox-modal" class="df-lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de imagem">
+        <div class="df-lightbox-content">
+          <button type="button" class="df-lightbox-close" id="df-lightbox-btn-close" aria-label="Fechar">✕</button>
+          <img src="" alt="" id="df-lightbox-img" class="df-lightbox-img" />
+          <div id="df-lightbox-caption" class="df-lightbox-caption"></div>
+        </div>
+      </div>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', lbHtml);
+
+    const lb = document.getElementById('df-lightbox-modal');
+    const lbImg = document.getElementById('df-lightbox-img');
+    const lbCap = document.getElementById('df-lightbox-caption');
+    const lbClose = document.getElementById('df-lightbox-btn-close');
+
+    function closeLb() {
+      lb.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    lbClose.addEventListener('click', closeLb);
+    lb.addEventListener('click', function (e) {
+      if (e.target === lb) closeLb();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lb.classList.contains('is-open')) {
+        closeLb();
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      const frame = e.target.closest('.df-sculpture-frame, [data-lightbox-src]');
+      if (!frame) return;
+
+      const src = frame.getAttribute('data-lightbox-src') || (frame.querySelector('img') ? frame.querySelector('img').src : '');
+      const caption = frame.getAttribute('data-lightbox-caption') || (frame.querySelector('.df-sculpture-title') ? frame.querySelector('.df-sculpture-title').textContent : '');
+
+      if (src) {
+        lbImg.src = src;
+        lbImg.alt = caption;
+        lbCap.textContent = caption;
+        lb.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLightbox);
+  } else {
+    initLightbox();
+  }
