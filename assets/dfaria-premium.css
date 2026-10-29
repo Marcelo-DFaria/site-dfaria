@@ -1,0 +1,399 @@
+/* ==========================================================================
+   D'FARIA GASTRONOMIA E EVENTOS — PREMIUM EDITORIAL DESIGN SYSTEM
+   Inspirado na sofisticação de Sous Réserve — Preservação total de identidade
+   ========================================================================== */
+
+:root {
+  --df-gold: #cfa853;
+  --df-gold-light: #e8ca7d;
+  --df-gold-dark: #9e7a2b;
+  --df-green-deep: #07150a;
+  --df-green-forest: #0d2313;
+  --df-green-accent: #1b4d27;
+  --df-ivory: #fcfaf5;
+  --df-ivory-soft: #f4ede0;
+  --df-graphite: #131713;
+  --df-gold-gradient: linear-gradient(135deg, #cfa853 0%, #f6e2a2 50%, #b88e36 100%);
+  --df-gold-border: rgba(207, 168, 83, 0.28);
+}
+
+/* Tipografia Editorial Refinada */
+.font-editorial {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.gold-word {
+  background: var(--df-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Efeito Cinematográfico Ken Burns */
+@keyframes kenBurnsSlow {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+.hero-cinematic-bg {
+  animation: kenBurnsSlow 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-cinematic-bg {
+    animation: none !important;
+  }
+}
+
+/* Molduras e detalhes finos Sous Réserve */
+.df-border-gold {
+  border: 1px solid var(--df-gold-border);
+}
+
+.df-border-gold-hover {
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.df-border-gold-hover:hover {
+  border-color: rgba(207, 168, 83, 0.6);
+  box-shadow: 0 12px 36px -12px rgba(7, 21, 10, 0.8), 0 0 20px -5px rgba(207, 168, 83, 0.25);
+  transform: translateY(-3px);
+}
+
+/* Botão Primário Editorial */
+.df-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--df-gold-gradient);
+  color: #07150a;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.95rem 2.2rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 24px -6px rgba(207, 168, 83, 0.45);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.df-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -6px rgba(207, 168, 83, 0.6);
+  filter: brightness(1.06);
+}
+
+.df-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--df-ivory);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.95rem 2.2rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(252, 250, 245, 0.3);
+  cursor: pointer;
+  transition: all 0.35s ease;
+  text-decoration: none;
+}
+
+.df-btn-outline:hover {
+  background: rgba(252, 250, 245, 0.1);
+  border-color: var(--df-gold);
+  color: var(--df-gold-light);
+  transform: translateY(-2px);
+}
+
+/* MODAL DE ORÇAMENTO PREMIUM (6 CAMPOS) */
+.df-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 14, 7, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.df-modal-backdrop.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.df-modal-container {
+  background: linear-gradient(175deg, #0d2313 0%, #07150a 100%);
+  border: 1px solid var(--df-gold-border);
+  border-radius: 1.25rem;
+  width: 100%;
+  max-width: 44rem;
+  max-height: 92vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 35px -8px rgba(207, 168, 83, 0.2);
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--df-ivory);
+  position: relative;
+}
+
+.df-modal-backdrop.is-active .df-modal-container {
+  transform: translateY(0) scale(1);
+}
+
+.df-modal-header {
+  position: relative;
+  padding: 2.2rem 2.2rem 1.4rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(207, 168, 83, 0.18);
+  background: radial-gradient(circle at 50% 0%, rgba(207, 168, 83, 0.12) 0%, transparent 75%);
+}
+
+.df-modal-logo {
+  height: 68px;
+  width: auto;
+  margin: 0 auto 1rem;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+}
+
+.df-modal-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.1rem;
+  font-weight: 500;
+  color: var(--df-ivory);
+  margin: 0;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.df-modal-subtitle {
+  font-size: 0.88rem;
+  color: rgba(252, 250, 245, 0.75);
+  margin-top: 0.6rem;
+  line-height: 1.5;
+  max-width: 38ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.df-modal-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--df-ivory);
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.df-modal-close:hover {
+  background: rgba(207, 168, 83, 0.2);
+  border-color: var(--df-gold);
+  color: var(--df-gold-light);
+  transform: rotate(90deg);
+}
+
+.df-modal-body {
+  padding: 1.8rem 2.2rem 2.2rem;
+}
+
+.df-form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.15rem;
+}
+
+@media (min-width: 640px) {
+  .df-form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .df-col-full {
+    grid-column: span 2;
+  }
+}
+
+.df-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.df-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  color: var(--df-gold-light);
+}
+
+.df-label span {
+  color: #e06c75;
+}
+
+.df-input {
+  background: rgba(7, 21, 10, 0.7);
+  border: 1px solid rgba(207, 168, 83, 0.25);
+  border-radius: 0.5rem;
+  padding: 0.75rem 0.95rem;
+  color: var(--df-ivory);
+  font-size: 0.92rem;
+  font-family: inherit;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.df-input:focus {
+  border-color: var(--df-gold);
+  background: rgba(7, 21, 10, 0.95);
+  box-shadow: 0 0 0 3px rgba(207, 168, 83, 0.15);
+}
+
+.df-input.is-invalid {
+  border-color: #e06c75 !important;
+  background: rgba(224, 108, 117, 0.08) !important;
+}
+
+.df-error-msg {
+  font-size: 0.72rem;
+  color: #ff8b94;
+  margin-top: 0.2rem;
+  display: none;
+}
+
+.df-input.is-invalid + .df-error-msg {
+  display: block;
+}
+
+.df-modal-footer {
+  margin-top: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.df-submit-btn {
+  background: var(--df-gold-gradient);
+  color: #07150a;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.95rem 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.df-submit-btn:hover:not(:disabled) {
+  filter: brightness(1.08);
+  box-shadow: 0 8px 24px -4px rgba(207, 168, 83, 0.5);
+  transform: translateY(-1px);
+}
+
+.df-submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.df-privacy-note {
+  font-size: 0.68rem;
+  color: rgba(252, 250, 245, 0.55);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.df-privacy-note a {
+  color: var(--df-gold-light);
+  text-decoration: underline;
+}
+
+/* TELA DE SUCESSO DO FORMULÁRIO */
+.df-success-view {
+  display: none;
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+}
+
+.df-success-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: rgba(37, 211, 102, 0.15);
+  border: 1px solid rgba(37, 211, 102, 0.4);
+  color: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.4rem;
+  font-size: 2rem;
+}
+
+.df-success-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: var(--df-ivory);
+  margin: 0 0 0.8rem 0;
+}
+
+.df-success-desc {
+  font-size: 0.95rem;
+  color: rgba(252, 250, 245, 0.8);
+  line-height: 1.6;
+  max-width: 44ch;
+  margin: 0 auto 2rem;
+}
+
+.df-whatsapp-final-btn {
+  background: #25d366;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1rem 2.2rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 10px 28px -6px rgba(37, 211, 102, 0.45);
+  transition: all 0.3s ease;
+}
+
+.df-whatsapp-final-btn:hover {
+  background: #20ba59;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px -6px rgba(37, 211, 102, 0.6);
+}
