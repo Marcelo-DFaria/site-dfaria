@@ -18,7 +18,7 @@
         <div class="df-modal-container">
           <button type="button" class="df-modal-close" aria-label="Fechar formulário" id="df-modal-btn-close">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="18" y1="6" x2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
@@ -51,7 +51,7 @@
                 <!-- 3. WhatsApp com DDD -->
                 <div class="df-input-group">
                   <label class="df-label" for="df-field-whatsapp">WhatsApp com DDD <span>*</span></label>
-                  <input type="tel" id="df-field-whatsapp" name="whatsapp" class="df-input" placeholder="(15) 99999-9999" required autocomplete="tel" />
+                  <input type="tel" id="df-field-whatsapp" name="whatsapp" class="df-input" placeholder="(15) 99683-4734" required autocomplete="tel" />
                   <span class="df-error-msg" id="err-whatsapp">Informe um WhatsApp válido com DDD.</span>
                 </div>
 
@@ -80,14 +80,14 @@
 
               <div class="df-modal-footer">
                 <button type="submit" id="df-btn-submit" class="df-submit-btn">
-                  <span>Enviar e Continuar no WhatsApp</span>
+                  <span>Enviar Pedido e Iniciar Atendimento</span>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                   </svg>
                 </button>
                 <p class="df-privacy-note">
-                  Seus dados são protegidos e utilizados exclusivamente para elaborar seu orçamento personalizado. Consulte nossa <a href="/politica-de-privacidade">Política de Privacidade</a>.
+                  Seus dados são protegidos e enviados diretamente para nossa equipe de atendimento por e-mail e WhatsApp. Consulte nossa <a href="/politica-de-privacidade">Política de Privacidade</a>.
                 </p>
               </div>
             </form>
@@ -95,12 +95,12 @@
             <!-- Tela de Sucesso -->
             <div id="df-orcamento-success" class="df-success-view">
               <div class="df-success-icon">✓</div>
-              <h3 class="df-success-title">Solicitação Preparada!</h3>
+              <h3 class="df-success-title">Orçamento Enviado com Sucesso!</h3>
               <p class="df-success-desc">
-                Seus dados foram reunidos com sucesso. Para agilizar seu atendimento e garantir a disponibilidade na data, converse agora com o Chef Cristiano e equipe pelo WhatsApp:
+                Seus dados foram registrados e enviados para o nosso e-mail. Para garantir sua data na agenda com máxima prioridade, clique no botão abaixo para falar direto com a equipe no WhatsApp oficial:
               </p>
-              <a href="#" id="df-btn-whatsapp-final" target="_blank" rel="noopener noreferrer" class="df-whatsapp-final-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <a href="#" id="df-btn-whatsapp-final" target="_blank" rel="noopener noreferrer" class="df-whatsapp-final-btn whatsapp-direct-link">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.03h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.16 8.16 0 0 1-1.25-4.35c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.83 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.21-8.24 8.21Zm4.52-6.15c-.25-.12-1.47-.72-1.69-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.22.25-.85.84-.85 2.03s.87 2.35 1 2.51c.12.17 1.72 2.62 4.16 3.67.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z"/>
                 </svg>
                 <span>Falar Conosco no WhatsApp</span>
@@ -198,7 +198,7 @@
 
       // 6. Local
       const localInput = document.getElementById('df-field-local');
-      if (!localInput.value.trim() || localInput.value.trim().length < 3) {
+      if (!localInput.value.trim() || localInput.value.trim().length < 2) {
         localInput.classList.add('is-invalid');
         isValid = false;
       } else {
@@ -207,36 +207,51 @@
 
       if (!isValid) return;
 
-      // Montar mensagem oficial formatada do WhatsApp
+      const submitBtn = document.getElementById('df-btn-submit');
+      submitBtn.disabled = true;
+      submitBtn.querySelector('span').textContent = 'Enviando...';
+
+      // Formatar data para padrão brasileiro DD/MM/AAAA
       const dataParts = dataInput.value.split('-');
       const dataFormatada = `${dataParts[2]}/${dataParts[1]}/${dataParts[0]}`;
 
+      // Montar mensagem oficial formatada do WhatsApp (15996834734)
       const mensagem = `Olá, DFARIA Gastronomia e Eventos! Preenchi o formulário no site e gostaria de solicitar um orçamento.\n\nDADOS PARA ORÇAMENTO\n\nNome: ${nomeInput.value.trim()}\nE-mail: ${emailInput.value.trim()}\nWhatsApp: ${whatsappInput.value.trim()}\nData do evento: ${dataFormatada}\nNúmero de convidados: ${qtdConvidados}\nLocal da festa: ${localInput.value.trim()}\n\nAguardo o retorno da equipe para dar continuidade ao orçamento.`;
 
       const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem)}`;
 
-      // Opcional: registrar via backend assincronamente sem travar a navegação
-      try {
-        fetch('/api/enviar-orcamento.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            nome: nomeInput.value.trim(),
-            email: emailInput.value.trim(),
-            whatsapp: whatsappInput.value.trim(),
-            data_evento: dataFormatada,
-            convidados: qtdConvidados,
-            local: localInput.value.trim()
-          })
-        }).catch(() => {});
-      } catch (err) {}
+      // Disparar envio por e-mail e backend assíncrono via API PHP
+      fetch('/api/enviar-orcamento.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nome: nomeInput.value.trim(),
+          email: emailInput.value.trim(),
+          whatsapp: whatsappInput.value.trim(),
+          data_evento: dataFormatada,
+          convidados: qtdConvidados,
+          local: localInput.value.trim()
+        })
+      })
+      .catch(() => {})
+      .finally(() => {
+        // Mostrar tela de sucesso
+        form.style.display = 'none';
+        const successView = document.getElementById('df-orcamento-success');
+        const finalBtn = document.getElementById('df-btn-whatsapp-final');
+        finalBtn.setAttribute('href', whatsappUrl);
+        
+        // Atribuir evento direto para garantir abertura imediata e sem bloqueios
+        finalBtn.onclick = function (event) {
+          event.stopPropagation();
+          window.open(whatsappUrl, '_blank');
+          return false;
+        };
 
-      // Mostrar tela de sucesso
-      form.style.display = 'none';
-      const successView = document.getElementById('df-orcamento-success');
-      const finalBtn = document.getElementById('df-btn-whatsapp-final');
-      finalBtn.setAttribute('href', whatsappUrl);
-      successView.style.display = 'block';
+        successView.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.querySelector('span').textContent = 'Enviar Pedido e Iniciar Atendimento';
+      });
     });
   }
 
@@ -260,8 +275,10 @@
   // Interceptar todos os CTAs comerciais do site
   function bindCommercialCTAs() {
     document.addEventListener('click', function (e) {
-      // Ignorar o botão flutuante de WhatsApp fixo
-      if (e.target.closest('#btn-whatsapp-flutuante, .whatsapp-floating-direct')) {
+      // NUNCA interceptar:
+      // 1. O botão flutuante oficial de WhatsApp (#btn-whatsapp-flutuante ou .whatsapp-floating-direct)
+      // 2. O botão de WhatsApp gerado após o preenchimento do formulário (#df-btn-whatsapp-final ou .whatsapp-direct-link)
+      if (e.target.closest('#btn-whatsapp-flutuante, #df-btn-whatsapp-final, .whatsapp-floating-direct, .whatsapp-direct-link')) {
         return;
       }
 
@@ -280,7 +297,7 @@
         text.includes('quero contratar') ||
         text.includes('pedir pelo formulário') ||
         text.includes('vamos conversar sobre seu evento') ||
-        (href.includes('wa.me') && !target.classList.contains('whatsapp-floating-direct')) ||
+        (href.includes('wa.me') && !target.classList.contains('whatsapp-floating-direct') && !target.classList.contains('whatsapp-direct-link')) ||
         href === '/orcamento';
 
       if (isCommercialCta) {

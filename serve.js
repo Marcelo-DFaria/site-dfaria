@@ -21,7 +21,24 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-  let urlPath = decodeURIComponent(req.url.split('?')[0]);
+  const urlParts = req.url.split('?');
+  const urlPath = decodeURIComponent(urlParts[0]);
+
+  // Simulação local de API para teste em desenvolvimento
+  if (req.method === 'POST' && urlPath === '/api/enviar-orcamento.php') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
+      console.log('Recebido formulário localmente:', body);
+      res.writeHead(200, {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Cache-Control': 'no-store'
+      });
+      res.end(JSON.stringify({ ok: true, mensagem: 'Orçamento recebido e e-mail disparado!' }));
+    });
+    return;
+  }
+
   let safePath = path.normalize(path.join(ROOT, urlPath));
 
   if (!safePath.startsWith(ROOT)) {
