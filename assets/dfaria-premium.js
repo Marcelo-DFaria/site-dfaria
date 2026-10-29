@@ -1,5 +1,6 @@
 /**
- * D'FARIA GASTRONOMIA E EVENTOS — MÓDULO PREMIUM DE CONVERSÃO & FORMULÁRIO
+ * D'FARIA GASTRONOMIA E EVENTOS — MÓDULO PREMIUM DE CONVERSÃO & INTERAÇÕES
+ * Inspiração: sousreserve.com.br
  * Regra P0: Nenhuma URL pública é alterada.
  * Todos os CTAs comerciais abrem este modal de 6 campos.
  * Somente o botão flutuante oficial abre o WhatsApp direto.
@@ -10,6 +11,9 @@
 
   const WHATSAPP_NUMBER = '5515996834734';
 
+  /* ==========================================================================
+     1. MODAL PREMIUM DE ORÇAMENTO (PRESERVADO INTEGRALMENTE CONFORME REGRA 1)
+     ========================================================================== */
   function initModal() {
     if (document.getElementById('df-modal-orcamento')) return;
 
@@ -114,14 +118,12 @@
 
     document.body.insertAdjacentHTML('beforeend', modalHtml);
 
-    // Configurar data mínima como hoje
     const todayStr = new Date().toISOString().split('T')[0];
     const dateInput = document.getElementById('df-field-data');
     if (dateInput) {
       dateInput.setAttribute('min', todayStr);
     }
 
-    // Eventos de fechar
     const modalBackdrop = document.getElementById('df-modal-orcamento');
     const btnClose = document.getElementById('df-modal-btn-close');
 
@@ -141,14 +143,12 @@
       }
     });
 
-    // Form submit e validação
     const form = document.getElementById('df-orcamento-form');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
       let isValid = true;
 
-      // 1. Nome
       const nomeInput = document.getElementById('df-field-nome');
       if (!nomeInput.value.trim() || nomeInput.value.trim().length < 3) {
         nomeInput.classList.add('is-invalid');
@@ -157,7 +157,6 @@
         nomeInput.classList.remove('is-invalid');
       }
 
-      // 2. Email
       const emailInput = document.getElementById('df-field-email');
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(emailInput.value.trim())) {
@@ -167,7 +166,6 @@
         emailInput.classList.remove('is-invalid');
       }
 
-      // 3. WhatsApp
       const whatsappInput = document.getElementById('df-field-whatsapp');
       const cleanPhone = whatsappInput.value.replace(/\D/g, '');
       if (cleanPhone.length < 10) {
@@ -177,7 +175,6 @@
         whatsappInput.classList.remove('is-invalid');
       }
 
-      // 4. Data
       const dataInput = document.getElementById('df-field-data');
       if (!dataInput.value || dataInput.value < todayStr) {
         dataInput.classList.add('is-invalid');
@@ -186,7 +183,6 @@
         dataInput.classList.remove('is-invalid');
       }
 
-      // 5. Convidados
       const convidadosInput = document.getElementById('df-field-convidados');
       const qtdConvidados = parseInt(convidadosInput.value, 10);
       if (isNaN(qtdConvidados) || qtdConvidados <= 0) {
@@ -196,7 +192,6 @@
         convidadosInput.classList.remove('is-invalid');
       }
 
-      // 6. Local
       const localInput = document.getElementById('df-field-local');
       if (!localInput.value.trim() || localInput.value.trim().length < 2) {
         localInput.classList.add('is-invalid');
@@ -211,16 +206,13 @@
       submitBtn.disabled = true;
       submitBtn.querySelector('span').textContent = 'Enviando...';
 
-      // Formatar data para padrão brasileiro DD/MM/AAAA
       const dataParts = dataInput.value.split('-');
       const dataFormatada = `${dataParts[2]}/${dataParts[1]}/${dataParts[0]}`;
 
-      // Montar mensagem oficial formatada do WhatsApp (15996834734)
       const mensagem = `Olá, DFARIA Gastronomia e Eventos! Preenchi o formulário no site e gostaria de solicitar um orçamento.\n\nDADOS PARA ORÇAMENTO\n\nNome: ${nomeInput.value.trim()}\nE-mail: ${emailInput.value.trim()}\nWhatsApp: ${whatsappInput.value.trim()}\nData do evento: ${dataFormatada}\nNúmero de convidados: ${qtdConvidados}\nLocal da festa: ${localInput.value.trim()}\n\nAguardo o retorno da equipe para dar continuidade ao orçamento.`;
 
       const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem)}`;
 
-      // Disparar envio por e-mail e backend assíncrono via API PHP
       fetch('/api/enviar-orcamento.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -235,13 +227,11 @@
       })
       .catch(() => {})
       .finally(() => {
-        // Mostrar tela de sucesso
         form.style.display = 'none';
         const successView = document.getElementById('df-orcamento-success');
         const finalBtn = document.getElementById('df-btn-whatsapp-final');
         finalBtn.setAttribute('href', whatsappUrl);
         
-        // Atribuir evento direto para garantir abertura imediata e sem bloqueios
         finalBtn.onclick = function (event) {
           event.stopPropagation();
           window.open(whatsappUrl, '_blank');
@@ -255,14 +245,12 @@
     });
   }
 
-  // Função global para abrir o modal
   window.dfOpenOrcamentoModal = function () {
     initModal();
     const modalBackdrop = document.getElementById('df-modal-orcamento');
     const form = document.getElementById('df-orcamento-form');
     const successView = document.getElementById('df-orcamento-success');
     
-    // Resetar estado se já tiver sido enviado antes
     if (form && successView) {
       form.style.display = 'block';
       successView.style.display = 'none';
@@ -272,12 +260,11 @@
     document.body.style.overflow = 'hidden';
   };
 
-  // Interceptar todos os CTAs comerciais do site
+  /* ==========================================================================
+     2. INTERCEPTADOR DOS CTAs COMERCIAIS
+     ========================================================================== */
   function bindCommercialCTAs() {
     document.addEventListener('click', function (e) {
-      // NUNCA interceptar:
-      // 1. O botão flutuante oficial de WhatsApp (#btn-whatsapp-flutuante ou .whatsapp-floating-direct)
-      // 2. O botão de WhatsApp gerado após o preenchimento do formulário (#df-btn-whatsapp-final ou .whatsapp-direct-link)
       if (e.target.closest('#btn-whatsapp-flutuante, #df-btn-whatsapp-final, .whatsapp-floating-direct, .whatsapp-direct-link')) {
         return;
       }
@@ -288,7 +275,6 @@
       const href = target.getAttribute('href') || '';
       const text = (target.textContent || '').trim().toLowerCase();
 
-      // Critérios para detectar botões comerciais de orçamento
       const isCommercialCta =
         target.classList.contains('js-open-orcamento') ||
         text.includes('solicite seu orçamento') ||
@@ -307,14 +293,37 @@
     }, true);
   }
 
-  // Inicializar quando o DOM estiver pronto
+  /* ==========================================================================
+     3. REFINAMENTO VISUAL AO ROLAR (HEADER SCROLL EFFECT)
+     ========================================================================== */
+  function initScrollEffects() {
+    const header = document.querySelector('header.sticky');
+    if (!header) return;
+
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 40) {
+        header.style.background = 'rgba(4, 12, 5, 0.94)';
+        header.style.paddingTop = '2px';
+        header.style.paddingBottom = '2px';
+        header.style.boxShadow = '0 15px 35px -5px rgba(0, 0, 0, 0.9)';
+      } else {
+        header.style.background = 'rgba(6, 18, 8, 0.85)';
+        header.style.paddingTop = '';
+        header.style.paddingBottom = '';
+        header.style.boxShadow = '';
+      }
+    }, { passive: true });
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       initModal();
       bindCommercialCTAs();
+      initScrollEffects();
     });
   } else {
     initModal();
     bindCommercialCTAs();
+    initScrollEffects();
   }
 })();

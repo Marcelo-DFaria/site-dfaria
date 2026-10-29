@@ -1,44 +1,67 @@
 /* ==========================================================================
-   D'FARIA GASTRONOMIA E EVENTOS — PREMIUM EDITORIAL DESIGN SYSTEM
-   Inspirado na sofisticação de Sous Réserve — Preservação total de identidade
+   D'FARIA GASTRONOMIA E EVENTOS — ULTRA LUXURY EDITORIAL REDESIGN
+   Inspiração direta: sousreserve.com.br
+   Preservação 100% de todas as URLs e infraestrutura funcional
    ========================================================================== */
 
 :root {
+  --df-bg-dark: #061208;
+  --df-bg-surface: #0a1c0d;
+  --df-bg-card: rgba(14, 38, 20, 0.65);
   --df-gold: #cfa853;
-  --df-gold-light: #e8ca7d;
+  --df-gold-light: #f5df9e;
   --df-gold-dark: #9e7a2b;
-  --df-green-deep: #07150a;
-  --df-green-forest: #0d2313;
-  --df-green-accent: #1b4d27;
-  --df-ivory: #fcfaf5;
-  --df-ivory-soft: #f4ede0;
-  --df-graphite: #131713;
-  --df-gold-gradient: linear-gradient(135deg, #cfa853 0%, #f6e2a2 50%, #b88e36 100%);
+  --df-gold-glow: rgba(207, 168, 83, 0.25);
   --df-gold-border: rgba(207, 168, 83, 0.28);
+  --df-ivory: #fcfaf5;
+  --df-ivory-dim: rgba(252, 250, 245, 0.78);
+  --df-gold-gradient: linear-gradient(135deg, #cfa853 0%, #fae8b4 50%, #b88e36 100%);
 }
 
-/* Tipografia Editorial Refinada */
-.font-editorial {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+/* Base Global — Elimina visual bege/areia datado */
+html, body {
+  background-color: var(--df-bg-dark) !important;
+  color: var(--df-ivory) !important;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
 
-.gold-word {
-  background: var(--df-gold-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
+/* CABEÇALHO / HEADER DE ALTA COSTURA */
+header.sticky {
+  background: rgba(6, 18, 8, 0.85) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid var(--df-gold-border) !important;
+  border-top: none !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8) !important;
+  transition: all 0.4s ease !important;
 }
 
-/* Efeito Cinematográfico Ken Burns */
+header.sticky nav a.nav-link {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 0.78rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: rgba(252, 250, 245, 0.85) !important;
+  transition: color 0.3s ease, transform 0.3s ease !important;
+}
+
+header.sticky nav a.nav-link:hover {
+  color: var(--df-gold-light) !important;
+  transform: translateY(-1px);
+}
+
+/* HERO SECTION CINEMATOGRÁFICA */
+.hero-cinematic-bg {
+  animation: kenBurnsSlow 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
 @keyframes kenBurnsSlow {
   0% { transform: scale(1); }
-  50% { transform: scale(1.06); }
+  50% { transform: scale(1.05); }
   100% { transform: scale(1); }
-}
-
-.hero-cinematic-bg {
-  animation: kenBurnsSlow 24s ease-in-out infinite alternate;
-  will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -47,83 +70,270 @@
   }
 }
 
-/* Molduras e detalhes finos Sous Réserve */
-.df-border-gold {
-  border: 1px solid var(--df-gold-border);
+.gold-word {
+  background: var(--df-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  font-weight: 500;
 }
 
-.df-border-gold-hover {
-  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
-}
-
-.df-border-gold-hover:hover {
-  border-color: rgba(207, 168, 83, 0.6);
-  box-shadow: 0 12px 36px -12px rgba(7, 21, 10, 0.8), 0 0 20px -5px rgba(207, 168, 83, 0.25);
-  transform: translateY(-3px);
-}
-
-/* Botão Primário Editorial */
+/* BOTÕES DE LUXO */
 .df-btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   background: var(--df-gold-gradient);
-  color: #07150a;
+  color: #061208 !important;
   font-family: 'Outfit', sans-serif;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  padding: 0.95rem 2.2rem;
+  padding: 1rem 2.4rem;
   border-radius: 9999px;
   border: none;
   cursor: pointer;
-  box-shadow: 0 8px 24px -6px rgba(207, 168, 83, 0.45);
+  box-shadow: 0 10px 28px -6px rgba(207, 168, 83, 0.45);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
 }
 
 .df-btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 30px -6px rgba(207, 168, 83, 0.6);
-  filter: brightness(1.06);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px -6px rgba(207, 168, 83, 0.65);
+  filter: brightness(1.08);
 }
 
 .df-btn-outline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  background: transparent;
-  color: var(--df-ivory);
+  gap: 0.6rem;
+  background: rgba(252, 250, 245, 0.05);
+  color: var(--df-ivory) !important;
   font-family: 'Outfit', sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  padding: 0.95rem 2.2rem;
+  padding: 1rem 2.4rem;
   border-radius: 9999px;
-  border: 1px solid rgba(252, 250, 245, 0.3);
+  border: 1px solid rgba(252, 250, 245, 0.25);
+  backdrop-filter: blur(8px);
   cursor: pointer;
   transition: all 0.35s ease;
   text-decoration: none;
 }
 
 .df-btn-outline:hover {
-  background: rgba(252, 250, 245, 0.1);
+  background: rgba(207, 168, 83, 0.15);
   border-color: var(--df-gold);
-  color: var(--df-gold-light);
-  transform: translateY(-2px);
+  color: var(--df-gold-light) !important;
+  transform: translateY(-3px);
 }
 
-/* MODAL DE ORÇAMENTO PREMIUM (6 CAMPOS) */
+/* TRANSFORMAÇÃO DE TODAS AS SEÇÕES PARA DARK LUXURY (ESTILO SOUS RÉSERVE) */
+
+/* Seções com fundo claro antigo agora são dark luxury */
+section.bg-ivory,
+section.bg-sand,
+section.green-texture,
+section.green-texture-soft {
+  background: linear-gradient(180deg, #07150a 0%, #0a1e0f 50%, #07150a 100%) !important;
+  color: var(--df-ivory) !important;
+  border-bottom: 1px solid rgba(207, 168, 83, 0.12) !important;
+}
+
+/* Remover faixas divisórias desnecessárias */
+div[aria-hidden="true"].bg-gradient-to-b {
+  display: none !important;
+}
+
+/* Títulos das seções em estilo editorial refinado */
+section h2.font-display {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 2.8rem !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.015em !important;
+  color: #ffffff !important;
+  line-height: 1.15 !important;
+}
+
+@media (min-width: 1024px) {
+  section h2.font-display {
+    font-size: 3.4rem !important;
+  }
+}
+
+section p.text-stone,
+section p.text-graphite,
+section dd.text-stone {
+  color: var(--df-ivory-dim) !important;
+  font-size: 1rem !important;
+  line-height: 1.7 !important;
+}
+
+/* CARTÕES DE EVENTOS (Casamentos, Corporativos, Formaturas, etc.) */
+section a.bg-sand\/50,
+section a.bg-sand {
+  background: var(--df-bg-card) !important;
+  border: 1px solid var(--df-gold-border) !important;
+  border-radius: 0.85rem !important;
+  backdrop-filter: blur(12px) !important;
+  padding: 1.25rem !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+section a.bg-sand\/50:hover,
+section a.bg-sand:hover {
+  background: rgba(18, 48, 25, 0.8) !important;
+  border-color: rgba(207, 168, 83, 0.6) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.85), 0 0 25px rgba(207, 168, 83, 0.2) !important;
+}
+
+section a.bg-sand\/50 span.text-graphite,
+section a.bg-sand span.text-graphite {
+  color: #ffffff !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 1.45rem !important;
+}
+
+/* CARTÕES DE GASTRONOMIA (Churrasco, Parrilla, Frios) */
+section a.group.ed-r,
+section div.aspect-\[16\/10\] a,
+section div.aspect-\[16\/12\] a,
+section div.aspect-\[4\/5\] a {
+  border: 1px solid var(--df-gold-border) !important;
+  border-radius: 1rem !important;
+  overflow: hidden !important;
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.7) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+section a.group.ed-r:hover,
+section div.aspect-\[16\/10\] a:hover,
+section div.aspect-\[16\/12\] a:hover,
+section div.aspect-\[4\/5\] a:hover {
+  border-color: rgba(207, 168, 83, 0.65) !important;
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.9), 0 0 30px rgba(207, 168, 83, 0.25) !important;
+  transform: translateY(-4px) scale(1.01) !important;
+}
+
+/* ESTATÍSTICAS E NÚMEROS (38+ ANOS, 2.000 EVENTOS, 8.500 CONVIDADOS) */
+.gold-foil {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 4.8rem !important;
+  font-weight: 400 !important;
+  color: var(--df-gold-light) !important;
+  text-shadow: 0 0 35px rgba(207, 168, 83, 0.3) !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* SEÇÃO DE OPERAÇÃO E DIFERENCIAIS */
+dl div.border-t {
+  border-color: rgba(207, 168, 83, 0.18) !important;
+  padding: 1.8rem 0 !important;
+}
+
+dl dt.text-greendeep {
+  color: var(--df-gold-light) !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 1.55rem !important;
+}
+
+/* RETRATO DO CHEF CRISTIANO */
+figure.ed-r {
+  border: 1px solid var(--df-gold-border) !important;
+  border-radius: 1.25rem !important;
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* LISTA DE REGIÕES E CIDADES ATENDIDAS */
+ul.sm\:grid-cols-2 li {
+  border-color: rgba(207, 168, 83, 0.15) !important;
+}
+
+ul.sm\:grid-cols-2 a {
+  color: rgba(252, 250, 245, 0.85) !important;
+  font-size: 1.05rem !important;
+  transition: all 0.3s ease !important;
+}
+
+ul.sm\:grid-cols-2 a:hover {
+  color: var(--df-gold-light) !important;
+  transform: translateX(4px);
+}
+
+/* PERGUNTAS FREQUENTES (FAQ ACCORDIONS) */
+details.group {
+  background: rgba(14, 38, 20, 0.45) !important;
+  border: 1px solid rgba(207, 168, 83, 0.18) !important;
+  border-radius: 0.65rem !important;
+  margin-bottom: 0.75rem !important;
+  transition: all 0.3s ease !important;
+}
+
+details.group[open] {
+  background: rgba(18, 48, 25, 0.7) !important;
+  border-color: rgba(207, 168, 83, 0.45) !important;
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.5) !important;
+}
+
+details.group summary {
+  color: #ffffff !important;
+  font-size: 1.15rem !important;
+  font-family: 'Outfit', sans-serif !important;
+}
+
+details.group p {
+  color: var(--df-ivory-dim) !important;
+}
+
+/* RODAPÉ MONOLÍTICO DE LUXO */
+footer.border-t-2 {
+  background: #040c05 !important;
+  border-top: 1px solid var(--df-gold-border) !important;
+  color: var(--df-ivory) !important;
+}
+
+footer .footer-title {
+  color: var(--df-gold-light) !important;
+  font-family: 'Outfit', sans-serif !important;
+  letter-spacing: 0.16em !important;
+  font-size: 0.85rem !important;
+  text-transform: uppercase !important;
+}
+
+footer a {
+  color: rgba(252, 250, 245, 0.7) !important;
+  transition: color 0.3s ease !important;
+}
+
+footer a:hover {
+  color: var(--df-gold-light) !important;
+}
+
+/* BOTÃO FLUTUANTE DE WHATSAPP OFICIAL (ÚNICO E PROTEGIDO) */
+#btn-whatsapp-flutuante,
+.whatsapp-floating-direct {
+  background: #25d366 !important;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4) !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  z-index: 9999 !important;
+}
+
+/* ==========================================================================
+   MODAL DE ORÇAMENTO (MANTIDO E PRESERVADO INTEGRALMENTE CONFORME REGRA 1)
+   ========================================================================== */
 .df-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(5, 14, 7, 0.82);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(4, 12, 5, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   z-index: 99999;
   display: flex;
   align-items: center;
@@ -140,14 +350,14 @@
 }
 
 .df-modal-container {
-  background: linear-gradient(175deg, #0d2313 0%, #07150a 100%);
+  background: linear-gradient(175deg, #0d2313 0%, #061208 100%);
   border: 1px solid var(--df-gold-border);
   border-radius: 1.25rem;
   width: 100%;
   max-width: 44rem;
   max-height: 92vh;
   overflow-y: auto;
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 35px -8px rgba(207, 168, 83, 0.2);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.95), 0 0 35px -8px var(--df-gold-glow);
   transform: translateY(20px) scale(0.97);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   color: var(--df-ivory);
@@ -180,7 +390,6 @@
   color: var(--df-ivory);
   margin: 0;
   line-height: 1.15;
-  letter-spacing: -0.01em;
 }
 
 .df-modal-subtitle {
@@ -255,7 +464,7 @@
 }
 
 .df-input {
-  background: rgba(7, 21, 10, 0.7);
+  background: rgba(6, 18, 8, 0.75);
   border: 1px solid rgba(207, 168, 83, 0.25);
   border-radius: 0.5rem;
   padding: 0.75rem 0.95rem;
@@ -268,7 +477,7 @@
 
 .df-input:focus {
   border-color: var(--df-gold);
-  background: rgba(7, 21, 10, 0.95);
+  background: rgba(6, 18, 8, 0.95);
   box-shadow: 0 0 0 3px rgba(207, 168, 83, 0.15);
 }
 
@@ -297,7 +506,7 @@
 
 .df-submit-btn {
   background: var(--df-gold-gradient);
-  color: #07150a;
+  color: #061208;
   border: none;
   border-radius: 0.5rem;
   padding: 0.95rem 1.5rem;
@@ -337,7 +546,6 @@
   text-decoration: underline;
 }
 
-/* TELA DE SUCESSO DO FORMULÁRIO */
 .df-success-view {
   display: none;
   text-align: center;
@@ -376,7 +584,7 @@
 
 .df-whatsapp-final-btn {
   background: #25d366;
-  color: #ffffff;
+  color: #ffffff !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
