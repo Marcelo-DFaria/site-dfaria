@@ -891,7 +891,8 @@ footer a:hover {
   border-bottom: 1px solid rgba(207, 168, 83, 0.15) !important;
 }
 
-.df-sculpture-grid {
+.df-sculpture-grid,
+.df-sculptures-grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 1.75rem;
