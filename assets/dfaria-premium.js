@@ -155,7 +155,14 @@
         }
       });
 
-      // E) Garantir que todo botão com js-open-orcamento abra o modal
+      // E) Garantir título refinado na seção Eventos
+      document.querySelectorAll('h2').forEach(h2 => {
+        if (h2.textContent && h2.textContent.includes('O formato do dia, do jeito que ele pede')) {
+          h2.innerHTML = 'Excelência em cada evento.<br class="hidden sm:inline" /> Perfeição em cada detalhe';
+        }
+      });
+
+      // F) Garantir que todo botão com js-open-orcamento abra o modal
       bindButtons();
 
     } catch (err) {
