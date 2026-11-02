@@ -38,30 +38,41 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* CABEÇALHO / HEADER DE ALTA COSTURA */
-header.sticky {
-  background: rgba(6, 18, 8, 0.85) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border-bottom: 1px solid var(--df-gold-border) !important;
+/* CABEÇALHO / HEADER DE ALTA COSTURA (Estilo Claudia Rauscher & Dark Luxury) */
+header.sticky,
+header {
+  background: rgba(5, 16, 7, 0.88) !important;
+  backdrop-filter: blur(20px) saturate(1.8) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.8) !important;
+  border-bottom: 1px solid rgba(207, 168, 83, 0.22) !important;
   border-top: none !important;
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8) !important;
-  transition: all 0.4s ease !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.85) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-header.sticky nav a.nav-link {
+/* Links de Navegação */
+header nav a:not(.animated-button):not(.df-btn-primary):not(#btn-whatsapp-flutuante) {
   font-family: 'Outfit', sans-serif !important;
-  font-size: 0.78rem !important;
+  font-size: 0.82rem !important;
   font-weight: 500 !important;
-  letter-spacing: 0.12em !important;
-  text-transform: uppercase !important;
-  color: rgba(252, 250, 245, 0.85) !important;
-  transition: color 0.3s ease, transform 0.3s ease !important;
+  letter-spacing: 0.08em !important;
+  color: rgba(252, 250, 245, 0.88) !important;
+  padding: 0.45rem 0.65rem !important;
+  border-radius: 9999px !important;
+  transition: all 0.3s ease !important;
 }
 
-header.sticky nav a.nav-link:hover {
-  color: var(--df-gold-light) !important;
-  transform: translateY(-1px);
+header nav a:not(.animated-button):not(.df-btn-primary):not(#btn-whatsapp-flutuante):hover {
+  color: #ffffff !important;
+  background: rgba(207, 168, 83, 0.12) !important;
+  box-shadow: 0 0 12px rgba(207, 168, 83, 0.2) !important;
+  transform: translateY(-1px) !important;
+}
+
+header nav a[aria-current="page"] {
+  color: var(--df-gold-light, #f5df9e) !important;
+  background: rgba(207, 168, 83, 0.16) !important;
+  border: 1px solid rgba(207, 168, 83, 0.28) !important;
 }
 
 /* HERO SECTION CINEMATOGRÁFICA */

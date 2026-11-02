@@ -104,6 +104,22 @@
     try {
       const isSculpturePage = window.location.pathname.includes('esculturas-em-frutas');
 
+      // 0) Garantir Hero Cinematográfico com Vídeo de Fundo na Home
+      if (window.location.pathname === '/' || window.location.pathname === '') {
+        const heroSection = document.querySelector('section.relative.isolate') || document.querySelector('main > section:first-child');
+        if (heroSection && !heroSection.querySelector('video')) {
+          const videoWrap = document.createElement('div');
+          videoWrap.className = 'absolute inset-0 -z-20 overflow-hidden';
+          videoWrap.innerHTML = `
+            <video autoplay muted loop playsinline preload="auto" poster="/assets/foto-25-D-dHewb7.webp" class="h-full w-full object-cover object-center filter brightness-[0.72] contrast-[1.08] scale-105 transition-transform duration-1000">
+              <source src="/video/dfaria-apresentacao.mp4" type="video/mp4" />
+              <img src="/assets/foto-25-D-dHewb7.webp" alt="D'Faria Gastronomia e Eventos" class="h-full w-full object-cover" />
+            </video>
+          `;
+          heroSection.insertBefore(videoWrap, heroSection.firstChild);
+        }
+      }
+
       // A) Substituição da Capa errada (Brie) para Escultura Real
       const wrongCoverImgs = document.querySelectorAll('img[src*="foto-30-DGJvWG-c"]');
       wrongCoverImgs.forEach(img => {
