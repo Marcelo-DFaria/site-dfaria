@@ -7,22 +7,26 @@
 :root {
   --df-bg-dark: #061208;
   --df-bg-surface: #0a1c0d;
-  --df-bg-card: rgba(14, 38, 20, 0.65);
+  --df-bg-card: #0a1e0f;
   --df-gold: #cfa853;
   --df-gold-light: #f5df9e;
   --df-gold-dark: #9e7a2b;
   --df-gold-glow: rgba(207, 168, 83, 0.25);
   --df-gold-border: rgba(207, 168, 83, 0.28);
-  --df-ivory: #fcfaf5;
+  --df-ivory: #07150a;
   --df-ivory-dim: rgba(252, 250, 245, 0.78);
   --df-gold-gradient: linear-gradient(135deg, #cfa853 0%, #fae8b4 50%, #b88e36 100%);
-  /* Normalização definitiva das variáveis globais herdadas do Tailwind para Dark Luxury */
+
+  /* Padrões das classes de cor do projeto */
+  --ivory: #07150a !important;
+  --sand: #08190c !important;
+  --shell: #0a1e0f !important;
   --graphite: #fcfaf5 !important;
   --foreground: #fcfaf5 !important;
   --stone: rgba(252, 250, 245, 0.82) !important;
   --muted-foreground: rgba(252, 250, 245, 0.82) !important;
   --green: #f5df9e !important;
-  --greendeep: #cfa853 !important;
+  --greendeep: #061208 !important;
   --border: rgba(207, 168, 83, 0.22) !important;
 }
 
@@ -167,6 +171,70 @@ div.bg-ivory {
 /* Remover divisórias claras antigas */
 div[aria-hidden="true"].bg-gradient-to-b {
   display: none !important;
+}
+
+/* CARTÕES DE CARDÁPIOS (Elimina fundo branco/creme herdado e garante Dark Luxury com texto 100% legível) */
+a.group.flex.h-full.flex-col,
+.rounded-3xl.bg-ivory,
+.bg-ivory.ring-1 {
+  background-color: #0a1e0f !important;
+  background: linear-gradient(180deg, #0d2613 0%, #08180c 100%) !important;
+  border: 1px solid rgba(207, 168, 83, 0.25) !important;
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.8) !important;
+}
+
+a.group.flex.h-full.flex-col:hover,
+.rounded-3xl.bg-ivory:hover {
+  border-color: rgba(207, 168, 83, 0.6) !important;
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.95), 0 0 25px rgba(207, 168, 83, 0.2) !important;
+}
+
+/* Tipografia interna dos cartões */
+a.group.flex.h-full.flex-col h3,
+.rounded-3xl.bg-ivory h3 {
+  color: #ffffff !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 1.35rem !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+}
+
+a.group.flex.h-full.flex-col p,
+.rounded-3xl.bg-ivory p {
+  color: rgba(252, 250, 245, 0.82) !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+}
+
+a.group.flex.h-full.flex-col span.text-green,
+.rounded-3xl.bg-ivory span.text-green {
+  color: var(--df-gold-light, #f5df9e) !important;
+  font-weight: 500 !important;
+}
+
+/* BANNERS FINAL CTA (Elimina o véu esbranquiçado/amarelado e garante contraste com foto real do evento) */
+.bg-gradient-to-r.from-greendeep,
+span[aria-hidden="true"].bg-gradient-to-r {
+  background: linear-gradient(90deg, rgba(6, 18, 8, 0.94) 0%, rgba(6, 18, 8, 0.85) 50%, rgba(6, 18, 8, 0.35) 100%) !important;
+}
+
+@media (max-width: 768px) {
+  .bg-gradient-to-r.from-greendeep,
+  span[aria-hidden="true"].bg-gradient-to-r {
+    background: linear-gradient(180deg, rgba(6, 18, 8, 0.95) 0%, rgba(6, 18, 8, 0.82) 100%) !important;
+  }
+}
+
+/* Garante texto cristalino sobre o banner Final CTA */
+div.relative.overflow-hidden.rounded-\[2rem\] h2 {
+  color: #ffffff !important;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9) !important;
+}
+
+div.relative.overflow-hidden.rounded-\[2rem\] p {
+  color: rgba(252, 250, 245, 0.9) !important;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8) !important;
 }
 
 /* 2. HIERARQUIA EDITORIAL DE TÍTULOS (H1, H2, H3, H4) */
