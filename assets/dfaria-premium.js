@@ -224,6 +224,28 @@
         });
       }
 
+      // D.2) Bloco de Autoridade e Logística em Condomínios Fechados (Fase 3)
+      const condoPaths = ['ninho-verde', 'haras-vitória', 'colina-das-estrelas', 'jatobá', 'manacá'];
+      const isCondoPage = condoPaths.some(cp => window.location.pathname.toLowerCase().includes(cp));
+      if (isCondoPage && !document.getElementById('df-condo-logistics-badge')) {
+        const targetContainer = document.querySelector('main section:first-child .lg\:col-span-7') || document.querySelector('main section:first-child');
+        if (targetContainer) {
+          const badgeBox = document.createElement('div');
+          badgeBox.id = 'df-condo-logistics-badge';
+          badgeBox.className = 'mt-6 inline-flex flex-col gap-2 rounded-2xl border border-gold/30 bg-[#061208]/85 p-5 backdrop-blur-md';
+          badgeBox.innerHTML = `
+            <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gold">
+              <span class="h-2 w-2 rounded-full bg-gold animate-pulse"></span>
+              <span>Estrutura Certificada para Condomínios Fechados</span>
+            </div>
+            <p class="text-xs leading-relaxed text-[#fcfaf5]/85">
+              Logística térmica própria, rigoroso cumprimento das normas de portaria/acesso, equipe 100% uniformizada e desmobilização com limpeza impecável pós-evento.
+            </p>
+          `;
+          targetContainer.appendChild(badgeBox);
+        }
+      }
+
       // E) Garantir título refinado na seção Eventos
       document.querySelectorAll('h2').forEach(h2 => {
         if (h2.textContent && h2.textContent.includes('O formato do dia, do jeito que ele pede')) {
