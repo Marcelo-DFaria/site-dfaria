@@ -1,0 +1,17 @@
+{
+  "deviceType": "MOBILE",
+  "height": "16430",
+  "htmlCode": {
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/3390749203184610429/files/54a0a8328a3542a68bc6deb0f5204679:download",
+    "mimeType": "text/html",
+    "name": "projects/3390749203184610429/screens/54a0a8328a3542a68bc6deb0f5204679/fileEntries/html"
+  },
+  "name": "projects/3390749203184610429/screens/54a0a8328a3542a68bc6deb0f5204679",
+  "screenshot": {
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/3390749203184610429/files/screenshot_00065f4f96189bd2038382b39b30bd49:download",
+    "mimeType": "image/png",
+    "name": "projects/3390749203184610429/screens/54a0a8328a3542a68bc6deb0f5204679/fileEntries/screenshot"
+  },
+  "title": "D'Faria Gastronomia - Cardápios & Coleções Gastronômicas",
+  "width": "1560"
+}

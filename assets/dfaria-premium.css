@@ -1,1434 +1,704 @@
 /* ==========================================================================
-   D'FARIA GASTRONOMIA E EVENTOS — ULTRA LUXURY EDITORIAL REDESIGN
-   Inspiração direta: sousreserve.com.br
-   Preservação 100% de todas as URLs e infraestrutura funcional
+   D'FARIA GASTRONOMIA E EVENTOS — PADRÃO GOOGLE STITCH & CLAUDIA RAUSCHER
+   Sistema de Design: Haute Flamme Gastronomie
+   Tipografia: Playfair Display + Plus Jakarta Sans
+   Preservação 100% de todas as 53 URLs e Funcionalidades
    ========================================================================== */
 
-:root {
-  --df-bg-dark: #061208;
-  --df-bg-surface: #0a1c0d;
-  --df-bg-card: #0a1e0f;
-  --df-gold: #cfa853;
-  --df-gold-light: #f5df9e;
-  --df-gold-dark: #9e7a2b;
-  --df-gold-glow: rgba(207, 168, 83, 0.25);
-  --df-gold-border: rgba(207, 168, 83, 0.28);
-  --df-ivory: #07150a;
-  --df-ivory-dim: rgba(252, 250, 245, 0.78);
-  --df-gold-gradient: linear-gradient(135deg, #cfa853 0%, #fae8b4 50%, #b88e36 100%);
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
-  /* Padrões das classes de cor do projeto */
-  --ivory: #07150a !important;
-  --sand: #08190c !important;
-  --shell: #0a1e0f !important;
-  --graphite: #fcfaf5 !important;
-  --foreground: #fcfaf5 !important;
-  --stone: rgba(252, 250, 245, 0.82) !important;
-  --muted-foreground: rgba(252, 250, 245, 0.82) !important;
-  --green: #f5df9e !important;
-  --greendeep: #061208 !important;
-  --border: rgba(207, 168, 83, 0.22) !important;
+:root {
+  /* TOKENS OFICIAIS GOOGLE STITCH HAUTE FLAMME */
+  --df-surface: #131412;
+  --df-surface-lowest: #0d0e0d;
+  --df-surface-low: #1b1c1a;
+  --df-surface-container: #1f201e;
+  --df-surface-high: #292a28;
+  --df-surface-highest: #343533;
+  --df-primary: #e4c27d;
+  --df-primary-container: #b99a59;
+  --df-on-primary: #261a00;
+  --df-secondary: #b4ccc0;
+  --df-secondary-container: #20352c;
+  --df-on-secondary: #20352c;
+  --df-on-surface: #e4e2de;
+  --df-on-surface-variant: #d0c5b4;
+  --df-outline: #998f80;
+  --df-outline-variant: #4d4639;
+
+  /* Aliases do projeto legado */
+  --df-bg-dark: #131412;
+  --df-bg-surface: #1b1c1a;
+  --df-bg-card: #1f201e;
+  --df-gold: #e4c27d;
+  --df-gold-light: #ffdf9f;
+  --df-gold-dark: #b99a59;
+  --df-gold-glow: rgba(228, 194, 125, 0.25);
+  --df-gold-border: rgba(228, 194, 125, 0.28);
+  --df-ivory: #e4e2de;
+  --df-gold-gradient: linear-gradient(135deg, #e4c27d 0%, #ffdf9f 50%, #b99a59 100%);
+
+  /* Sobrescrita de classes de Tailwind legadas */
+  --ivory: #1b1c1a !important;
+  --sand: #131412 !important;
+  --shell: #1b1c1a !important;
+  --graphite: #e4e2de !important;
+  --foreground: #e4e2de !important;
+  --stone: #d0c5b4 !important;
+  --muted-foreground: #d0c5b4 !important;
+  --green: #e4c27d !important;
+  --greendeep: #0d0e0d !important;
+  --border: rgba(228, 194, 125, 0.22) !important;
 }
 
-/* Base Global — Elimina visual bege/areia datado */
+/* ==========================================================================
+   1. BASE GLOBAL & CONTRASTE DARK LUXURY (WCAG AAA)
+   ========================================================================== */
 html, body {
-  background-color: var(--df-bg-dark) !important;
-  color: var(--df-ivory) !important;
+  background-color: #131412 !important;
+  color: #e4e2de !important;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* CABEÇALHO / HEADER DE ALTA COSTURA (Estilo Claudia Rauscher & Dark Luxury) */
+::selection {
+  background-color: #e4c27d;
+  color: #261a00;
+}
+
+/* Eliminar definitivamente fundos brancos/claros legados em todo o site */
+.bg-white,
+.bg-ivory,
+.bg-sand,
+.bg-shell,
+section.bg-sand,
+section.bg-ivory,
+div.bg-sand,
+div.bg-ivory,
+div.bg-white,
+main {
+  background-color: #131412 !important;
+  color: #e4e2de !important;
+}
+
+/* ==========================================================================
+   2. CABEÇALHO / HEADER EDITORIAL (ESTILO CLAUDIA RAUSCHER + STITCH)
+   ========================================================================== */
+header.fixed,
 header.sticky,
 header {
-  background: rgba(5, 16, 7, 0.88) !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 100 !important;
+  background: rgba(19, 20, 18, 0.88) !important;
   backdrop-filter: blur(20px) saturate(1.8) !important;
   -webkit-backdrop-filter: blur(20px) saturate(1.8) !important;
-  border-bottom: 1px solid rgba(207, 168, 83, 0.22) !important;
-  border-top: none !important;
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.85) !important;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border-bottom: 1px solid rgba(228, 194, 125, 0.2) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+  transition: all 0.4s ease !important;
 }
 
-/* Links de Navegação */
+/* Logo oficial no Header */
+.df-header-logo-img {
+  height: 48px !important;
+  width: auto !important;
+  filter: drop-shadow(0 2px 8px rgba(228, 194, 125, 0.35)) !important;
+  transition: transform 0.3s ease !important;
+}
+
+.df-header-logo-img:hover {
+  transform: scale(1.04);
+}
+
+/* Links do menu no desktop */
 header nav a:not(.animated-button):not(.df-btn-primary):not(#btn-whatsapp-flutuante) {
-  font-family: 'Outfit', sans-serif !important;
-  font-size: 0.82rem !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.85rem !important;
   font-weight: 500 !important;
   letter-spacing: 0.08em !important;
-  color: rgba(252, 250, 245, 0.88) !important;
-  padding: 0.45rem 0.65rem !important;
-  border-radius: 9999px !important;
-  transition: all 0.3s ease !important;
+  color: #d0c5b4 !important;
+  text-transform: uppercase !important;
+  padding: 0.5rem 0.85rem !important;
+  border-radius: 4px !important;
+  transition: all 0.25s ease !important;
 }
 
 header nav a:not(.animated-button):not(.df-btn-primary):not(#btn-whatsapp-flutuante):hover {
-  color: #ffffff !important;
-  background: rgba(207, 168, 83, 0.12) !important;
-  box-shadow: 0 0 12px rgba(207, 168, 83, 0.2) !important;
-  transform: translateY(-1px) !important;
+  color: #e4c27d !important;
+  background: rgba(228, 194, 125, 0.1) !important;
 }
 
 header nav a[aria-current="page"] {
-  color: var(--df-gold-light, #f5df9e) !important;
-  background: rgba(207, 168, 83, 0.16) !important;
-  border: 1px solid rgba(207, 168, 83, 0.28) !important;
+  color: #e4c27d !important;
+  border-bottom: 2px solid #e4c27d !important;
+  background: rgba(228, 194, 125, 0.08) !important;
 }
 
-/* HERO SECTION CINEMATOGRÁFICA */
-.hero-cinematic-bg {
-  animation: kenBurnsSlow 22s ease-in-out infinite alternate;
-  will-change: transform;
-}
-
-@keyframes kenBurnsSlow {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-cinematic-bg {
-    animation: none !important;
-  }
-}
-
-.gold-word {
-  background: var(--df-gold-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-  font-weight: 500;
-}
-
-/* BOTÕES DE LUXO */
-.df-btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  background: var(--df-gold-gradient);
-  color: #061208 !important;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 1rem 2.4rem;
-  border-radius: 9999px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 10px 28px -6px rgba(207, 168, 83, 0.45);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  text-decoration: none;
-}
-
-.df-btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 36px -6px rgba(207, 168, 83, 0.65);
-  filter: brightness(1.08);
-}
-
-.df-btn-outline {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  background: rgba(252, 250, 245, 0.05);
-  color: var(--df-ivory) !important;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  padding: 1rem 2.4rem;
-  border-radius: 9999px;
-  border: 1px solid rgba(252, 250, 245, 0.25);
-  backdrop-filter: blur(8px);
-  cursor: pointer;
-  transition: all 0.35s ease;
-  text-decoration: none;
-}
-
-.df-btn-outline:hover {
-  background: rgba(207, 168, 83, 0.15);
-  border-color: var(--df-gold);
-  color: var(--df-gold-light) !important;
-  transform: translateY(-3px);
-}
-
-/* ==========================================================================
-   SISTEMA GLOBAL DE LEGIBILIDADE, CONTRASTE E TIPOGRAFIA EDITORIAL DARK LUXURY
-   Elimina 100% dos textos invisíveis, garante conformidade WCAG 2.2 AA
-   e assegura visibilidade imediata sem dependência de hover em todas as páginas.
-   ========================================================================== */
-
-/* 1. SEÇÕES E CONTÊINERES GLOBAIS EM DARK LUXURY */
-main,
-section,
-article,
-aside,
-section.bg-ivory,
-section.bg-sand,
-section.green-texture,
-section.green-texture-soft,
-div.bg-sand,
-div.bg-ivory {
-  background: linear-gradient(180deg, #07150a 0%, #0a1e0f 50%, #07150a 100%) !important;
-  color: #fcfaf5 !important;
-  border-color: rgba(207, 168, 83, 0.14) !important;
-}
-
-/* Remover divisórias claras antigas */
-div[aria-hidden="true"].bg-gradient-to-b {
-  display: none !important;
-}
-
-/* CARTÕES DE CARDÁPIOS (Elimina fundo branco/creme herdado e garante Dark Luxury com texto 100% legível) */
-a.group.flex.h-full.flex-col,
-.rounded-3xl.bg-ivory,
-.bg-ivory.ring-1 {
-  background-color: #0a1e0f !important;
-  background: linear-gradient(180deg, #0d2613 0%, #08180c 100%) !important;
-  border: 1px solid rgba(207, 168, 83, 0.25) !important;
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.8) !important;
-}
-
-a.group.flex.h-full.flex-col:hover,
-.rounded-3xl.bg-ivory:hover {
-  border-color: rgba(207, 168, 83, 0.6) !important;
-  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.95), 0 0 25px rgba(207, 168, 83, 0.2) !important;
-}
-
-/* Tipografia interna dos cartões */
-a.group.flex.h-full.flex-col h3,
-.rounded-3xl.bg-ivory h3 {
-  color: #ffffff !important;
-  font-family: 'Cormorant Garamond', Georgia, serif !important;
-  font-size: 1.35rem !important;
-  font-weight: 500 !important;
-  letter-spacing: -0.01em !important;
-}
-
-a.group.flex.h-full.flex-col p,
-.rounded-3xl.bg-ivory p {
-  color: rgba(252, 250, 245, 0.82) !important;
-  font-family: 'Outfit', sans-serif !important;
-  font-size: 0.95rem !important;
-  line-height: 1.6 !important;
-}
-
-a.group.flex.h-full.flex-col span.text-green,
-.rounded-3xl.bg-ivory span.text-green {
-  color: var(--df-gold-light, #f5df9e) !important;
-  font-weight: 500 !important;
-}
-
-/* BANNERS FINAL CTA (Elimina o véu esbranquiçado/amarelado e garante contraste com foto real do evento) */
-.bg-gradient-to-r.from-greendeep,
-span[aria-hidden="true"].bg-gradient-to-r {
-  background: linear-gradient(90deg, rgba(6, 18, 8, 0.94) 0%, rgba(6, 18, 8, 0.85) 50%, rgba(6, 18, 8, 0.35) 100%) !important;
-}
-
-@media (max-width: 768px) {
-  .bg-gradient-to-r.from-greendeep,
-  span[aria-hidden="true"].bg-gradient-to-r {
-    background: linear-gradient(180deg, rgba(6, 18, 8, 0.95) 0%, rgba(6, 18, 8, 0.82) 100%) !important;
-  }
-}
-
-/* Garante texto cristalino sobre o banner Final CTA */
-div.relative.overflow-hidden.rounded-\[2rem\] h2 {
-  color: #ffffff !important;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9) !important;
-}
-
-div.relative.overflow-hidden.rounded-\[2rem\] p {
-  color: rgba(252, 250, 245, 0.9) !important;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8) !important;
-}
-
-/* 2. HIERARQUIA EDITORIAL DE TÍTULOS (H1, H2, H3, H4) */
-h1,
-main h1,
-section h1,
-.font-display.text-4xl,
-.font-display.text-3xl {
-  font-family: 'Cormorant Garamond', Garamond, Georgia, serif !important;
-  color: #ffffff !important;
-  font-weight: 500 !important;
-  letter-spacing: -0.018em !important;
-  line-height: 1.15 !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7) !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-h2,
-main h2,
-section h2,
-section h2.font-display,
-.font-display.text-2xl,
-.font-display.text-3xl {
-  font-family: 'Cormorant Garamond', Garamond, Georgia, serif !important;
-  color: #ffffff !important;
-  font-weight: 400 !important;
-  letter-spacing: -0.012em !important;
-  line-height: 1.2 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-h3,
-main h3,
-section h3,
-.font-display.text-xl,
-.font-display.text-lg {
-  font-family: 'Cormorant Garamond', Garamond, Georgia, serif !important;
-  color: var(--df-gold-light, #f5df9e) !important;
-  font-weight: 500 !important;
-  letter-spacing: -0.005em !important;
-  line-height: 1.25 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-h4, h5, h6 {
-  font-family: 'Outfit', sans-serif !important;
-  color: #ffffff !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.06em !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-/* 3. PARÁGRAFOS E TEXTOS CORRIDOS COM ALTO CONTRASTE */
-p,
-section p,
-main p,
-p.text-stone,
-p.text-graphite,
-dd.text-stone,
-dd.text-graphite,
-dt {
-  font-family: 'Outfit', 'Inter', -apple-system, sans-serif !important;
-  color: rgba(252, 250, 245, 0.88) !important;
-  font-size: 1.02rem !important;
-  line-height: 1.72 !important;
-  max-width: 68ch;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-/* Subtítulos e rótulos overline (ex: "EVENTOS", "GASTRONOMIA", "DESDE 2016") */
-p.text-xs.uppercase,
-span.text-xs.uppercase,
-.tracking-\[0\.3em\],
-.tracking-\[0\.24em\],
-.tracking-\[0\.28em\] {
-  font-family: 'Outfit', sans-serif !important;
-  color: var(--df-gold, #cfa853) !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.28em !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-/* 4. CORREÇÃO CRÍTICA DE CLASSES UTILITÁRIAS DO TAILWIND */
-.text-graphite,
-.text-graphite\/90,
-.text-graphite\/85,
-.text-graphite\/80,
-.text-graphite\/70 {
-  color: #fcfaf5 !important;
-}
-
-.text-stone,
-.text-stone\/90,
-.text-stone\/85,
-.text-stone\/80,
-.text-stone\/70 {
-  color: rgba(252, 250, 245, 0.82) !important;
-}
-
-.text-green,
-.text-greendeep,
-.text-greenforest,
-.text-greenmoss {
-  color: var(--df-gold-light, #f5df9e) !important;
-}
-
-/* 5. LISTAS E INCLUSÕES DE SERVIÇO (Casamentos, Cardápios, Buffets) */
-ul.divide-y li,
-ol.divide-y li,
-article ul li,
-article ol li,
-main li.text-graphite,
-main li.text-stone,
-main li {
-  color: rgba(252, 250, 245, 0.92) !important;
-  font-size: 1.02rem !important;
-  line-height: 1.65 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-.divide-graphite\/10 > :not([hidden]) ~ :not([hidden]),
-.divide-graphite\/15 > :not([hidden]) ~ :not([hidden]),
-.border-graphite\/10,
-.border-graphite\/15,
-.border-graphite\/20,
-.divide-y {
-  border-color: rgba(207, 168, 83, 0.16) !important;
-}
-
-/* 6. LINKS INFORMATIVOS — ESTADO PADRÃO 100% VISÍVEL (SEM DEPENDÊNCIA DE HOVER) */
-main a:not(.animated-button):not(.df-btn-primary):not(#btn-whatsapp-flutuante),
-main aside a,
-main article a,
-main nav a,
-main ul a:not(.animated-button),
-main ol a:not(.animated-button),
-a.font-display,
-a.text-graphite,
-a.text-stone {
-  color: var(--df-gold-light, #f5df9e) !important;
-  text-decoration: none !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.25s ease !important;
-}
-
-/* Efeito de hover como refinamento elegante, NUNCA condição de visibilidade */
-main a:not(.animated-button):not(.df-btn-primary):not(#btn-whatsapp-flutuante):hover,
-main aside a:hover,
-main article a:hover,
-main nav a:hover,
-main ul a:not(.animated-button):hover,
-main ol a:not(.animated-button):hover,
-a.font-display:hover,
-a.text-graphite:hover,
-a.text-stone:hover {
-  color: #ffffff !important;
-  text-shadow: 0 0 12px rgba(207, 168, 83, 0.5) !important;
-}
-
-/* 7. PÍLULAS E BADGES DE CIDADES / REGIÕES ATENDIDAS */
-a.rounded-full.border,
-a.rounded-full.ring-1,
-span.rounded-full.border,
-span.rounded-full.ring-1 {
-  background: rgba(14, 38, 20, 0.75) !important;
-  border: 1px solid rgba(207, 168, 83, 0.3) !important;
-  color: var(--df-gold-light, #f5df9e) !important;
-  font-family: 'Outfit', sans-serif !important;
-  font-weight: 500 !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-a.rounded-full.border:hover,
-a.rounded-full.ring-1:hover {
-  background: rgba(207, 168, 83, 0.22) !important;
-  border-color: var(--df-gold, #cfa853) !important;
-  color: #ffffff !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7), 0 0 16px rgba(207, 168, 83, 0.3) !important;
-}
-
-/* 8. BREADCRUMBS / TRILHA DE NAVEGAÇÃO */
-nav[aria-label="Trilha de navegação"],
-nav[aria-label="Trilha de navegação"] ol,
-nav[aria-label="Trilha de navegação"] li,
-nav[aria-label="Trilha de navegação"] a,
-nav[aria-label="Trilha de navegação"] span {
-  font-family: 'Outfit', sans-serif !important;
-  color: rgba(252, 250, 245, 0.78) !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-nav[aria-label="Trilha de navegação"] a:hover {
-  color: var(--df-gold-light, #f5df9e) !important;
-}
-
-nav[aria-label="Trilha de navegação"] span[aria-current="page"] {
-  color: #ffffff !important;
-  font-weight: 600 !important;
-}
-
-/* 9. CARTÕES DE EVENTOS (Casamentos, Corporativos, Formaturas, etc.) */
-section a.bg-sand\/50,
-section a.bg-sand {
-  background: var(--df-bg-card) !important;
-  border: 1px solid var(--df-gold-border) !important;
-  border-radius: 0.85rem !important;
-  backdrop-filter: blur(12px) !important;
-  padding: 1.25rem !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-section a.bg-sand\/50:hover,
-section a.bg-sand:hover {
-  background: rgba(18, 48, 25, 0.8) !important;
-  border-color: rgba(207, 168, 83, 0.6) !important;
-  transform: translateY(-4px) !important;
-  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.85), 0 0 25px rgba(207, 168, 83, 0.2) !important;
-}
-
-section a.bg-sand\/50 span.text-graphite,
-section a.bg-sand span.text-graphite {
-  color: #ffffff !important;
-  font-family: 'Cormorant Garamond', Georgia, serif !important;
-  font-size: 1.45rem !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-/* Setas de navegação nos cartões sempre visíveis */
-span.text-gold.opacity-0 {
-  opacity: 0.8 !important;
-  transform: translateX(0) !important;
-  transition: opacity 0.3s ease, transform 0.3s ease !important;
-}
-
-.group:hover span.text-gold.opacity-0 {
-  opacity: 1 !important;
-  transform: translateX(4px) !important;
-}
-
-/* 10. LEGENDAS DA GALERIA SEMPRE VISÍVEIS */
-.group .bg-graphite\/70.opacity-0,
-.group:hover .bg-graphite\/70.opacity-0,
-span.bg-graphite\/70 {
-  opacity: 1 !important;
-  visibility: visible !important;
-  background: rgba(6, 18, 8, 0.85) !important;
-  color: #fcfaf5 !important;
-  backdrop-filter: blur(8px) !important;
-  border-top: 1px solid rgba(207, 168, 83, 0.25) !important;
-  transition: background 0.3s ease, border-color 0.3s ease !important;
-}
-
-.group:hover span.bg-graphite\/70 {
-  background: rgba(14, 38, 20, 0.95) !important;
-  border-top-color: var(--df-gold, #cfa853) !important;
-  color: #ffffff !important;
-}
-
-/* 11. CARTÕES DE GASTRONOMIA */
-section a.group.ed-r,
-section div.aspect-\[16\/10\] a,
-section div.aspect-\[16\/12\] a,
-section div.aspect-\[4\/5\] a {
-  border: 1px solid var(--df-gold-border) !important;
-  border-radius: 1rem !important;
-  overflow: hidden !important;
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.7) !important;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-section a.group.ed-r:hover,
-section div.aspect-\[16\/10\] a:hover,
-section div.aspect-\[16\/12\] a:hover,
-section div.aspect-\[4\/5\] a:hover {
-  border-color: rgba(207, 168, 83, 0.65) !important;
-  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.9), 0 0 30px rgba(207, 168, 83, 0.25) !important;
-  transform: translateY(-4px) scale(1.01) !important;
-}
-
-/* 12. ESTATÍSTICAS E NÚMEROS DE IMPACTO */
-.gold-foil {
-  font-family: 'Cormorant Garamond', Georgia, serif !important;
-  font-size: 4.8rem !important;
-  font-weight: 400 !important;
-  color: var(--df-gold-light) !important;
-  text-shadow: 0 0 35px rgba(207, 168, 83, 0.3) !important;
-  letter-spacing: -0.02em !important;
-}
-
-/* 13. SEÇÃO DE OPERAÇÃO E DIFERENCIAIS */
-dl div.border-t {
-  border-color: rgba(207, 168, 83, 0.18) !important;
-  padding: 1.8rem 0 !important;
-}
-
-dl dt.text-greendeep,
-dl dt {
-  color: var(--df-gold-light) !important;
-  font-family: 'Cormorant Garamond', Georgia, serif !important;
-  font-size: 1.55rem !important;
-}
-
-/* 14. RETRATO DO CHEF CRISTIANO */
-figure.ed-r {
-  border: 1px solid var(--df-gold-border) !important;
-  border-radius: 1.25rem !important;
-  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.9) !important;
-}
-
-/* 15. LISTA DE REGIÕES E CIDADES ATENDIDAS */
-ul.sm\:grid-cols-2 li {
-  border-color: rgba(207, 168, 83, 0.15) !important;
-}
-
-ul.sm\:grid-cols-2 a {
-  color: rgba(252, 250, 245, 0.9) !important;
-  font-size: 1.05rem !important;
-  transition: all 0.3s ease !important;
-}
-
-ul.sm\:grid-cols-2 a:hover {
-  color: var(--df-gold-light) !important;
-  transform: translateX(4px);
-}
-
-/* 16. PERGUNTAS FREQUENTES (FAQ ACCORDIONS) */
-details.group,
-details {
-  background: rgba(14, 38, 20, 0.5) !important;
-  border: 1px solid rgba(207, 168, 83, 0.2) !important;
-  border-radius: 0.65rem !important;
-  margin-bottom: 0.75rem !important;
-  transition: all 0.3s ease !important;
-}
-
-details.group[open],
-details[open] {
-  background: rgba(18, 48, 25, 0.75) !important;
-  border-color: rgba(207, 168, 83, 0.45) !important;
-  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.5) !important;
-}
-
-details.group summary,
-details summary {
-  color: #ffffff !important;
-  font-size: 1.2rem !important;
-  font-family: 'Cormorant Garamond', Georgia, serif !important;
-  cursor: pointer;
-  padding: 0.5rem 0;
-}
-
-details.group p,
-details p,
-details div {
-  color: rgba(252, 250, 245, 0.88) !important;
-  font-size: 1rem !important;
-  line-height: 1.7 !important;
-}
-
-/* 17. DEPOIMENTOS E CITAÇÕES */
-blockquote,
-blockquote p {
-  color: rgba(252, 250, 245, 0.92) !important;
-  font-style: italic !important;
-  font-size: 1.15rem !important;
-  line-height: 1.75 !important;
-}
-
-figcaption,
-cite {
-  color: var(--df-gold-light, #f5df9e) !important;
-  font-family: 'Outfit', sans-serif !important;
-  font-style: normal !important;
-  font-weight: 600 !important;
-}
-
-/* 18. RODAPÉ MONOLÍTICO DE LUXO */
-footer.border-t-2 {
-  background: #040c05 !important;
-  border-top: 1px solid var(--df-gold-border) !important;
-  color: var(--df-ivory) !important;
-}
-
-footer .footer-title,
-footer h2 {
-  color: var(--df-gold-light) !important;
-  font-family: 'Outfit', sans-serif !important;
-  letter-spacing: 0.16em !important;
-  font-size: 0.85rem !important;
-  text-transform: uppercase !important;
-}
-
-footer p {
-  color: rgba(252, 250, 245, 0.78) !important;
-}
-
-footer a {
-  color: rgba(252, 250, 245, 0.78) !important;
-  transition: color 0.3s ease !important;
-}
-
-footer a:hover {
-  color: var(--df-gold-light) !important;
-}
-
-/* 19. BOTÃO FLUTUANTE DE WHATSAPP OFICIAL (ÚNICO E PROTEGIDO) */
-#btn-whatsapp-flutuante,
-.whatsapp-floating-direct {
-  background: #25d366 !important;
-  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4) !important;
-  border: 2px solid rgba(255, 255, 255, 0.3) !important;
-  z-index: 9999 !important;
-}
-
-
-/* ==========================================================================
-   MODAL DE ORÇAMENTO (MANTIDO E PRESERVADO INTEGRALMENTE CONFORME REGRA 1)
-   ========================================================================== */
-.df-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(4, 12, 5, 0.85);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.35s ease, visibility 0.35s ease;
-}
-
-.df-modal-backdrop.is-active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.df-modal-container {
-  background: linear-gradient(175deg, #0d2313 0%, #061208 100%);
-  border: 1px solid var(--df-gold-border);
-  border-radius: 1.25rem;
-  width: 100%;
-  max-width: 44rem;
-  max-height: 92vh;
-  overflow-y: auto;
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.95), 0 0 35px -8px var(--df-gold-glow);
-  transform: translateY(20px) scale(0.97);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  color: var(--df-ivory);
-  position: relative;
-}
-
-.df-modal-backdrop.is-active .df-modal-container {
-  transform: translateY(0) scale(1);
-}
-
-.df-modal-header {
-  position: relative;
-  padding: 2.2rem 2.2rem 1.4rem;
-  text-align: center;
-  border-bottom: 1px solid rgba(207, 168, 83, 0.18);
-  background: radial-gradient(circle at 50% 0%, rgba(207, 168, 83, 0.12) 0%, transparent 75%);
-}
-
-.df-modal-logo {
-  height: 68px;
-  width: auto;
-  margin: 0 auto 1rem;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
-}
-
-.df-modal-title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 2.1rem;
-  font-weight: 500;
-  color: var(--df-ivory);
-  margin: 0;
-  line-height: 1.15;
-}
-
-.df-modal-subtitle {
-  font-size: 0.88rem;
-  color: rgba(252, 250, 245, 0.75);
-  margin-top: 0.6rem;
-  line-height: 1.5;
-  max-width: 38ch;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.df-modal-close {
-  position: absolute;
-  top: 1.2rem;
-  right: 1.2rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--df-ivory);
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.df-modal-close:hover {
-  background: rgba(207, 168, 83, 0.2);
-  border-color: var(--df-gold);
-  color: var(--df-gold-light);
-  transform: rotate(90deg);
-}
-
-.df-modal-body {
-  padding: 1.8rem 2.2rem 2.2rem;
-}
-
-.df-form-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.15rem;
-}
-
-@media (min-width: 640px) {
-  .df-form-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .df-col-full {
-    grid-column: span 2;
-  }
-}
-
-.df-input-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.df-label {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-weight: 600;
-  color: var(--df-gold-light);
-}
-
-.df-label span {
-  color: #e06c75;
-}
-
-.df-input {
-  background: rgba(6, 18, 8, 0.75);
-  border: 1px solid rgba(207, 168, 83, 0.25);
-  border-radius: 0.5rem;
-  padding: 0.75rem 0.95rem;
-  color: var(--df-ivory);
-  font-size: 0.92rem;
-  font-family: inherit;
-  transition: all 0.25s ease;
-  outline: none;
-}
-
-.df-input:focus {
-  border-color: var(--df-gold);
-  background: rgba(6, 18, 8, 0.95);
-  box-shadow: 0 0 0 3px rgba(207, 168, 83, 0.15);
-}
-
-.df-input.is-invalid {
-  border-color: #e06c75 !important;
-  background: rgba(224, 108, 117, 0.08) !important;
-}
-
-.df-error-msg {
-  font-size: 0.72rem;
-  color: #ff8b94;
-  margin-top: 0.2rem;
-  display: none;
-}
-
-.df-input.is-invalid + .df-error-msg {
-  display: block;
-}
-
-.df-modal-footer {
-  margin-top: 1.6rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.df-submit-btn {
-  background: var(--df-gold-gradient);
-  color: #061208;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.95rem 1.5rem;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.df-submit-btn:hover:not(:disabled) {
-  filter: brightness(1.08);
-  box-shadow: 0 8px 24px -4px rgba(207, 168, 83, 0.5);
-  transform: translateY(-1px);
-}
-
-.df-submit-btn:disabled {
-  opacity: 0.65;
-  cursor: not-allowed;
-}
-
-.df-privacy-note {
-  font-size: 0.68rem;
-  color: rgba(252, 250, 245, 0.55);
-  text-align: center;
-  line-height: 1.4;
-}
-
-.df-privacy-note a {
-  color: var(--df-gold-light);
-  text-decoration: underline;
-}
-
-.df-success-view {
-  display: none;
-  text-align: center;
-  padding: 2.5rem 1.5rem;
-}
-
-.df-success-icon {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 50%;
-  background: rgba(37, 211, 102, 0.15);
-  border: 1px solid rgba(37, 211, 102, 0.4);
-  color: #25d366;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1.4rem;
-  font-size: 2rem;
-}
-
-.df-success-title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 2.2rem;
-  font-weight: 500;
-  color: var(--df-ivory);
-  margin: 0 0 0.8rem 0;
-}
-
-.df-success-desc {
-  font-size: 0.95rem;
-  color: rgba(252, 250, 245, 0.8);
-  line-height: 1.6;
-  max-width: 44ch;
-  margin: 0 auto 2rem;
-}
-
-.df-whatsapp-final-btn {
-  background: #25d366;
-  color: #ffffff !important;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  padding: 1rem 2.2rem;
-  border-radius: 9999px;
-  font-weight: 700;
-  font-size: 0.88rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-decoration: none;
-  box-shadow: 0 10px 28px -6px rgba(37, 211, 102, 0.45);
-  transition: all 0.3s ease;
-}
-
-.df-whatsapp-final-btn:hover {
-  background: #20ba59;
-  transform: translateY(-2px);
-  box-shadow: 0 14px 34px -6px rgba(37, 211, 102, 0.6);
-}
-
-
-/* ==========================================================================
-   QUADROS DE ESCULTURAS EM FRUTAS (GALERIA PREMIUM COM ANIMAÇÕES)
-   ========================================================================== */
-
-.df-sculpture-section {
-  background: linear-gradient(180deg, #07150a 0%, #0a1e0f 50%, #07150a 100%) !important;
-  color: var(--df-ivory) !important;
-  padding: 5rem 1.5rem !important;
-  border-bottom: 1px solid rgba(207, 168, 83, 0.15) !important;
-}
-
-.df-sculpture-grid,
-.df-sculptures-grid {
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 1.75rem;
-  margin-top: 3rem;
-}
-
-@media (min-width: 640px) {
-  .df-sculpture-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .df-sculpture-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 2.25rem;
-  }
-}
-
-.df-sculpture-frame {
-  position: relative;
-  border-radius: 1.25rem;
-  overflow: hidden;
-  background: rgba(14, 38, 20, 0.55);
-  border: 1px solid rgba(207, 168, 83, 0.25);
-  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.8);
-  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-}
-
-.df-sculpture-frame:hover {
-  transform: translateY(-6px) scale(1.015);
-  border-color: rgba(207, 168, 83, 0.7);
-  box-shadow: 0 22px 50px -10px rgba(0, 0, 0, 0.95), 0 0 30px rgba(207, 168, 83, 0.25);
-}
-
-.df-sculpture-img-wrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  background: #040c05;
-}
-
-.df-sculpture-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.df-sculpture-frame:hover .df-sculpture-img {
-  transform: scale(1.08);
-}
-
-.df-sculpture-badge {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background: rgba(6, 18, 8, 0.85);
-  border: 1px solid rgba(207, 168, 83, 0.4);
-  color: var(--df-gold-light);
-  padding: 0.35rem 0.85rem;
-  border-radius: 9999px;
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  backdrop-filter: blur(8px);
-  z-index: 2;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-
-.df-sculpture-info {
-  padding: 1.4rem 1.6rem 1.6rem;
-  background: linear-gradient(180deg, rgba(14, 38, 20, 0.7) 0%, rgba(7, 21, 10, 0.95) 100%);
-  border-top: 1px solid rgba(207, 168, 83, 0.15);
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.df-sculpture-title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.45rem;
-  color: #ffffff;
-  margin: 0 0 0.5rem 0;
-  line-height: 1.25;
-  transition: color 0.3s ease;
-}
-
-.df-sculpture-frame:hover .df-sculpture-title {
-  color: var(--df-gold-light);
-}
-
-.df-sculpture-desc {
-  font-size: 0.85rem;
-  color: rgba(252, 250, 245, 0.7);
-  line-height: 1.5;
-  margin: 0;
-}
-
-/* LIGHTBOX DE ALTA RESOLUÇÃO */
-.df-lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(4, 12, 5, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  z-index: 100000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.35s ease;
-}
-
-.df-lightbox.is-open {
-  opacity: 1;
-  visibility: visible;
-}
-
-.df-lightbox-content {
-  position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.df-lightbox-img {
-  max-width: 100%;
-  max-height: 80vh;
-  border-radius: 1rem;
-  border: 1px solid rgba(207, 168, 83, 0.4);
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95);
-  object-fit: contain;
-}
-
-.df-lightbox-caption {
-  margin-top: 1rem;
-  color: var(--df-gold-light);
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.4rem;
-  text-align: center;
-}
-
-.df-lightbox-close {
-  position: absolute;
-  top: -3rem;
-  right: 0;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(207, 168, 83, 0.4);
-  color: #ffffff;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 1.2rem;
-  transition: all 0.25s ease;
-}
-
-.df-lightbox-close:hover {
-  background: var(--df-gold);
-  color: #061208;
-  transform: rotate(90deg);
-}
-
-
-/* ==========================================================================
-   BOTÕES DE REDES SOCIAIS ANIMADOS (Uiverse.io by wilsondesouza)
-   ========================================================================== */
-.example-2 {
-  display: flex !important;
-  justify-content: flex-start !important;
-  align-items: center !important;
-  padding: 0 !important;
-  margin: 1.25rem 0 0 0 !important;
-  list-style: none !important;
-  gap: 14px !important;
-}
-
-.example-2 .icon-content {
-  position: relative !important;
-  margin: 0 !important;
-}
-
-.example-2 .icon-content .tooltip {
-  position: absolute !important;
-  top: -24px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  color: #fff !important;
-  padding: 5px 10px !important;
-  border-radius: 6px !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  font-size: 11px !important;
-  font-family: 'Outfit', sans-serif !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.08em !important;
-  text-transform: uppercase !important;
-  white-space: nowrap !important;
-  pointer-events: none !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5) !important;
-  z-index: 10 !important;
-}
-
-.example-2 .icon-content:hover .tooltip {
-  opacity: 1 !important;
-  visibility: visible !important;
-  top: -40px !important;
-}
-
-.example-2 .icon-content a {
-  position: relative !important;
-  overflow: hidden !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 48px !important;
-  height: 48px !important;
-  border-radius: 50% !important;
-  color: var(--df-gold-light) !important;
-  background-color: rgba(14, 38, 20, 0.85) !important;
-  border: 1px solid rgba(207, 168, 83, 0.35) !important;
-  transition: all 0.35s ease-in-out !important;
-  text-decoration: none !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
-}
-
-.example-2 .icon-content a:hover {
-  box-shadow: 0 8px 25px rgba(207, 168, 83, 0.45) !important;
-  border-color: rgba(207, 168, 83, 0.85) !important;
-  transform: translateY(-3px) !important;
-}
-
-.example-2 .icon-content a svg {
-  position: relative !important;
-  z-index: 2 !important;
-  width: 22px !important;
-  height: 22px !important;
-  fill: currentColor !important;
-  transition: transform 0.3s ease, fill 0.3s ease !important;
-}
-
-.example-2 .icon-content a:hover svg {
-  transform: scale(1.15) !important;
-  fill: #ffffff !important;
-  color: #ffffff !important;
-}
-
-.example-2 .icon-content a:hover {
-  color: #ffffff !important;
-}
-
-.example-2 .icon-content a .filled {
-  position: absolute !important;
-  top: auto !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 0 !important;
-  background-color: #000 !important;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  z-index: 1 !important;
-}
-
-.example-2 .icon-content a:hover .filled {
-  height: 100% !important;
-}
-
-.example-2 .icon-content a[data-social="whatsapp"] .filled,
-.example-2 .icon-content a[data-social="whatsapp"] ~ .tooltip {
-  background-color: #25d366 !important;
-}
-
-.example-2 .icon-content a[data-social="facebook"] .filled,
-.example-2 .icon-content a[data-social="facebook"] ~ .tooltip {
-  background-color: #1877f2 !important;
-}
-
-.example-2 .icon-content a[data-social="instagram"] .filled,
-.example-2 .icon-content a[data-social="instagram"] ~ .tooltip {
-  background: linear-gradient(
-    45deg,
-    #405de6,
-    #5b51db,
-    #b33ab4,
-    #c135b4,
-    #e1306c,
-    #fd1f1f
-  ) !important;
-}
-
-.example-2 .icon-content a[data-social="google"] .filled,
-.example-2 .icon-content a[data-social="google"] ~ .tooltip {
-  background: linear-gradient(135deg, #4285f4, #ea4335, #fbbc05, #34a853) !important;
-}
-
-/* ==========================================================================
-   BOTÃO DE ORÇAMENTO ANIMADO (Uiverse.io by gharsh11032000)
-   ========================================================================== */
-.animated-button {
-  position: relative !important;
+/* Botão de Menu (Drawer trigger) */
+.df-menu-trigger-btn {
   display: inline-flex !important;
   align-items: center !important;
-  justify-content: center !important;
-  gap: 8px !important;
-  padding: 15px 44px !important;
-  border: 2px solid transparent !important;
-  font-size: 0.82rem !important;
-  background-color: rgba(14, 38, 20, 0.4) !important;
-  border-radius: 100px !important;
-  font-family: 'Outfit', sans-serif !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.16em !important;
+  gap: 0.5rem !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 4px !important;
+  border: 1px solid rgba(228, 194, 125, 0.35) !important;
+  background: rgba(32, 53, 44, 0.5) !important;
+  color: #e4c27d !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
-  color: var(--df-gold-light, #f5df9e) !important;
-  box-shadow: 0 0 0 2px var(--df-gold, #cfa853) !important;
   cursor: pointer !important;
-  overflow: hidden !important;
-  text-decoration: none !important;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  transition: all 0.3s ease !important;
 }
 
-.animated-button svg {
-  position: absolute !important;
-  width: 18px !important;
-  height: 18px !important;
-  fill: var(--df-gold-light, #f5df9e) !important;
-  z-index: 9 !important;
-  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1) !important;
+.df-menu-trigger-btn:hover {
+  background: #e4c27d !important;
+  color: #131412 !important;
+  border-color: #e4c27d !important;
 }
 
-.animated-button .arr-1 {
-  right: 18px !important;
-}
-
-.animated-button .arr-2 {
-  left: -25% !important;
-}
-
-.animated-button .circle {
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  width: 20px !important;
-  height: 20px !important;
-  background-color: var(--df-gold, #cfa853) !important;
-  border-radius: 50% !important;
-  opacity: 0 !important;
-  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1) !important;
-}
-
-.animated-button .text {
+/* ==========================================================================
+   3. HERO CINEMATOGRÁFICA (ESTILO CLAUDIA RAUSCHER)
+   ========================================================================== */
+.hero-cinematic-container {
   position: relative !important;
+  width: 100% !important;
+  min-height: 88vh !important;
+  max-height: 900px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  overflow: hidden !important;
+  background-color: #0d0e0d !important;
+}
+
+/* Vídeo institucional real e limpo (SEM VÉU AMARELO OU FOSCO) */
+.hero-cinematic-video {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  filter: brightness(0.82) contrast(1.05) !important;
   z-index: 1 !important;
-  transform: translateX(-8px) !important;
-  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1) !important;
 }
 
-.animated-button:hover {
-  box-shadow: 0 0 0 12px transparent, 0 12px 30px rgba(207, 168, 83, 0.45) !important;
-  color: #061208 !important;
-  border-radius: 14px !important;
+/* Scrim cinematográfico suave apenas para leitura do texto */
+.hero-scrim-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(
+    180deg,
+    rgba(13, 14, 13, 0.45) 0%,
+    transparent 35%,
+    rgba(13, 14, 13, 0.78) 75%,
+    #131412 100%
+  ) !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
 }
 
-.animated-button:hover .arr-1 {
-  right: -25% !important;
+.hero-content-wrap {
+  position: relative !important;
+  z-index: 10 !important;
+  max-width: 1100px !important;
+  margin: 0 auto !important;
+  padding: 3rem 1.5rem 4rem 1.5rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
 }
 
-.animated-button:hover .arr-2 {
-  left: 18px !important;
+/* Tag de Tradição */
+.df-heritage-tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  padding: 0.35rem 1rem !important;
+  border-radius: 4px !important;
+  background: rgba(32, 53, 44, 0.9) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(228, 194, 125, 0.3) !important;
+  margin-bottom: 1.25rem !important;
 }
 
-.animated-button:hover .text {
-  transform: translateX(8px) !important;
+.df-heritage-tag span.pulse-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: #e4c27d !important;
+  box-shadow: 0 0 10px #e4c27d !important;
+  animation: dfPulse 2s infinite !important;
 }
 
-.animated-button:hover svg {
-  fill: #061208 !important;
+.df-heritage-tag span.text {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.22em !important;
+  color: #e4c27d !important;
+  text-transform: uppercase !important;
 }
 
-.animated-button:active {
-  transform: scale(0.96) !important;
-  box-shadow: 0 0 0 4px var(--df-gold, #cfa853) !important;
+@keyframes dfPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
 }
 
-.animated-button:hover .circle {
-  width: 340px !important;
-  height: 340px !important;
-  opacity: 1 !important;
+/* Título Majestoso */
+.hero-title-main {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: clamp(2.5rem, 6vw, 4.8rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.02em !important;
+  color: #e4e2de !important;
+  margin-bottom: 0.75rem !important;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8) !important;
 }
 
-.animated-button.secondary {
-  color: #fcfaf5 !important;
-  box-shadow: 0 0 0 2px rgba(252, 250, 245, 0.35) !important;
-}
-.animated-button.secondary .circle {
-  background-color: #fcfaf5 !important;
-}
-.animated-button.secondary svg {
-  fill: #fcfaf5 !important;
-}
-.animated-button.secondary:hover {
-  color: #061208 !important;
-}
-.animated-button.secondary:hover svg {
-  fill: #061208 !important;
+.hero-title-sub {
+  display: block !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: clamp(0.9rem, 2vw, 1.35rem) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.25em !important;
+  color: #e4c27d !important;
+  text-transform: uppercase !important;
+  margin-top: 0.5rem !important;
 }
 
+/* Frase solicitada pelo usuário com excelência */
+.hero-signature-quote {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: clamp(1.2rem, 2.5vw, 1.85rem) !important;
+  font-weight: 400 !important;
+  font-style: italic !important;
+  line-height: 1.4 !important;
+  color: #fbf8f2 !important;
+  max-width: 720px !important;
+  margin: 1rem auto 1.5rem auto !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9) !important;
+}
 
-/* Transforma qualquer botão verde residual do React em botão dourado de alta costura */
-main a.bg-whatsapp:not(#btn-whatsapp-flutuante):not(#df-btn-whatsapp-final),
-main button.bg-whatsapp:not(#btn-whatsapp-flutuante):not(#df-btn-whatsapp-final) {
+.hero-body-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem) !important;
+  font-weight: 300 !important;
+  line-height: 1.7 !important;
+  color: #d0c5b4 !important;
+  max-width: 680px !important;
+  margin: 0 auto 2.25rem auto !important;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* CTAs da Hero */
+.hero-ctas-group {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 1.25rem !important;
+  width: 100% !important;
+}
+
+.df-btn-gold-solid {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 8px !important;
-  padding: 14px 38px !important;
-  font-size: 0.82rem !important;
-  background: rgba(14, 38, 20, 0.75) !important;
-  border: 1px solid var(--df-gold, #cfa853) !important;
-  border-radius: 100px !important;
-  font-family: 'Outfit', sans-serif !important;
+  gap: 0.75rem !important;
+  background: linear-gradient(135deg, #e4c27d 0%, #ffdf9f 50%, #b99a59 100%) !important;
+  color: #261a00 !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.85rem !important;
   font-weight: 700 !important;
   letter-spacing: 0.16em !important;
   text-transform: uppercase !important;
-  color: var(--df-gold-light, #f5df9e) !important;
-  box-shadow: 0 0 0 2px rgba(207, 168, 83, 0.35) !important;
+  padding: 1.1rem 2.4rem !important;
+  border-radius: 4px !important;
+  border: none !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  box-shadow: 0 8px 24px rgba(228, 194, 125, 0.35) !important;
+  transition: all 0.35s ease !important;
+}
+
+.df-btn-gold-solid:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 14px 32px rgba(228, 194, 125, 0.5) !important;
+  filter: brightness(1.08) !important;
+}
+
+.df-btn-outline-glass {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.75rem !important;
+  background: rgba(31, 32, 30, 0.7) !important;
+  backdrop-filter: blur(12px) !important;
+  color: #e4c27d !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  padding: 1.1rem 2.2rem !important;
+  border-radius: 4px !important;
+  border: 1px solid rgba(228, 194, 125, 0.4) !important;
   cursor: pointer !important;
   text-decoration: none !important;
   transition: all 0.35s ease !important;
 }
 
-main a.bg-whatsapp:not(#btn-whatsapp-flutuante):not(#df-btn-whatsapp-final):hover,
-main button.bg-whatsapp:not(#btn-whatsapp-flutuante):not(#df-btn-whatsapp-final):hover {
-  background: var(--df-gold-gradient) !important;
-  color: #061208 !important;
+.df-btn-outline-glass:hover {
+  background: rgba(228, 194, 125, 0.15) !important;
+  border-color: #e4c27d !important;
+  color: #ffffff !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 8px 24px -4px rgba(207, 168, 83, 0.6) !important;
 }
 
-main a.bg-whatsapp:not(#btn-whatsapp-flutuante):not(#df-btn-whatsapp-final) svg,
-main button.bg-whatsapp:not(#btn-whatsapp-flutuante):not(#df-btn-whatsapp-final) svg {
-  fill: currentColor !important;
+/* Indicador de Scroll */
+.hero-scroll-indicator {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  margin-top: 2rem !important;
+  gap: 0.5rem !important;
+}
+
+.hero-scroll-indicator span {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.7rem !important;
+  letter-spacing: 0.25em !important;
+  text-transform: uppercase !important;
+  color: #998f80 !important;
+}
+
+.hero-scroll-indicator .line {
+  width: 1px !important;
+  height: 28px !important;
+  background: linear-gradient(180deg, #e4c27d 0%, transparent 100%) !important;
+  animation: dfScrollBounce 2s infinite !important;
+}
+
+@keyframes dfScrollBounce {
+  0% { transform: translateY(0); opacity: 0.2; }
+  50% { transform: translateY(6px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0.2; }
+}
+
+/* ==========================================================================
+   4. CARTÕES DE CARDÁPIOS & CONTEÚDOS (WCAG AAA - NUNCA TEXTO BRANCO EM BRANCO)
+   ========================================================================== */
+/* Todo container de card no site agora é Dark Luxury com alto contraste */
+a.group.flex.h-full.flex-col,
+.rounded-3xl.bg-ivory,
+.bg-ivory.ring-1,
+div.rounded-xl.border,
+div.rounded-2xl.border,
+div.rounded-3xl.border,
+article.bg-surface-container-low,
+article {
+  background-color: #1b1c1a !important;
+  background: #1b1c1a !important;
+  border: 1px solid rgba(228, 194, 125, 0.22) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6) !important;
+  color: #e4e2de !important;
+  transition: all 0.35s ease !important;
+}
+
+/* Elementos internos do card herdam fundo escuro */
+a.group.flex.h-full.flex-col > div,
+.rounded-3xl.bg-ivory > div {
+  background-color: transparent !important;
+}
+
+a.group.flex.h-full.flex-col:hover,
+article:hover {
+  border-color: rgba(228, 194, 125, 0.6) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.8), 0 0 20px rgba(228, 194, 125, 0.15) !important;
+}
+
+/* Títulos dentro de cards */
+a.group.flex.h-full.flex-col h3,
+.rounded-3xl.bg-ivory h3,
+article h3,
+div.rounded-xl h3,
+h3.text-graphite,
+h3.font-display {
+  color: #e4e2de !important;
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: 1.35rem !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.3 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Descrições dentro de cards: Altamente legíveis (cinza/marfim claro sobre fundo escuro) */
+a.group.flex.h-full.flex-col p,
+.rounded-3xl.bg-ivory p,
+article p,
+p.text-stone,
+p.font-brand,
+p.text-sm {
+  color: #d0c5b4 !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.92rem !important;
+  line-height: 1.65 !important;
+  font-weight: 300 !important;
+}
+
+/* Links 'Ver cardápio' */
+a.group.flex.h-full.flex-col span.text-green,
+.rounded-3xl.bg-ivory span.text-green,
+span.text-green {
+  color: #e4c27d !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* Botão 'Pedir Proposta Deste' nos cards */
+.df-btn-card-quote {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  width: 100% !important;
+  margin-top: 1rem !important;
+  padding: 0.75rem 1rem !important;
+  border-radius: 4px !important;
+  background: rgba(32, 53, 44, 0.6) !important;
+  border: 1px solid rgba(228, 194, 125, 0.35) !important;
+  color: #e4c27d !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+}
+
+.df-btn-card-quote:hover {
+  background: #e4c27d !important;
+  color: #131412 !important;
+  border-color: #e4c27d !important;
+}
+
+/* Badges e Tags dos Cards */
+.df-card-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  padding: 0.25rem 0.65rem !important;
+  border-radius: 4px !important;
+  background: rgba(32, 53, 44, 0.85) !important;
+  backdrop-filter: blur(6px) !important;
+  border: 1px solid rgba(228, 194, 125, 0.3) !important;
+  color: #e4c27d !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+}
+
+/* ==========================================================================
+   5. DRAWER LATERAL EDITORIAL (#editorial-drawer)
+   ========================================================================== */
+#editorial-drawer {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 1000 !important;
+  background: rgba(19, 20, 18, 0.96) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  padding: 2rem !important;
+  max-width: 460px !important;
+  margin-left: auto !important;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8) !important;
+  border-left: 1px solid rgba(228, 194, 125, 0.25) !important;
+}
+
+#editorial-drawer.is-open {
+  transform: translateX(0) !important;
+}
+
+#editorial-drawer-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 999 !important;
+  background: rgba(0, 0, 0, 0.65) !important;
+  backdrop-filter: blur(4px) !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease !important;
+}
+
+#editorial-drawer-backdrop.is-open {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Links dentro do Drawer */
+#editorial-drawer nav a {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: 1.45rem !important;
+  font-weight: 400 !important;
+  color: #e4e2de !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0.75rem 0 !important;
+  border-bottom: 1px solid rgba(228, 194, 125, 0.12) !important;
+  text-decoration: none !important;
+  transition: all 0.25s ease !important;
+}
+
+#editorial-drawer nav a:hover {
+  color: #e4c27d !important;
+  padding-left: 0.5rem !important;
+}
+
+/* ==========================================================================
+   6. TIPOGRAFIA GERAL & SEÇÕES EDITORIAL
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  color: #e4e2de !important;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 5vw, 3.8rem) !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.15 !important;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.75rem) !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.25 !important;
+}
+
+p, li, span.text-stone {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  color: #d0c5b4 !important;
+  line-height: 1.7 !important;
+}
+
+/* ==========================================================================
+   7. MODAL DE ORÇAMENTO DE 6 CAMPOS (PRESERVADO & REFINADO)
+   ========================================================================== */
+.df-modal-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 10000 !important;
+  background: rgba(13, 14, 13, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 1rem !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease !important;
+}
+
+.df-modal-backdrop.is-open {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.df-modal-box {
+  background: #1b1c1a !important;
+  border: 1px solid rgba(228, 194, 125, 0.35) !important;
+  border-radius: 8px !important;
+  width: 100% !important;
+  max-width: 580px !important;
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9) !important;
+  padding: 2rem !important;
+  color: #e4e2de !important;
+}
+
+.df-modal-box label {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  color: #e4c27d !important;
+  margin-bottom: 0.35rem !important;
+  display: block !important;
+}
+
+.df-modal-box input,
+.df-modal-box select,
+.df-modal-box textarea {
+  width: 100% !important;
+  background: #0d0e0d !important;
+  border: 1px solid rgba(228, 194, 125, 0.25) !important;
+  border-radius: 4px !important;
+  padding: 0.85rem 1rem !important;
+  color: #e4e2de !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.95rem !important;
+  transition: border-color 0.25s ease !important;
+}
+
+.df-modal-box input:focus,
+.df-modal-box select:focus,
+.df-modal-box textarea:focus {
+  outline: none !important;
+  border-color: #e4c27d !important;
+  box-shadow: 0 0 10px rgba(228, 194, 125, 0.3) !important;
+}
+
+/* ==========================================================================
+   8. WHATSAPP FLUTUANTE
+   ========================================================================== */
+#btn-whatsapp-flutuante,
+.btn-whatsapp-flutuante {
+  position: fixed !important;
+  bottom: 2rem !important;
+  right: 2rem !important;
+  z-index: 998 !important;
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+  background: #25d366 !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  text-decoration: none !important;
+}
+
+#btn-whatsapp-flutuante:hover,
+.btn-whatsapp-flutuante:hover {
+  transform: scale(1.1) !important;
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.65) !important;
 }

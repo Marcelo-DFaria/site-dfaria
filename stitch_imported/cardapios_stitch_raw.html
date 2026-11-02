@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "error": "#ffb4ab", "surface-container-lowest": "#0d0e0d", "background": "#131412", "on-surface-variant": "#d0c5b4", "secondary-fixed": "#d0e8db", "primary-container": "#b99a59", "on-primary": "#402d00", "on-secondary": "#20352c", "on-error": "#690005", "inverse-primary": "#745b20", "on-secondary-fixed-variant": "#364b42", "inverse-on-surface": "#30312e", "on-primary-fixed": "#261a00", "tertiary-fixed-dim": "#abcebd", "outline": "#998f80", "on-primary-fixed-variant": "#5a4309", "tertiary-container": "#84a696", "tertiary": "#abcebd", "on-error-container": "#ffdad6", "surface-bright": "#393937", "primary": "#e4c27d", "on-surface": "#e4e2de", "secondary-fixed-dim": "#b4ccc0", "surface-variant": "#343533", "on-tertiary": "#16362a", "on-secondary-container": "#a6beb2", "surface-dim": "#131412", "on-background": "#e4e2de", "primary-fixed-dim": "#e4c27d", "inverse-surface": "#e4e2de", "surface-container-low": "#1b1c1a", "outline-variant": "#4d4639", "surface-container-highest": "#343533", "secondary-container": "#384e44", "surface-container-high": "#292a28", "on-tertiary-fixed-variant": "#2d4d40", "on-tertiary-fixed": "#002116", "surface-container": "#1f201e", "on-tertiary-container": "#1c3b2f", "on-primary-container": "#463200", "on-secondary-fixed": "#0a1f18", "surface": "#131412", "tertiary-fixed": "#c7ebd9", "primary-fixed": "#ffdf9f", "error-container": "#93000a", "secondary": "#b4ccc0", "surface-tint": "#e4c27d" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin-sm": "1.5rem", "margin": "4rem", "space-lg": "2.5rem", "space-xl": "4.5rem", "gutter": "2rem", "space-sm": "0.75rem", "gutter-sm": "1rem", "space-xs": "0.375rem", "space-md": "1.5rem" }, fontFamily: { "display-lg-mobile": ["Playfair Display"], "display-lg": ["Playfair Display"], "body-lg": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Playfair Display"], "display-xl": ["Playfair Display"], "body-sm": ["Plus Jakarta Sans"], "display-xl-mobile": ["Playfair Display"], "label-ui": ["Plus Jakarta Sans"], "headline-lg": ["Playfair Display"], "headline-md": ["Playfair Display"], "headline-sm": ["Playfair Display"], "body-md": ["Plus Jakarta Sans"] }, fontSize: { "display-lg-mobile": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.01em", "fontWeight": "400" }], "display-lg": ["3.5rem", { "lineHeight": "4rem", "letterSpacing": "-0.02em", "fontWeight": "400" }], "body-lg": ["1.125rem", { "lineHeight": "1.875rem", "letterSpacing": "0.01em", "fontWeight": "300" }], "label-caps": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.2em", "fontWeight": "600" }], "headline-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "0em", "fontWeight": "400" }], "display-xl": ["4.5rem", { "lineHeight": "5rem", "letterSpacing": "-0.02em", "fontWeight": "400" }], "body-sm": ["0.875rem", { "lineHeight": "1.375rem", "letterSpacing": "0.01em", "fontWeight": "400" }], "display-xl-mobile": ["2.75rem", { "lineHeight": "3.25rem", "letterSpacing": "-0.01em", "fontWeight": "400" }], "label-ui": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.05em", "fontWeight": "500" }], "headline-lg": ["2.5rem", { "lineHeight": "3rem", "letterSpacing": "-0.01em", "fontWeight": "400" }], "headline-md": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "0em", "fontWeight": "500" }], "headline-sm": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "0.02em", "fontWeight": "600" }], "body-md": ["1rem", { "lineHeight": "1.625rem", "letterSpacing": "0em", "fontWeight": "400" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-md text-body-md flex flex-col min-h-screen selection:bg-primary selection:text-on-primary"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 px-gutter-sm flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="D'Faria Gastronomia Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1ULji3JwW1Epr-5tGIrFLSUL20GpCX3FkCEYu_syxBcKOhMKG4W8E3iUqbhQAFhsWY7tZBeqPDwG_tOcAhPszuIgTSHQr9VAVD_ewdPVLwpmzBTfnPJaoEymk4m3dWcJQMthca9jf2wonjL8B_BQU1lmU9viYMCwbAV17Op2P8vr422lHiR-fBu2LEIUI_R_VPNY1mLvlNpEh8YpOwMGWEDrKt4OcsV9fPKVGEyyZ26"/><div class="flex flex-col"><span class="font-label-caps text-label-caps uppercase text-primary tracking-widest">D'Faria</span><span class="font-headline-sm text-headline-sm text-on-surface line-clamp-1 leading-none">Home Experience</span></div></div><div class="flex items-center gap-space-xs"><button aria-label="Menu Editorial" class="w-11 h-11 flex items-center justify-center text-primary hover:text-on-surface transition-colors" onclick="document.getElementById('editorial-drawer').classList.remove('translate-x-full');" type="button"><span class="material-symbols-outlined text-[24px]">menu</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-20 pb-28 bg-surface"><div class="flex flex-col w-full">
+<!-- 1. Breadcrumb & Heritage Badge -->
+<section class="px-margin-sm pt-space-md pb-space-sm flex flex-col gap-space-xs">
+<nav aria-label="Trilha de Navegação" class="flex items-center gap-2 text-on-surface-variant text-[11px] uppercase tracking-wider font-label-caps">
+<a class="hover:text-primary transition-colors text-on-surface-variant" href="#">Início</a>
+<span class="text-outline text-[9px]">•</span>
+<span class="text-primary font-medium">Cardápios &amp; Coleções</span>
+</nav>
+<div class="inline-flex items-center gap-2 self-start px-3 py-1 bg-surface-container rounded-full shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="text-[10px] tracking-widest text-primary font-label-caps uppercase">Curadoria Autoral • Desde 2016 • Chef Cristiano D'Faria</span>
+</div>
+</section>
+<!-- 2. Hero Section: Haute Flamme Gastronomie -->
+<section class="px-margin-sm pb-space-lg flex flex-col gap-space-md">
+<div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-surface-container shadow-xl">
+<img alt="Gastronomia autoral D'Faria com filé mignon selado, purê trufado e folha de ouro" class="w-full h-full object-cover" data-alt="High-end culinary presentation of a tender medium-rare prime beef medallion glazed in dark demi-glace, paired with smooth velvety truffle purée, wild sautéed mushrooms, and delicate 24k edible gold leaf garnish. Set against a dark slate plate with faint gold marbling on rustic dark oak table bathed in warm candlelight, reflecting the dark obsidian and antique gold palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClQCxdJW1YHlrwNMYqIvsgfYoYbmw2Hn6cxY6sxlt_t9bGJ0XCCtRRg8O8K7JANty_fazzMXLxa6ajtCdedpL2vk4fogzs1lpMVVZutam6bWTlubKbE0Qwld8y60l6xXzdHQOpeKVHIIEf6Oa80RBYVTRovbTwHoRICWXj06pEixQBczBcrmtqH0a8d3jSE-cfGq588N-gnyGOeYUiN1E5lz1T3WjNbOh6aoldNhw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-90"></div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-on-surface">
+<span class="font-label-caps text-[10px] uppercase tracking-widest text-primary bg-surface-container-lowest/80 px-2.5 py-1 rounded backdrop-blur-sm">Coleção Autoral</span>
+<span class="font-label-ui text-[11px] text-on-surface-variant flex items-center gap-1 bg-surface-container-lowest/80 px-2 py-0.5 rounded backdrop-blur-sm">
+<span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span> Haute Gastronomie
+        </span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface leading-tight">
+        Coleções Gastronômicas &amp; Cardápios Autorais
+      </h1>
+<p class="font-body-md text-body-md text-on-surface-variant font-light">
+        A fusão entre a precisão da alta culinária internacional, a força ancestral do fogo de chão e o frescor orgânico do interior paulista.
+      </p>
+</div>
+<!-- 3 Feature Badges -->
+<div class="grid grid-cols-1 gap-2 pt-1">
+<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-lg shadow-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[12px] font-label-caps uppercase tracking-wider text-primary">Degustação Exclusiva Prévia</span>
+<span class="text-[12px] font-body-sm text-on-surface-variant">Experimentação sensorial completa antes da assinatura</span>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-lg shadow-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[18px]">tune</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[12px] font-label-caps uppercase tracking-wider text-primary">Menus 100% Personalizáveis</span>
+<span class="text-[12px] font-body-sm text-on-surface-variant">Adequação à temática, perfil e restrições dos convidados</span>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-lg shadow-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[18px]">wine_bar</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[12px] font-label-caps uppercase tracking-wider text-primary">Harmonização com Sommelier</span>
+<span class="text-[12px] font-body-sm text-on-surface-variant">Seleção de rótulos mundiais calibrados para cada tempo</span>
+</div>
+</div>
+</div>
+<!-- CTAs -->
+<div class="flex flex-col gap-3 pt-2">
+<a class="w-full py-3.5 px-space-md bg-primary text-on-primary font-label-caps text-label-caps uppercase tracking-widest text-center rounded-DEFAULT shadow-md active:scale-[0.98] transition-transform flex items-center justify-center gap-2" href="#dossie-reserva">
+<span>Solicitar Catálogo de Cardápios</span>
+<span class="material-symbols-outlined text-[16px]">arrow_downward</span>
+</a>
+<a class="w-full py-3 px-space-md bg-surface-container-high text-on-surface font-label-caps text-label-caps uppercase tracking-widest text-center rounded-DEFAULT active:scale-[0.98] transition-all flex items-center justify-center gap-2 hover:bg-surface-bright" href="#dossie-reserva">
+<span>Agendar Degustação Exclusiva</span>
+<span class="material-symbols-outlined text-primary text-[16px]">calendar_month</span>
+</a>
+</div>
+</section>
+<!-- 3. Manifesto de Insumos & Filosofia -->
+<section class="px-margin-sm py-space-lg bg-surface-container-lowest flex flex-col gap-space-md">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[10px] text-primary uppercase tracking-widest">Origem &amp; Rigor Técnico</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">
+        A Nobreza dos Ingredientes e 38 Anos de Maestria
+      </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-light mt-1">
+        Não terceirizamos a paixão pelo produto. Cada lote é rastreado de pequenos produtores até a brasa.
+      </p>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Pillar 1 -->
+<div class="p-4 bg-surface-container rounded-lg flex flex-col gap-2">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-[20px]">workspace_premium</span>
+<h3 class="font-headline-sm text-[15px] text-on-surface leading-snug">Carnes Certificadas &amp; Maturação</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Cortes Black Angus, Wagyu Puro Sangue e peças dry-aged com controle micrométrico de umidade, assadas em lenha de macieira e angico.
+        </p>
+</div>
+<!-- Pillar 2 -->
+<div class="p-4 bg-surface-container rounded-lg flex flex-col gap-2">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-[20px]">agriculture</span>
+<h3 class="font-headline-sm text-[15px] text-on-surface leading-snug">Hortifrúti e Queijos da Mantiqueira</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Parceria direta com produtores artesanais de Cesário Lange, Pardinho Artesanal e Serra da Mantiqueira para vegetais colhidos na alvorada.
+        </p>
+</div>
+<!-- Pillar 3 -->
+<div class="p-4 bg-surface-container rounded-lg flex flex-col gap-2">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-[20px]">local_shipping</span>
+<h3 class="font-headline-sm text-[15px] text-on-surface leading-snug">Cozinha Itinerante de Alta Precisão</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Carretas e módulos gastronômicos completos para montagem em fazendas remotas, praias e condomínios fechados sem comprometer a temperatura.
+        </p>
+</div>
+</div>
+</section>
+<!-- 4. Catálogo Editorial das 4 Coleções Oficiais -->
+<section class="px-margin-sm py-space-lg flex flex-col gap-space-lg">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[10px] text-primary uppercase tracking-widest">Catálogo Oficial</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Coleções para Cada Atmosfera</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-light">
+        Estruturas de serviço desenhadas para sincronizar perfeitamente com o cronograma do seu evento.
+      </p>
+</div>
+<!-- Coleção 01 -->
+<article class="bg-surface-container-low rounded-xl overflow-hidden shadow-lg flex flex-col">
+<div class="relative w-full aspect-[16/10] bg-surface-container overflow-hidden">
+<img alt="Mesa de banquete e prato empratado de casamento com risoto e mignon nobre" class="w-full h-full object-cover" data-alt="Refined wedding gala plate featuring seared filet mignon in green peppercorn reduction, creamy saffron risotto with micro greens, served on delicate artisan dark ceramic, surrounded by crystal stemware and white linen napkins under warm ambient golden candle glow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVEhsQjK8LSxlnnqClLZfcrR8LIDR7AiZu0IpSNhG04A-fVTHtVahNc1ROWC9HQPz5AvOe0dMWX3bYKiK6LH3IlEINb-arfx7k8D5kA4_JAJoB2-r243Bw4m1clYCmkRDK5_sOzCYzIb_nsR6mkZ8F0ZE1ZdSAUCHIxEmNRxiVy3tzV74n0P9UmvRp6z4FFPbx2YWsOSYFFvA2xD8jj3yiPgYhzFSGpS2ShPsDRvk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
+<span class="absolute top-3 left-3 bg-secondary-container/90 text-primary font-label-caps text-[10px] uppercase tracking-wider px-2.5 py-1 rounded backdrop-blur-md">Coleção 01</span>
+</div>
+<div class="p-4 flex flex-col gap-space-xs">
+<span class="text-[11px] font-label-caps uppercase text-secondary tracking-widest">Ideal para Casamentos e Galas | A partir de 100 convidados</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Casamento Clássico &amp; Alta Costura Nupcial</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Degustação volante refinada, jantar empratado em 3 a 5 tempos (risotos trufados com parmesão 24 meses, filé mignon ao molho poivre), e finalização com sobremesas sensoriais esculpidas.
+        </p>
+<div class="flex flex-wrap gap-2 pt-1 pb-2">
+<span class="text-[10px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Serviço Franco-Americano</span>
+<span class="text-[10px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">3 a 5 Tempos</span>
+<span class="text-[10px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Madrugada dos Noivos</span>
+</div>
+<button class="collection-toggle-btn w-full py-2.5 bg-surface-container-high hover:bg-surface-bright text-primary font-label-caps text-[11px] uppercase tracking-wider rounded-DEFAULT transition-colors flex items-center justify-center gap-1.5" data-target="details-col-1">
+<span>Ver Detalhes do Cardápio</span>
+<span class="material-symbols-outlined text-[16px] transition-transform duration-300">expand_more</span>
+</button>
+<div class="hidden pt-3 flex flex-col gap-2 text-[13px] text-on-surface-variant font-body-sm bg-surface-container p-3 rounded" id="details-col-1">
+<div class="font-label-caps text-primary text-[10px] uppercase tracking-wider">Destaques deste Menu:</div>
+<p>• Canapés quentes: Polenta rústica com ragu de javali e crocante de parma.</p>
+<p>• Principal: Medalhão ao poivre vert com aligot de queijo da Cuesta.</p>
+<p>• Sobremesa: Domo de chocolate belga 70% com frutas vermelhas do campo.</p>
+</div>
+</div>
+</article>
+<!-- Coleção 02: Parrilla e Fogo Primitivo -->
+<article class="bg-surface-container-low rounded-xl overflow-hidden shadow-lg flex flex-col">
+<div class="relative w-full aspect-[16/10] bg-surface-container overflow-hidden">
+<img alt="Chef Cristiano D'Faria fatiando corte nobre na parrilla rústica com fogo ao fundo" class="w-full h-full object-cover" data-alt="Charismatic master chef cutting a thick steaming Tomahawk steak with rosemary sprigs and sea salt on a massive rustic wooden board in front of an open iron parrilla with glowing embers, dark smoke, and night atmosphere at a countryside estate." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN00ZUVEHXl11bEE3OPgOFKedgXyc9HpJJwsv9uzNipZef6JvTMJwg-GTAVS6a-ZSvsnlU0XpusvUVIeZFK1mLJHwWQHbPPF4ifGawfYjEtHscVTirqL98EMN2Wne9tXtlWmnFl-GXOQiDHa3MvfRGeenmOX72zSKz9eHp1_TgsdQB1Axngf27COA6VDuFw47_Lb82lppSXMmQBYrIDHYsICPOzsC1zWJLp8Y4yPg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
+<span class="absolute top-3 left-3 bg-secondary-container/90 text-primary font-label-caps text-[10px] uppercase tracking-wider px-2.5 py-1 rounded backdrop-blur-md">Coleção 02</span>
+</div>
+<div class="p-4 flex flex-col gap-space-xs">
+<span class="text-[11px] font-label-caps uppercase text-secondary tracking-widest">Assados ao Vivo &amp; Lenha Nobre | Festas e Casas de Campo</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Parrilla Argentina &amp; Fogo Primitivo</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Tomahawk, Prime Rib, Picanha Nobre e a lendária Costela de Chão 12 Horas. Acompanha legumes defumados na brasa, chimichurri fresco de ervas da horta e farofa na manteiga de garrafa.
+        </p>
+<div class="flex flex-wrap gap-2 pt-1 pb-2">
+<span class="text-[10px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Fogo de Chão</span>
+<span class="text-[10px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Varal de Aves &amp; Defumação</span>
+<span class="text-[10px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Showcooking</span>
+</div>
+<button class="collection-toggle-btn w-full py-2.5 bg-surface-container-high hover:bg-surface-bright text-primary font-label-caps text-[11px] uppercase tracking-wider rounded-DEFAULT transition-colors flex items-center justify-center gap-1.5" data-target="details-col-2">
+<span>Ver Detalhes do Cardápio</span>
+<span class="material-symbols-outlined text-[16px] transition-transform duration-300">expand_more</span>
+</button>
+<div class="hidden pt-3 flex flex-col gap-2 text-[13px] text-on-surface-variant font-body-sm bg-surface-container p-3 rounded" id="details-col-2">
+<div class="font-label-caps text-primary text-[10px] uppercase tracking-wider">Destaques deste Menu:</div>
+<p>• Varal de abacaxi com especiarias e linguiças artesanais trufadas.</p>
+<p>• Estação de cortes premium servidos em tábuas nobres ao ritmo da conversa.</p>
+<p>• Molhos autorais: Salsa criolla defumada e redução de vinho tinto.</p>
+</div>
+</div>
+</article>
+<!-- Coleção 03: Ilhas Gastronômicas & Grazing Tables -->
+<article class="bg-surface-container-low rounded-xl overflow-hidden shadow-lg flex flex-col">
+<div class="relative w-full aspect-[16/10] bg-surface-container overflow-hidden">
+<img alt="Mesa de grazing table farta com queijos artesanais, charcutaria e favos de mel" class="w-full h-full object-cover" data-alt="Sumptuous luxury grazing table styled with artisan rustic aged cheeses, artisanal prosciutto, honeycombs dripping fresh honey, roasted figs, walnuts, and ceramic dishes in moody ambient candlelight with dark rustic background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpRoRwtXtGmObgjF32kXIbMPaGHLuMxnVxyo9_M9V8KtuGCALRwsJymJ_5Hn7L6M4Hqto8MXVA4cFehkRjpUxqRNOFOo1AcPU9RCs4JgWivVMzZJgc_6PDhAUY4qeF8aWhIlMLIXs2C8ryjPGTicKI1koj-yiWpNBUoCeZmdnTd0EUKPhV_PbcRVeh9yhk8Vhm1KV-vzThjBofRuV9a44LDeO9wxOau6vgUd8zZz8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
+<span class="absolute top-3 left-3 bg-secondary-container/90 text-primary font-label-caps text-[10px] uppercase tracking-wider px-2.5 py-1 rounded backdrop-blur-md">Coleção 03</span>
+</div>
+<div class="p-4 flex flex-col gap-space-xs">
+<span class="text-[11px] font-label-caps uppercase text-secondary tracking-widest">Welcome Drinks, Mini Weddings &amp; Coquetéis</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Ilhas Gastronômicas &amp; Grazing Tables</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Queijos artesanais da Cuesta, charcutaria de cura longa, favos de mel silvestre, canapés contemporâneos, ceviches nobres e antepastos assados em azeite extravirgem de safra limitada.
+        </p>
+<div class="flex flex-wrap gap-2 pt-1 pb-2">
+<span class="text-[10px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Serviço Fluido &amp; Dinâmico</span>
+<span class="text-[10px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Finger Foods Quentes</span>
+<span class="text-[10px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Charcutaria Autoral</span>
+</div>
+<button class="collection-toggle-btn w-full py-2.5 bg-surface-container-high hover:bg-surface-bright text-primary font-label-caps text-[11px] uppercase tracking-wider rounded-DEFAULT transition-colors flex items-center justify-center gap-1.5" data-target="details-col-3">
+<span>Ver Detalhes do Cardápio</span>
+<span class="material-symbols-outlined text-[16px] transition-transform duration-300">expand_more</span>
+</button>
+<div class="hidden pt-3 flex flex-col gap-2 text-[13px] text-on-surface-variant font-body-sm bg-surface-container p-3 rounded" id="details-col-3">
+<div class="font-label-caps text-primary text-[10px] uppercase tracking-wider">Destaques deste Menu:</div>
+<p>• Ceviche de robalo ao leite de tigre com chips de batata doce roxa.</p>
+<p>• Pirulito de queijo coalho tostado com melaço de cana e pimenta biquinho.</p>
+<p>• Cestinhas folhadas de cogumelos selvagens com azeite trufado.</p>
+</div>
+</div>
+</article>
+<!-- Coleção 04: Corporativo Executivo -->
+<article class="bg-surface-container-low rounded-xl overflow-hidden shadow-lg flex flex-col">
+<div class="relative w-full aspect-[16/10] bg-surface-container overflow-hidden">
+<img alt="Almoço executivo corporativo refinado com serviço de alta precisão" class="w-full h-full object-cover" data-alt="Refined executive boardroom dinner service with modern minimalist plating, dark architectural glass table, crystal glasses, subdued warm lighting, clean and professional high-level corporate atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTP5HWCSESqbOcDrs3hTKQV3AUjLeyp7SFBxBNhhhihKOtDtI53uPxcWR2ajESy69v7IWY3twICodXRE2jd3smXqPpDhm7n9XBjDSBRxcZv5bl1i4BnNZo4rC7csLmTERerl7X9IcZtwIAPc5rctohNA6yiEAFlNNlkjgKgrVWTC3eaJ9ySIEgbMI1JYPs8XhEBPOQKG8ejve05gn7qSV5YK-bBRuJjr7QP1ZXcr0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
+<span class="absolute top-3 left-3 bg-secondary-container/90 text-primary font-label-caps text-[10px] uppercase tracking-wider px-2.5 py-1 rounded backdrop-blur-md">Coleção 04</span>
+</div>
+<div class="p-4 flex flex-col gap-space-xs">
+<span class="text-[11px] font-label-caps uppercase text-secondary tracking-widest">Eventos Empresariais &amp; Convenções</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Corporativo Executivo &amp; Cúpula de Negócios</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Coffee breaks de alto padrão, almoços executivos com sincronia britânica, buffets de diretoria e coquetéis de encerramento corporativo com discrição absoluta e equipe bilíngue.
+        </p>
+<div class="flex flex-wrap gap-2 pt-1 pb-2">
+<span class="text-[10px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Pontualidade Cronometrada</span>
+<span class="text-[10px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Opções Saudáveis &amp; Low-Carb</span>
+<span class="text-[10px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Protocolo Executivo</span>
+</div>
+<button class="collection-toggle-btn w-full py-2.5 bg-surface-container-high hover:bg-surface-bright text-primary font-label-caps text-[11px] uppercase tracking-wider rounded-DEFAULT transition-colors flex items-center justify-center gap-1.5" data-target="details-col-4">
+<span>Ver Detalhes do Cardápio</span>
+<span class="material-symbols-outlined text-[16px] transition-transform duration-300">expand_more</span>
+</button>
+<div class="hidden pt-3 flex flex-col gap-2 text-[13px] text-on-surface-variant font-body-sm bg-surface-container p-3 rounded" id="details-col-4">
+<div class="font-label-caps text-primary text-[10px] uppercase tracking-wider">Destaques deste Menu:</div>
+<p>• Coffee Break: Quiches artesanais, financier de amêndoas e cafés especiais filtrados na hora.</p>
+<p>• Almoço: Salmão em crosta de castanhas com mousseline de mandioquinha defumada.</p>
+<p>• Sobremesas individuais servidas em copinhos de cristal para agilidade operacional.</p>
+</div>
+</div>
+</article>
+</section>
+<!-- 5. Estações Gastronômicas ao Vivo (Showcooking) -->
+<section class="px-margin-sm py-space-lg bg-surface-container-low flex flex-col gap-space-md">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[10px] text-primary uppercase tracking-widest">Experiência Cênica</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Estações ao Vivo (Showcooking)</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-light">
+        A cozinha como entretenimento: chefs executam finalizações interativas diante dos convidados.
+      </p>
+</div>
+<div class="grid grid-cols-2 gap-2.5">
+<div class="p-3 bg-surface-container rounded-lg flex flex-col gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">skillet</span>
+<span class="font-label-caps text-[11px] uppercase text-on-surface leading-snug">Risotos Mantecados ao Vivo</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Arbóreo italiano finalizado com manteiga trufada</span>
+</div>
+<div class="p-3 bg-surface-container rounded-lg flex flex-col gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">lunch_dining</span>
+<span class="font-label-caps text-[11px] uppercase text-on-surface leading-snug">Roda de Grana Padano</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Massas artesanais flambadas no queijo de 36kg</span>
+</div>
+<div class="p-3 bg-surface-container rounded-lg flex flex-col gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">set_meal</span>
+<span class="font-label-caps text-[11px] uppercase text-on-surface leading-snug">Frutos do Mar &amp; Peixes</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Polvo e camarões VG grelhados na brasa com azeite de ervas</span>
+</div>
+<div class="p-3 bg-surface-container rounded-lg flex flex-col gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">local_fire_department</span>
+<span class="font-label-caps text-[11px] uppercase text-on-surface leading-snug">Sobremesas Flambadas</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Crepes Suzette com Cointreau e sorvetes artesanais</span>
+</div>
+</div>
+</section>
+<!-- 6. Harmonização & Adicionais de Acervo (D'Faria Locações) -->
+<section class="px-margin-sm py-space-md">
+<div class="p-5 bg-surface-container rounded-xl flex flex-col gap-3 shadow-lg">
+<div class="flex items-center gap-2 text-primary font-label-caps text-[11px] uppercase tracking-widest">
+<span class="material-symbols-outlined text-[18px]">table_restaurant</span>
+<span>Acervo &amp; Mesa Posta</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Harmonize seu Cardápio com Mesa Posta de Luxo</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-light">
+        Pratas inglesas, sousplats em madrepérola e taças de cristal lapidado disponíveis com contratação integrada aos cardápios ou sob demanda exclusiva.
+      </p>
+<a class="self-start inline-flex items-center gap-1.5 text-primary font-label-caps text-[11px] uppercase tracking-wider hover:text-primary-fixed transition-colors pt-1" href="#">
+<span>Conhecer D'Faria Locações</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</section>
+<!-- 7. Dossiê de Reserva & Solicitação de Menus Personalizados -->
+<section class="px-margin-sm py-space-lg flex flex-col gap-space-md" id="dossie-reserva">
+<div class="flex flex-col gap-1">
+<div class="inline-flex items-center gap-1.5 text-primary font-label-caps text-[10px] uppercase tracking-widest">
+<span class="material-symbols-outlined text-[15px]">mail</span>
+<span>Atendimento Personalizado</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Dossiê de Reserva &amp; Menus</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-light">
+        Preencha os dados do seu evento para receber os descritivos completos de valores, fichas técnicas e agendamento de degustação.
+      </p>
+</div>
+<!-- 9 Mandated Qualification Fields Form -->
+<form class="flex flex-col gap-space-sm bg-surface-container-low p-5 rounded-xl shadow-lg" id="proposal-form" onsubmit="event.preventDefault(); document.getElementById('form-feedback').classList.remove('hidden'); this.reset();">
+<!-- 1. Nome -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-[11px] uppercase tracking-wider text-on-surface-variant" for="nome">1. Nome Completo / Anfitrião *</label>
+<input class="w-full bg-surface-container px-3 py-2.5 rounded text-on-surface text-body-sm placeholder:text-outline focus:outline-none focus:bg-surface-bright" id="nome" name="nome" placeholder="Ex.: Dra. Beatriz Albuquerque" required="" type="text"/>
+</div>
+<!-- 2. WhatsApp -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-[11px] uppercase tracking-wider text-on-surface-variant" for="whatsapp">2. WhatsApp com DDD *</label>
+<input class="w-full bg-surface-container px-3 py-2.5 rounded text-on-surface text-body-sm placeholder:text-outline focus:outline-none focus:bg-surface-bright" id="whatsapp" name="whatsapp" placeholder="(15) 99999-0000" required="" type="tel"/>
+</div>
+<!-- 3. E-mail -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-[11px] uppercase tracking-wider text-on-surface-variant" for="email">3. E-mail Corporativo ou Pessoal *</label>
+<input class="w-full bg-surface-container px-3 py-2.5 rounded text-on-surface text-body-sm placeholder:text-outline focus:outline-none focus:bg-surface-bright" id="email" name="email" placeholder="anfitriao@email.com" required="" type="email"/>
+</div>
+<!-- 4. Data Prevista -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-[11px] uppercase tracking-wider text-on-surface-variant" for="data_evento">4. Data Prevista do Evento *</label>
+<input class="w-full bg-surface-container px-3 py-2.5 rounded text-on-surface text-body-sm text-outline focus:outline-none focus:bg-surface-bright" id="data_evento" name="data_evento" required="" type="date"/>
+</div>
+<!-- 5. Tipo de Celebração -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-[11px] uppercase tracking-wider text-on-surface-variant" for="tipo_evento">5. Tipo de Celebração *</label>
+<select class="w-full bg-surface-container px-3 py-2.5 rounded text-on-surface text-body-sm focus:outline-none focus:bg-surface-bright" id="tipo_evento" name="tipo_evento" required="">
+<option class="bg-surface-container text-on-surface" value="">Selecione o tipo de celebração</option>
+<option class="bg-surface-container text-on-surface" value="casamento">Casamento / Destination Wedding</option>
+<option class="bg-surface-container text-on-surface" value="aniversario">Aniversário / Boda de Prata ou Ouro</option>
+<option class="bg-surface-container text-on-surface" value="corporativo">Corporativo / Galá Executiva</option>
+<option class="bg-surface-container text-on-surface" value="churrasco">Parrilla &amp; Fogo Primitivo em Residência</option>
+<option class="bg-surface-container text-on-surface" value="outro">Outro Formato Exclusivo</option>
+</select>
+</div>
+<!-- 6. Número Estimado de Convidados -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-[11px] uppercase tracking-wider text-on-surface-variant" for="convidados">6. Número Estimado de Convidados *</label>
+<input class="w-full bg-surface-container px-3 py-2.5 rounded text-on-surface text-body-sm placeholder:text-outline focus:outline-none focus:bg-surface-bright" id="convidados" min="20" name="convidados" placeholder="Ex.: 150 convidados" required="" type="number"/>
+</div>
+<!-- 7. Localidade -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-[11px] uppercase tracking-wider text-on-surface-variant" for="local">7. Localidade / Cidade ou Condomínio *</label>
+<input class="w-full bg-surface-container px-3 py-2.5 rounded text-on-surface text-body-sm placeholder:text-outline focus:outline-none focus:bg-surface-bright" id="local" name="local" placeholder="Ex.: Fazenda Boa Vista, Porto Feliz ou Sede Cesário Lange" required="" type="text"/>
+</div>
+<!-- 8. Coleções Desejadas (Checkboxes) -->
+<div class="flex flex-col gap-2 pt-1">
+<label class="font-label-caps text-[11px] uppercase tracking-wider text-on-surface-variant">8. Coleções de Cardápio Desejadas</label>
+<div class="flex flex-col gap-2">
+<label class="flex items-center gap-3 p-2.5 bg-surface-container rounded cursor-pointer">
+<input class="w-4 h-4 accent-primary rounded bg-surface-container-high" name="colecoes[]" type="checkbox" value="casamento-classico"/>
+<span class="text-body-sm text-on-surface">Casamento Clássico &amp; Nupcial</span>
+</label>
+<label class="flex items-center gap-3 p-2.5 bg-surface-container rounded cursor-pointer">
+<input checked="" class="w-4 h-4 accent-primary rounded bg-surface-container-high" name="colecoes[]" type="checkbox" value="parrilla-fogo"/>
+<span class="text-body-sm text-on-surface">Parrilla Argentina &amp; Fogo Primitivo</span>
+</label>
+<label class="flex items-center gap-3 p-2.5 bg-surface-container rounded cursor-pointer">
+<input class="w-4 h-4 accent-primary rounded bg-surface-container-high" name="colecoes[]" type="checkbox" value="ilhas-gastronomicas"/>
+<span class="text-body-sm text-on-surface">Ilhas Gastronômicas &amp; Grazing Tables</span>
+</label>
+<label class="flex items-center gap-3 p-2.5 bg-surface-container rounded cursor-pointer">
+<input class="w-4 h-4 accent-primary rounded bg-surface-container-high" name="colecoes[]" type="checkbox" value="corporativo-executivo"/>
+<span class="text-body-sm text-on-surface">Corporativo Executivo &amp; Diretoria</span>
+</label>
+</div>
+</div>
+<!-- 9. Restrições Alimentares -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-[11px] uppercase tracking-wider text-on-surface-variant" for="restricoes">9. Restrições Alimentares &amp; Preferências Especiais</label>
+<textarea class="w-full bg-surface-container px-3 py-2 rounded text-on-surface text-body-sm placeholder:text-outline focus:outline-none focus:bg-surface-bright resize-none" id="restricoes" name="restricoes" placeholder="Ex.: 10 convidados vegetarianos, intolerância a glúten ou corte preferencial de carne." rows="3"></textarea>
+</div>
+<!-- Submit & Feedback -->
+<button class="mt-2 w-full py-3.5 px-space-md bg-primary text-on-primary font-label-caps text-label-caps uppercase tracking-widest text-center rounded-DEFAULT shadow-lg active:scale-[0.98] transition-transform flex items-center justify-center gap-2" type="submit">
+<span>Solicitar Proposta Gastronômica &amp; Cardápios</span>
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+<div class="hidden p-3 bg-secondary-container text-on-secondary rounded text-center text-body-sm" id="form-feedback">
+<span class="font-medium text-primary">Solicitação recebida com sucesso!</span><br/>
+        Nossa equipe de concierge gastronômico entrará em contato em até 2 horas úteis via WhatsApp.
+      </div>
+<div class="flex items-center justify-center gap-2 pt-1 text-[11px] text-outline">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+<span>Privacidade resguardada. Retorno concierge em até 2 horas.</span>
+</div>
+</form>
+</section>
+<!-- 8. FAQ Técnico sobre Cardápios e Degustação -->
+<section class="px-margin-sm py-space-md flex flex-col gap-space-sm">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[10px] text-primary uppercase tracking-widest">Dúvidas Frequentes</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">FAQ Técnico &amp; Degustações</h2>
+</div>
+<div class="flex flex-col gap-2">
+<!-- FAQ 1 -->
+<div class="bg-surface-container rounded-lg overflow-hidden">
+<button class="faq-btn w-full p-3.5 text-left flex items-center justify-between gap-3 text-on-surface font-headline-sm text-[14px]" type="button">
+<span>Como funciona o agendamento da degustação prévia?</span>
+<span class="material-symbols-outlined text-primary text-[18px] transition-transform duration-300">expand_more</span>
+</button>
+<div class="faq-content hidden px-3.5 pb-3 text-on-surface-variant font-body-sm text-[13px]">
+          A degustação ocorre na nossa sede em Cesário Lange ou em espaço privativo parceiro. Você experimentará os pratos principais do menu selecionado, sobremesas e harmonização orientada pelo nosso chef e sommelier.
+        </div>
+</div>
+<!-- FAQ 2 -->
+<div class="bg-surface-container rounded-lg overflow-hidden">
+<button class="faq-btn w-full p-3.5 text-left flex items-center justify-between gap-3 text-on-surface font-headline-sm text-[14px]" type="button">
+<span>É possível personalizar os pratos para convidados com restrições?</span>
+<span class="material-symbols-outlined text-primary text-[18px] transition-transform duration-300">expand_more</span>
+</button>
+<div class="faq-content hidden px-3.5 pb-3 text-on-surface-variant font-body-sm text-[13px]">
+          Sim. Desenvolvemos com antecedência fichas técnicas exclusivas para veganos, vegetarianos, celíacos e pessoas com alergias severas, mantendo o mesmo padrão de requinte da refeição principal.
+        </div>
+</div>
+<!-- FAQ 3 -->
+<div class="bg-surface-container rounded-lg overflow-hidden">
+<button class="faq-btn w-full p-3.5 text-left flex items-center justify-between gap-3 text-on-surface font-headline-sm text-[14px]" type="button">
+<span>O serviço inclui louçaria, talheres e equipe de serviço?</span>
+<span class="material-symbols-outlined text-primary text-[18px] transition-transform duration-300">expand_more</span>
+</button>
+<div class="faq-content hidden px-3.5 pb-3 text-on-surface-variant font-body-sm text-[13px]">
+          Sim. Fornecemos brigada completa (chefs executivos, assadores, maitres e garçons uniformizados), além de louçaria de porcelana nobre, talheres pesados e taças, ou opção de upgrade via D'Faria Locações.
+        </div>
+</div>
+<!-- FAQ 4 -->
+<div class="bg-surface-container rounded-lg overflow-hidden">
+<button class="faq-btn w-full p-3.5 text-left flex items-center justify-between gap-3 text-on-surface font-headline-sm text-[14px]" type="button">
+<span>Vocês atendem eventos em locais sem estrutura de cozinha?</span>
+<span class="material-symbols-outlined text-primary text-[18px] transition-transform duration-300">expand_more</span>
+</button>
+<div class="faq-content hidden px-3.5 pb-3 text-on-surface-variant font-body-sm text-[13px]">
+          Absolutamente. Dispomos de cozinha móvel autossuficiente (geradores, fornos combinados móveis, estufas e carretas de fogo de chão) capaz de operar em qualquer fazenda, praia ou campo isolado.
+        </div>
+</div>
+</div>
+</section>
+<!-- 9. Interligação com Páginas de Cardápios & Sedes -->
+<section class="px-margin-sm py-space-lg flex flex-col gap-space-sm bg-surface-container-lowest">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[10px] text-primary uppercase tracking-widest">Navegação Dedicada</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Explorar por Especialidade &amp; Sede</h3>
+</div>
+<div class="grid grid-cols-2 gap-2 text-[12px] font-label-caps">
+<a class="p-3 bg-surface-container rounded flex flex-col gap-1 hover:bg-surface-bright transition-colors" href="#">
+<span class="text-primary font-medium">Casamento Clássico</span>
+<span class="text-outline text-[10px] lowercase">/cardapios/nupcial</span>
+</a>
+<a class="p-3 bg-surface-container rounded flex flex-col gap-1 hover:bg-surface-bright transition-colors" href="#">
+<span class="text-primary font-medium">Parrilla &amp; Fogo</span>
+<span class="text-outline text-[10px] lowercase">/cardapios/fogo</span>
+</a>
+<a class="p-3 bg-surface-container rounded flex flex-col gap-1 hover:bg-surface-bright transition-colors" href="#">
+<span class="text-primary font-medium">Ilhas Gastronômicas</span>
+<span class="text-outline text-[10px] lowercase">/cardapios/ilhas</span>
+</a>
+<a class="p-3 bg-surface-container rounded flex flex-col gap-1 hover:bg-surface-bright transition-colors" href="#">
+<span class="text-primary font-medium">Corporativo Executivo</span>
+<span class="text-outline text-[10px] lowercase">/cardapios/business</span>
+</a>
+<a class="p-3 bg-surface-container rounded flex flex-col gap-1 hover:bg-surface-bright transition-colors" href="#">
+<span class="text-secondary font-medium">Sede Cesário Lange</span>
+<span class="text-outline text-[10px] lowercase">/locais/cesario-lange</span>
+</a>
+<a class="p-3 bg-surface-container rounded flex flex-col gap-1 hover:bg-surface-bright transition-colors" href="#">
+<span class="text-secondary font-medium">Ninho Verde I</span>
+<span class="text-outline text-[10px] lowercase">/locais/ninho-verde</span>
+</a>
+</div>
+<!-- Final Brand Stamp -->
+<div class="pt-4 flex flex-col items-center justify-center text-center gap-1">
+<span class="font-headline-sm text-[16px] text-primary italic">D'Faria Gastronomia &amp; Eventos</span>
+<span class="text-outline text-[11px] font-body-sm">Teatro do Fogo • Alta Culinária Itinerante • Interior de São Paulo</span>
+</div>
+</section>
+<!-- Interactive Scripts for Details Accordion and FAQ -->
+<script>
+    document.querySelectorAll('.collection-toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const content = document.getElementById(targetId);
+        const icon = btn.querySelector('.material-symbols-outlined');
+        if (content) {
+          content.classList.toggle('hidden');
+          if (icon) {
+            icon.classList.toggle('rotate-180');
+          }
+        }
+      });
+    });
+
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const icon = btn.querySelector('.material-symbols-outlined');
+        if (content) {
+          content.classList.toggle('hidden');
+          if (icon) {
+            icon.classList.toggle('rotate-180');
+          }
+        }
+      });
+    });
+  </script>
+</div></main><aside class="fixed inset-0 z-50 pointer-events-auto transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-between bg-surface-container-low/95 backdrop-blur-2xl px-margin-sm py-space-lg" id="editorial-drawer"><div class="flex items-center justify-between pt-safe pb-space-md"><div class="flex items-center gap-space-sm"><img alt="D'Faria Gastronomia Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1ULji3JwW1Epr-5tGIrFLSUL20GpCX3FkCEYu_syxBcKOhMKG4W8E3iUqbhQAFhsWY7tZBeqPDwG_tOcAhPszuIgTSHQr9VAVD_ewdPVLwpmzBTfnPJaoEymk4m3dWcJQMthca9jf2wonjL8B_BQU1lmU9viYMCwbAV17Op2P8vr422lHiR-fBu2LEIUI_R_VPNY1mLvlNpEh8YpOwMGWEDrKt4OcsV9fPKVGEyyZ26"/><span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">Haute Gastronomie</span></div><button aria-label="Fechar Menu" class="w-11 h-11 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors" onclick="document.getElementById('editorial-drawer').classList.add('translate-x-full');" type="button"><span class="material-symbols-outlined text-[26px]">close</span></button></div><div class="flex-1 overflow-y-auto space-y-space-md pr-space-xs"><div class="space-y-space-xs"><span class="font-label-caps text-label-caps text-outline uppercase tracking-widest block">Experiências</span><nav class="flex flex-col space-y-space-xs"><a class="font-headline-md text-headline-md text-on-surface hover:text-primary transition-colors flex items-center justify-between" href="#" onclick="document.getElementById('editorial-drawer').classList.add('translate-x-full');"><span>Eventos Exclusivos</span><span class="material-symbols-outlined text-outline text-[18px]">north_east</span></a><a class="font-headline-md text-headline-md text-on-surface hover:text-primary transition-colors flex items-center justify-between" href="#" onclick="document.getElementById('editorial-drawer').classList.add('translate-x-full');"><span>Gastronomia &amp; Fogo</span><span class="material-symbols-outlined text-outline text-[18px]">north_east</span></a><a class="font-headline-md text-headline-md text-on-surface hover:text-primary transition-colors flex items-center justify-between" href="#" onclick="document.getElementById('editorial-drawer').classList.add('translate-x-full');"><span>D'Faria Locações</span><span class="material-symbols-outlined text-outline text-[18px]">north_east</span></a><a class="font-headline-md text-headline-md text-on-surface hover:text-primary transition-colors flex items-center justify-between" href="#" onclick="document.getElementById('editorial-drawer').classList.add('translate-x-full');"><span>Cidades &amp; Condomínios</span><span class="material-symbols-outlined text-outline text-[18px]">north_east</span></a></nav></div><div class="space-y-space-xs pt-space-xs"><span class="font-label-caps text-label-caps text-outline uppercase tracking-widest block">A Casa</span><nav class="flex flex-col space-y-space-xs"><a class="font-body-lg text-body-lg text-on-surface-variant hover:text-primary transition-colors" href="#" onclick="document.getElementById('editorial-drawer').classList.add('translate-x-full');">O D'Faria &amp; Filosofia</a><a class="font-body-lg text-body-lg text-on-surface-variant hover:text-primary transition-colors" href="#" onclick="document.getElementById('editorial-drawer').classList.add('translate-x-full');">Contato &amp; Concierge</a></nav></div></div><div class="pt-space-md pb-safe space-y-space-sm"><div class="inline-block px-space-sm py-space-xs bg-secondary-container/40 rounded-DEFAULT"><span class="font-label-caps text-label-caps text-primary uppercase">Desde 2016 • Cesário Lange</span></div><p class="font-body-sm text-body-sm text-outline">Teatro gastronômico ao ar livre e alta costura culinária.</p></div></aside><a aria-label="Atendimento Concierge WhatsApp" class="fixed bottom-24 right-margin-sm z-50 w-14 h-14 rounded-full bg-secondary-container flex items-center justify-center shadow-[0_0_24px_rgba(185,154,89,0.2)] text-primary hover:bg-primary hover:text-on-primary transition-all duration-300 group" href="https://wa.me/5515999999999?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20D%27Faria." rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[28px]">chat</span></a><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-label-ui"><div class="h-20 px-gutter-sm flex items-center justify-around"><a class="flex flex-col items-center justify-center w-14 h-14 text-on-surface-variant hover:text-primary transition-colors" data-path="home-experience" href="#"><span class="material-symbols-outlined text-[22px]">local_fire_department</span><span class="font-label-caps text-label-caps text-[10px] mt-1 uppercase tracking-wider">Início</span></a><a class="flex flex-col items-center justify-center w-14 h-14 text-on-surface-variant hover:text-primary transition-colors" data-path="event-curation" href="#"><span class="material-symbols-outlined text-[22px]">celebration</span><span class="font-label-caps text-label-caps text-[10px] mt-1 uppercase tracking-wider">Eventos</span></a><a class="flex flex-col items-center justify-center w-14 h-14 text-on-surface-variant hover:text-primary transition-colors" data-path="gastronomy-menu" href="#"><span class="material-symbols-outlined text-[22px]">restaurant_menu</span><span class="font-label-caps text-label-caps text-[10px] mt-1 uppercase tracking-wider">Cardápio</span></a><a class="flex flex-col items-center justify-center w-14 h-14 text-on-surface-variant hover:text-primary transition-colors" data-path="concierge-budget" href="#"><span class="material-symbols-outlined text-[22px]">event_available</span><span class="font-label-caps text-label-caps text-[10px] mt-1 uppercase tracking-wider">Reserva</span></a></div></nav></body></html>

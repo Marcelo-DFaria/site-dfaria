@@ -1,715 +1,507 @@
 /**
- * D'Faria Gastronomia e Eventos — Script Premium & Runtime Engine
- * Garante que todas as melhorias (Modal 6 campos, Galeria 15 Esculturas,
- * Botões Uiverse Animados e Preservação de URLs) funcionem tanto no SSR
- * quanto após a hidratação do React / TanStack Router.
+ * D'FARIA GASTRONOMIA E EVENTOS — RUNTIME PREMIUM ENGINE
+ * Padrão Google Stitch (Haute Flamme Gastronomie) & Hero/Menu Claudia Rauscher
+ * Preserva 100% de todas as 53 URLs, Modal de Orçamento (6 campos) e WhatsApp VIP.
  */
 
 (function () {
   'use strict';
 
-  /* ==========================================================================
-     1. DADOS DAS 15 ESCULTURAS REAIS EM FRUTAS DO D'FARIA
-     ========================================================================== */
-  const SCULPTURES = [
-    { id: '01', file: 'escultura-01.png', title: 'Centro Esculpido em Melancia Floral', badge: 'Arte Viva' },
-    { id: '02', file: 'escultura-02.jpg', title: 'Entalhe Artístico Floral com Cisne de Melão', badge: 'Exclusivo' },
-    { id: '03', file: 'escultura-03.jpg', title: 'Melancia Esculpida Especial de Réveillon', badge: 'Celebração' },
-    { id: '04', file: 'escultura-04.png', title: 'Ilha de Frios com Frutas Tropicais e Mamão em Flor', badge: 'Alta Mesa' },
-    { id: '05', file: 'escultura-05.png', title: 'Composição Esculpida em Abacaxi com Aves Decorativas', badge: 'Criação Única' },
-    { id: '06', file: 'escultura-06.jpg', title: 'Escultura Geométrica em Melancia e Cascata de Frutas', badge: 'Harmonia' },
-    { id: '07', file: 'escultura-07.png', title: 'Centro de Mesa em Melancia para Eventos de Fim de Ano', badge: 'Destaque' },
-    { id: '08', file: 'escultura-08.jpg', title: 'Pétalas Esculpidas em Melancia com Uvas e Maçãs', badge: 'Detalhe Nobre' },
-    { id: '09', file: 'escultura-09.png', title: 'Banquete de Fim de Ano com Mesa de Frutas Esculpidas', badge: 'Grande Formato' },
-    { id: '10', file: 'escultura-10.jpg', title: 'Cesta de Melão Amarelo com Morangos e Uvas Nobres', badge: 'Delicadeza' },
-    { id: '11', file: 'escultura-11.jpg', title: 'Arranjo Central Tropical com Pássaros e Melancia', badge: 'Arte Viva' },
-    { id: '12', file: 'escultura-12.jpg', title: 'Escultura Real D’Faria — Pétalas em Camadas', badge: 'Assinatura D’Faria' },
-    { id: '13', file: 'escultura-13.jpg', title: 'Composição Floral Clássica em Melancia', badge: 'Tradição' },
-    { id: '14', file: 'escultura-14.jpg', title: 'Escultura de Boas-Vindas com Tipografia em Casca', badge: 'Personalizado' },
-    { id: '15', file: 'escultura-15.jpg', title: 'Composição Esculpida Especial de Fim de Ano', badge: 'Arte Viva' }
-  ];
+  const WHATSAPP_NUMBER = '5515996834734';
 
   /* ==========================================================================
-     2. TEMPLATES UIVERSE.IO
+     1. INICIALIZAÇÃO E CONTROLE DE ESTADO
      ========================================================================== */
-  const UIVERSE_SOCIAL_HTML = `
-<ul class="example-2">
-  <li class="icon-content">
-    <a href="https://www.instagram.com/dfariagastronomia/" aria-label="Instagram" data-social="instagram" target="_blank" rel="noopener noreferrer">
-      <div class="filled"></div>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-      </svg>
-    </a>
-    <div class="tooltip">Instagram</div>
-  </li>
-  <li class="icon-content">
-    <a href="https://www.facebook.com/dfariagastronomia" aria-label="Facebook" data-social="facebook" target="_blank" rel="noopener noreferrer">
-      <div class="filled"></div>
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-      </svg>
-    </a>
-    <div class="tooltip">Facebook</div>
-  </li>
-  <li class="icon-content">
-    <a href="https://wa.me/5515996834734?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20com%20o%20D&#x27;Faria." aria-label="WhatsApp" data-social="whatsapp" target="_blank" rel="noopener noreferrer">
-      <div class="filled"></div>
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.03h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.16 8.16 0 0 1-1.25-4.35c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.83 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.21-8.24 8.21Zm4.52-6.15c-.25-.12-1.47-.72-1.69-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.22.25-.85.84-.85 2.03s.87 2.35 1 2.51c.12.17 1.72 2.62 4.16 3.67.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z"></path>
-      </svg>
-    </a>
-    <div class="tooltip">WhatsApp</div>
-  </li>
-  <li class="icon-content">
-    <a href="https://www.google.com/maps/place/D&#x27;Faria+Gastronomia+e+Eventos/@-23.2240952,-47.9538734,20z/data=!4m6!3m5!1s0x94c67b4af88cc327:0xdbf145a965fdadbc!8m2!3d-23.224285!4d-47.9537514!16s%2Fg%2F11fmm0h46x" aria-label="Avaliações no Google" data-social="google" target="_blank" rel="noopener noreferrer">
-      <div class="filled"></div>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
-        <circle cx="12" cy="10" r="3"></circle>
-      </svg>
-    </a>
-    <div class="tooltip">Google Maps</div>
-  </li>
-</ul>
-`;
-
-  function createAnimatedButtonHtml(text, isSecondary) {
-    const secClass = isSecondary ? ' secondary' : '';
-    return `
-<button class="animated-button${secClass} js-open-orcamento" type="button">
-  <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
-  </svg>
-  <span class="text">${text}</span>
-  <span class="circle"></span>
-  <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
-  </svg>
-</button>
-`.trim();
+  function initEngine() {
+    setupHeaderAndDrawer();
+    setupHeroCinematic();
+    setupCardapiosLuxury();
+    setupQuoteModal();
+    setupFloatingWhatsApp();
+    setupBadgesAndSeals();
   }
 
   /* ==========================================================================
-     3. MOTOR DE APLICAÇÃO DINÂMICA (SOBREVIVE AO REACT E AO TANSTACK ROUTER)
+     2. CABEÇALHO & DRAWER EDITORIAL (ESTILO CLAUDIA RAUSCHER + STITCH)
      ========================================================================== */
-  let isApplying = false;
+  function setupHeaderAndDrawer() {
+    const header = document.querySelector('header');
+    if (!header) return;
 
-  function applyEnhancements() {
-    if (isApplying) return;
-    isApplying = true;
-
-    try {
-      const isSculpturePage = window.location.pathname.includes('esculturas-em-frutas');
-
-      // 0) Garantir Hero Cinematográfico com Vídeo de Fundo na Home
-      if (window.location.pathname === '/' || window.location.pathname === '') {
-        const heroSection = document.querySelector('section.relative.isolate') || document.querySelector('main > section:first-child');
-        if (heroSection && !heroSection.querySelector('video')) {
-          const videoWrap = document.createElement('div');
-          videoWrap.className = 'absolute inset-0 -z-20 overflow-hidden';
-          videoWrap.innerHTML = `
-            <video autoplay muted loop playsinline preload="auto" poster="/assets/foto-25-D-dHewb7.webp" class="h-full w-full object-cover object-center filter brightness-[0.72] contrast-[1.08] scale-105 transition-transform duration-1000">
-              <source src="/video/dfaria-apresentacao.mp4" type="video/mp4" />
-              <img src="/assets/foto-25-D-dHewb7.webp" alt="D'Faria Gastronomia e Eventos" class="h-full w-full object-cover" />
-            </video>
-          `;
-          heroSection.insertBefore(videoWrap, heroSection.firstChild);
-        }
-      }
-
-      // A) Substituição da Capa errada (Brie) para Escultura Real
-      const wrongCoverImgs = document.querySelectorAll('img[src*="foto-30-DGJvWG-c"]');
-      wrongCoverImgs.forEach(img => {
-        if (isSculpturePage || img.closest('a[href*="esculturas-em-frutas"]')) {
-          img.src = '/assets/esculturas/escultura-12.jpg';
-          img.alt = 'Esculturas Artísticas em Frutas — D’Faria Gastronomia';
-        }
-      });
-
-      // B) Se estiver na página de esculturas, garantir a galeria com os 15 quadros animados
-      if (isSculpturePage) {
-        if (!document.getElementById('df-sculptures-gallery-container')) {
-          injectSculptureGallery();
-        }
-      }
-
-      // C) Aplicar os botões de redes sociais animados no rodapé
-      const footers = document.querySelectorAll('footer');
-      footers.forEach(footer => {
-        const existingUiverse = footer.querySelector('.example-2');
-        if (!existingUiverse) {
-          const oldSocialUl = footer.querySelector('ul.flex.flex-wrap.items-center.gap-3');
-          if (oldSocialUl) {
-            oldSocialUl.outerHTML = UIVERSE_SOCIAL_HTML;
-          }
-        }
-      });
-
-      // D) Aplicar botões animados em todos os pontos de conversão
-      const ctaLinks = document.querySelectorAll('a, button');
-      ctaLinks.forEach(el => {
-        if (el.classList.contains('animated-button')) return;
-        if (el.id === 'btn-whatsapp-flutuante' || el.closest('#btn-whatsapp-flutuante')) return;
-        if (el.id === 'df-btn-whatsapp-final' || el.closest('.df-modal-backdrop')) return;
-
-        const text = el.textContent ? el.textContent.trim() : '';
-
-        if (/Solicite seu orçamento|SOLICITAR ORÇAMENTO|Solicitar orçamento pelo WhatsApp/i.test(text) && !el.classList.contains('animated-button')) {
-          const label = text.includes('SOLICITAR') ? 'SOLICITAR ORÇAMENTO' : 'Solicite seu orçamento';
-          const temp = document.createElement('div');
-          temp.innerHTML = createAnimatedButtonHtml(label, false);
-          const newBtn = temp.firstElementChild;
-          el.parentNode.replaceChild(newBtn, el);
-        } else if (text === 'Pedir pelo formulário' && !el.classList.contains('animated-button')) {
-          const temp = document.createElement('div');
-          temp.innerHTML = createAnimatedButtonHtml('Pedir pelo formulário', true);
-          const newBtn = temp.firstElementChild;
-          el.parentNode.replaceChild(newBtn, el);
-        }
-      });
-
-      // E.1) Melhorias nos cards do catálogo de cardápios (/cardapios)
-      if (window.location.pathname === '/cardapios' || window.location.pathname === '/cardapios/') {
-        document.querySelectorAll('a[href^="/cardapios/"]').forEach(cardLink => {
-          if (cardLink.querySelector('.df-cardapio-cta-wrap')) return;
-          const titleEl = cardLink.querySelector('h3');
-          if (!titleEl) return;
-          const cardapioTitle = titleEl.textContent.trim();
-
-          // Identificar perfil do cardápio para badge
-          let badgeHtml = '';
-          const lower = cardapioTitle.toLowerCase();
-          if (lower.includes('churrasco') || lower.includes('fogo de chão') || lower.includes('parrilla')) {
-            badgeHtml = '<span class="df-cardapio-badge bg-gold/20 text-greendeep border border-gold/40">★ Mais Escolhido em Condomínios</span>';
-          } else if (lower.includes('jantar') || lower.includes('clássico') || lower.includes('especial')) {
-            badgeHtml = '<span class="df-cardapio-badge bg-green/15 text-green border border-green/30">✦ Recomendado para Casamentos</span>';
-          } else if (lower.includes('corporativo') || lower.includes('empresas') || lower.includes('feijoada')) {
-            badgeHtml = '<span class="df-cardapio-badge bg-graphite/10 text-graphite border border-graphite/20">◆ Ideal para Grandes Públicos</span>';
-          }
-
-          if (badgeHtml && !cardLink.querySelector('.df-cardapio-badge')) {
-            const imgContainer = cardLink.querySelector('.relative.aspect-\\[4\\/3\\]') || cardLink.firstElementChild;
-            if (imgContainer) {
-              const badgeWrapper = document.createElement('div');
-              badgeWrapper.className = 'absolute top-3 left-3 z-10';
-              badgeWrapper.innerHTML = badgeHtml;
-              imgContainer.appendChild(badgeWrapper);
-            }
-          }
-
-          // Injetar botão 'Solicitar Proposta para este Cardápio'
-          const ctaWrap = document.createElement('div');
-          ctaWrap.className = 'df-cardapio-cta-wrap mt-4 pt-4 border-t border-graphite/10 flex items-center justify-between gap-2';
-          ctaWrap.innerHTML = `
-            <button type="button" class="df-direct-quote-btn text-xs font-semibold uppercase tracking-wider text-green hover:text-greendeep inline-flex items-center gap-1.5 transition-colors">
-              <span>Pedir Proposta Deste</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </button>
-          `;
-
-          const btn = ctaWrap.querySelector('.df-direct-quote-btn');
-          btn.addEventListener('click', function(ev) {
-            ev.preventDefault();
-            ev.stopPropagation();
-            openModal(cardapioTitle);
-          });
-
-          const contentDiv = cardLink.querySelector('.flex.flex-1.flex-col');
-          if (contentDiv) {
-            contentDiv.appendChild(ctaWrap);
-          }
-        });
-      }
-
-      // D.2) Bloco de Autoridade e Logística em Condomínios Fechados (Fase 3)
-      const condoPaths = ['ninho-verde', 'haras-vitória', 'colina-das-estrelas', 'jatobá', 'manacá'];
-      const isCondoPage = condoPaths.some(cp => window.location.pathname.toLowerCase().includes(cp));
-      if (isCondoPage && !document.getElementById('df-condo-logistics-badge')) {
-        const targetContainer = document.querySelector('main section:first-child .lg\:col-span-7') || document.querySelector('main section:first-child');
-        if (targetContainer) {
-          const badgeBox = document.createElement('div');
-          badgeBox.id = 'df-condo-logistics-badge';
-          badgeBox.className = 'mt-6 inline-flex flex-col gap-2 rounded-2xl border border-gold/30 bg-[#061208]/85 p-5 backdrop-blur-md';
-          badgeBox.innerHTML = `
-            <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gold">
-              <span class="h-2 w-2 rounded-full bg-gold animate-pulse"></span>
-              <span>Estrutura Certificada para Condomínios Fechados</span>
-            </div>
-            <p class="text-xs leading-relaxed text-[#fcfaf5]/85">
-              Logística térmica própria, rigoroso cumprimento das normas de portaria/acesso, equipe 100% uniformizada e desmobilização com limpeza impecável pós-evento.
-            </p>
-          `;
-          targetContainer.appendChild(badgeBox);
-        }
-      }
-
-      // E) Garantir título refinado na seção Eventos
-      document.querySelectorAll('h2').forEach(h2 => {
-        if (h2.textContent && h2.textContent.includes('O formato do dia, do jeito que ele pede')) {
-          h2.innerHTML = 'Excelência em cada evento.<br class="hidden sm:inline" /> Perfeição em cada detalhe';
-        }
-      });
-
-      // F) Garantir que a página de Depoimentos exiba o grid editorial com nota 5.0 mesmo se a API falhar
-      if (window.location.pathname.includes('/depoimentos')) {
-        const emReuniaoEl = Array.from(document.querySelectorAll('h2')).find(h => h.textContent.includes('Em reunião'));
-        if (emReuniaoEl && emReuniaoEl.closest('div')) {
-          const container = emReuniaoEl.closest('div');
-          container.className = 'w-full';
-          container.innerHTML = `
-            <div class="mb-12 flex flex-wrap items-center justify-between gap-6 border-b border-graphite/10 pb-8">
-              <div class="flex items-center gap-4">
-                <span class="font-display text-4xl font-semibold text-greendeep">5.0</span>
-                <div>
-                  <div class="flex text-gold">★★★★★</div>
-                  <p class="text-xs font-medium uppercase tracking-wider text-stone">Avaliação máxima no Perfil do Google</p>
-                </div>
-              </div>
-              <a href="https://www.google.com/maps/place/D&#x27;Faria+Gastronomia+e+Eventos/@-23.2240952,-47.9538734,20z/data=!4m6!3m5!1s0x94c67b4af88cc327:0xdbf145a965fdadbc!8m2!3d-23.224285!4d-47.9537514!16s%2Fg%2F11fmm0h46x" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-sand/50 px-5 py-2.5 text-xs font-medium uppercase tracking-wider text-graphite transition-all hover:bg-gold/10 hover:border-gold">
-                <span>Ver perfil oficial no Google</span>
-                <span aria-hidden="true">→</span>
-              </a>
-            </div>
-            <ul class="grid gap-8 sm:grid-cols-2">
-              <li class="rounded-2xl border border-graphite/10 bg-ivory p-8 shadow-sm">
-                <div class="text-gold">★★★★★</div>
-                <blockquote class="mt-4 font-display text-lg leading-relaxed text-graphite">“Contratamos o D'Faria para o nosso casamento e foi a melhor escolha que fizemos! A mesa de antepastos e a parrilla estavam impecáveis, os convidados elogiam até hoje a fartura e o sabor. Equipe super educada e atenciosa do início ao fim.”</blockquote>
-                <div class="mt-6 border-t border-graphite/10 pt-4 flex items-center justify-between">
-                  <div><p class="font-display font-medium text-graphite">Juliana & Rodrigo Mendes</p><p class="text-xs text-stone">Casamento no Campo · Ninho Verde I</p></div>
-                  <span class="text-[0.7rem] uppercase tracking-wider text-green font-medium">Verificado Google</span>
-                </div>
-              </li>
-              <li class="rounded-2xl border border-graphite/10 bg-ivory p-8 shadow-sm">
-                <div class="text-gold">★★★★★</div>
-                <blockquote class="mt-4 font-display text-lg leading-relaxed text-graphite">“Superou todas as nossas expectativas. Serviram mais de 250 colaboradores com pontualidade britânica, carnes nobres no ponto perfeito e ilha de saladas com apresentação de alta gastronomia. Parabéns ao Chef Cristiano e equipe!”</blockquote>
-                <div class="mt-6 border-t border-graphite/10 pt-4 flex items-center justify-between">
-                  <div><p class="font-display font-medium text-graphite">Carlos Eduardo Silveira</p><p class="text-xs text-stone">Evento Corporativo de Fim de Ano · Tatuí</p></div>
-                  <span class="text-[0.7rem] uppercase tracking-wider text-green font-medium">Verificado Google</span>
-                </div>
-              </li>
-              <li class="rounded-2xl border border-graphite/10 bg-ivory p-8 shadow-sm">
-                <div class="text-gold">★★★★★</div>
-                <blockquote class="mt-4 font-display text-lg leading-relaxed text-graphite">“Uma verdadeira obra de arte! Além da comida divina, as esculturas em melancia e a decoração das mesas de frutas deixaram todos os familiares encantados. Profissionalismo que transmite total tranquilidade aos anfitriões.”</blockquote>
-                <div class="mt-6 border-t border-graphite/10 pt-4 flex items-center justify-between">
-                  <div><p class="font-display font-medium text-graphite">Beatriz Alencar Fontes</p><p class="text-xs text-stone">Aniversário de 50 Anos · Haras Vitória</p></div>
-                  <span class="text-[0.7rem] uppercase tracking-wider text-green font-medium">Verificado Google</span>
-                </div>
-              </li>
-              <li class="rounded-2xl border border-graphite/10 bg-ivory p-8 shadow-sm">
-                <div class="text-gold">★★★★★</div>
-                <blockquote class="mt-4 font-display text-lg leading-relaxed text-graphite">“O D'Faria cuidou de cada detalhe com tanto carinho que parecia da nossa família. Garçons atentos, comida quente servida na hora certa e elogios unânimes de todos os convidados. Recomendo de olhos fechados!”</blockquote>
-                <div class="mt-6 border-t border-graphite/10 pt-4 flex items-center justify-between">
-                  <div><p class="font-display font-medium text-graphite">Mariana & Thiago Costa</p><p class="text-xs text-stone">Bodas de Prata · Cesário Lange</p></div>
-                  <span class="text-[0.7rem] uppercase tracking-wider text-green font-medium">Verificado Google</span>
-                </div>
-              </li>
-            </ul>
-          `;
-        }
-      }
-
-      // G) Garantir que todo botão com js-open-orcamento abra o modal
-      bindButtons();
-
-    } catch (err) {
-      console.warn('[D’Faria Runtime] Aviso na sincronização:', err);
-    } finally {
-      isApplying = false;
-    }
-  }
-
-  function injectSculptureGallery() {
-    const main = document.querySelector('main') || document.body;
-    const finalSection = main.querySelector('section:last-of-type') || main.lastElementChild;
-
-    const container = document.createElement('section');
-    container.id = 'df-sculptures-gallery-container';
-    container.style.cssText = 'background: linear-gradient(180deg, #07150a 0%, #0a1e0f 50%, #07150a 100%); padding: 4rem 1.5rem; border-top: 1px solid rgba(207,168,83,0.18);';
-
-    let gridHtml = `
-      <div style="max-width: 1200px; margin: 0 auto;">
-        <div style="text-align: center; margin-bottom: 3.5rem;">
-          <p style="color: var(--df-gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.28em; font-weight: 600; margin-bottom: 0.8rem;">Acervo Fotográfico Real</p>
-          <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; color: #ffffff; line-height: 1.15; margin: 0 0 1rem 0;">Galeria de Esculturas em Frutas</h2>
-          <p style="color: rgba(252,250,245,0.85); font-size: 1.05rem; max-width: 62ch; margin: 0 auto; line-height: 1.6;">Obras autorais executadas artesanalmente em melancias, melões, abacaxis e mamões para centros de mesa e ilhas gastronômicas de luxo.</p>
-        </div>
-        <div class="df-sculpture-grid">
-    `;
-
-    SCULPTURES.forEach(s => {
-      gridHtml += `
-        <div class="df-sculpture-frame" data-lightbox-src="/assets/esculturas/${s.file}" data-lightbox-caption="${s.title}">
-          <div class="df-sculpture-img-wrapper">
-            <span class="df-sculpture-badge">${s.badge}</span>
-            <img src="/assets/esculturas/${s.file}" alt="${s.title}" class="df-sculpture-img" loading="lazy" />
+    // Atualiza estrutura interna do header para o padrão refinado
+    const isHome = window.location.pathname === '/' || window.location.pathname === '';
+    
+    header.innerHTML = `
+      <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-12">
+        <a href="/" class="flex items-center gap-3.5 text-decoration-none group" aria-label="D'Faria Gastronomia - Início">
+          <img src="/logo-dfaria.png" alt="D'Faria Gastronomia e Eventos" class="df-header-logo-img" />
+          <div class="hidden sm:flex flex-col">
+            <span class="font-['Plus_Jakarta_Sans'] text-[10px] tracking-[0.25em] text-[#e4c27d] uppercase font-semibold">D'Faria</span>
+            <span class="font-['Playfair_Display'] text-sm text-[#e4e2de] tracking-wide font-normal">Haute Gastronomie</span>
           </div>
-          <div class="df-sculpture-info">
-            <h3 class="df-sculpture-title">${s.title}</h3>
-            <div style="margin-top: 1rem; display: flex; align-items: center; justify-content: space-between;">
-              <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--df-gold);">D’Faria Gastronomia</span>
-              <span style="font-size: 0.75rem; color: rgba(252,250,245,0.7); display: inline-flex; align-items: center; gap: 4px;">Ampliar 🔍</span>
-            </div>
-          </div>
-        </div>
-      `;
-    });
+        </a>
 
-    gridHtml += `
+        <!-- Menu Desktop Horizontal -->
+        <nav class="hidden lg:flex items-center gap-2" aria-label="Navegação Principal">
+          <a href="/" ${isHome ? 'aria-current="page"' : ''}>Início</a>
+          <a href="/cardapios" ${window.location.pathname.includes('/cardapios') ? 'aria-current="page"' : ''}>Cardápios</a>
+          <a href="/eventos" ${window.location.pathname.includes('/eventos') ? 'aria-current="page"' : ''}>Eventos</a>
+          <a href="/gastronomia" ${window.location.pathname.includes('/gastronomia') ? 'aria-current="page"' : ''}>Gastronomia</a>
+          <a href="/depoimentos" ${window.location.pathname.includes('/depoimentos') ? 'aria-current="page"' : ''}>Depoimentos</a>
+          <a href="/contato" ${window.location.pathname.includes('/contato') ? 'aria-current="page"' : ''}>Contato</a>
+        </nav>
+
+        <!-- Ações do Header -->
+        <div class="flex items-center gap-3">
+          <button type="button" onclick="window.dfOpenOrcamentoModal()" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded text-[11px] font-bold tracking-widest uppercase bg-[#e4c27d] text-[#261a00] hover:brightness-110 transition-all shadow-md">
+            <span>Orçamento VIP</span>
+          </button>
+          
+          <button type="button" id="df-btn-open-drawer" class="df-menu-trigger-btn" aria-label="Abrir Menu Completo">
+            <span class="material-symbols-outlined text-[20px]">menu</span>
+            <span class="hidden sm:inline">Menu</span>
+          </button>
         </div>
       </div>
     `;
 
-    container.innerHTML = gridHtml;
+    // Garante existência do Drawer Lateral Editorial no DOM
+    if (!document.getElementById('editorial-drawer')) {
+      const drawerWrap = document.createElement('div');
+      drawerWrap.innerHTML = `
+        <div id="editorial-drawer-backdrop"></div>
+        <aside id="editorial-drawer" aria-label="Menu Editorial de Navegação">
+          <div>
+            <div class="flex items-center justify-between pb-6 border-b border-[#e4c27d]/20">
+              <div class="flex items-center gap-3">
+                <img src="/logo-dfaria.png" alt="D'Faria" style="height: 38px; width: auto;" />
+                <span class="font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-[0.2em] text-[#e4c27d] font-bold">Haute Flamme</span>
+              </div>
+              <button type="button" id="df-btn-close-drawer" class="w-10 h-10 flex items-center justify-center text-[#d0c5b4] hover:text-[#e4c27d] transition-colors" aria-label="Fechar Menu">
+                <span class="material-symbols-outlined text-[28px]">close</span>
+              </button>
+            </div>
 
-    const firstSection = main.querySelector('section');
-    if (firstSection && firstSection.nextSibling) {
-      firstSection.parentNode.insertBefore(container, firstSection.nextSibling);
-    } else if (finalSection && finalSection.parentNode) {
-      finalSection.parentNode.insertBefore(container, finalSection);
-    } else {
-      main.appendChild(container);
+            <!-- Categorias Principais -->
+            <div class="mt-8 space-y-6 overflow-y-auto max-h-[calc(100vh-220px)] pr-2">
+              <div>
+                <span class="text-[10px] font-bold tracking-[0.25em] text-[#998f80] uppercase block mb-3 font-['Plus_Jakarta_Sans']">Experiências &amp; Cardápios</span>
+                <nav class="flex flex-col">
+                  <a href="/cardapios"><span>Coleções &amp; Menus</span><span class="material-symbols-outlined text-sm">north_east</span></a>
+                  <a href="/gastronomia"><span>Alta Gastronomia &amp; Fogo</span><span class="material-symbols-outlined text-sm">north_east</span></a>
+                  <a href="/eventos"><span>Casamentos &amp; Grandes Eventos</span><span class="material-symbols-outlined text-sm">north_east</span></a>
+                  <a href="/frios-e-finger-food"><span>Ilhas de Frios &amp; Grazing Tables</span><span class="material-symbols-outlined text-sm">north_east</span></a>
+                  <a href="/alugue-material-para-festa"><span>D'Faria Locações &amp; Acervo</span><span class="material-symbols-outlined text-sm">north_east</span></a>
+                </nav>
+              </div>
+
+              <div>
+                <span class="text-[10px] font-bold tracking-[0.25em] text-[#998f80] uppercase block mb-3 font-['Plus_Jakarta_Sans']">Destinos &amp; Condomínios</span>
+                <nav class="flex flex-col">
+                  <a href="/buffet-no-ninho-verde-1"><span>Ninho Verde I &amp; II</span><span class="material-symbols-outlined text-sm">north_east</span></a>
+                  <a href="/buffet-novillage-manacá"><span>Village Manacá (Tatuí)</span><span class="material-symbols-outlined text-sm">north_east</span></a>
+                  <a href="/colina-das-estrelas"><span>Colina das Estrelas</span><span class="material-symbols-outlined text-sm">north_east</span></a>
+                  <a href="/condominio-haras-vitória"><span>Haras Vitória</span><span class="material-symbols-outlined text-sm">north_east</span></a>
+                  <a href="/regioes"><span>Todas as 53 Cidades Atendidas</span><span class="material-symbols-outlined text-sm">north_east</span></a>
+                </nav>
+              </div>
+
+              <div>
+                <span class="text-[10px] font-bold tracking-[0.25em] text-[#998f80] uppercase block mb-3 font-['Plus_Jakarta_Sans']">A Casa &amp; Contato</span>
+                <nav class="flex flex-col">
+                  <a href="/o-dfaria"><span>O Legado do Chef Cristiano</span><span class="material-symbols-outlined text-sm">north_east</span></a>
+                  <a href="/depoimentos"><span>Depoimentos &amp; Avaliações 5.0</span><span class="material-symbols-outlined text-sm">north_east</span></a>
+                  <a href="/contato"><span>Concierge &amp; Reservas</span><span class="material-symbols-outlined text-sm">north_east</span></a>
+                </nav>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-[#e4c27d]/15">
+            <button type="button" onclick="window.dfCloseDrawer(); window.dfOpenOrcamentoModal();" class="w-full py-3.5 rounded bg-[#e4c27d] text-[#261a00] font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all text-center">
+              Solicitar Proposta Sob Medida
+            </button>
+            <p class="text-[11px] text-[#998f80] text-center mt-3 font-['Plus_Jakarta_Sans']">
+              Cesário Lange • Atendimento em todo SP
+            </p>
+          </div>
+        </aside>
+      `;
+      document.body.appendChild(drawerWrap);
+
+      // Eventos de clique do drawer
+      const drawer = document.getElementById('editorial-drawer');
+      const backdrop = document.getElementById('editorial-drawer-backdrop');
+      const btnOpen = document.getElementById('df-btn-open-drawer');
+      const btnClose = document.getElementById('df-btn-close-drawer');
+
+      window.dfOpenDrawer = function () {
+        drawer.classList.add('is-open');
+        backdrop.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      };
+
+      window.dfCloseDrawer = function () {
+        drawer.classList.remove('is-open');
+        backdrop.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      if (btnOpen) btnOpen.addEventListener('click', window.dfOpenDrawer);
+      if (btnClose) btnClose.addEventListener('click', window.dfCloseDrawer);
+      if (backdrop) backdrop.addEventListener('click', window.dfCloseDrawer);
     }
   }
 
   /* ==========================================================================
-     4. MODAL DE ORÇAMENTO PREMIUM (6 CAMPOS OBRIGATÓRIOS)
+     3. HERO CINEMATOGRÁFICA (ESTILO CLAUDIA RAUSCHER - SEM VÉU, COM VÍDEO REAL)
      ========================================================================== */
-  function initModal() {
-    if (document.getElementById('df-orcamento-modal')) return;
+  function setupHeroCinematic() {
+    const isHome = window.location.pathname === '/' || window.location.pathname === '';
+    if (!isHome) return;
 
-    const modalHtml = `
-      <div id="df-orcamento-modal" class="df-modal-backdrop" aria-hidden="true">
-        <div class="df-modal-card" role="dialog" aria-modal="true" aria-labelledby="df-modal-title">
-          <button type="button" class="df-modal-close" id="df-modal-close-btn" aria-label="Fechar formulário">&times;</button>
-          
-          <div id="df-form-container">
-            <div class="df-modal-header">
-              <span class="df-modal-tag">D'Faria Gastronomia e Eventos</span>
-              <h2 id="df-modal-title" class="df-modal-title">Solicitar Proposta de Orçamento</h2>
-              <p class="df-modal-desc">Preencha os dados do seu evento para elaborarmos um cardápio e uma proposta sob medida.</p>
-            </div>
+    // Localiza a primeira seção da Home
+    const heroOld = document.querySelector('main > section:first-child');
+    if (!heroOld) return;
 
-            <form id="df-form-orcamento" class="df-form" novalidate>
-              <div class="df-form-grid">
-                <div class="df-form-group">
-                  <label for="df-nome">Nome Completo *</label>
-                  <input type="text" id="df-nome" name="nome" required placeholder="Seu nome completo" autocomplete="name" />
-                  <span class="df-field-error" id="err-nome"></span>
-                </div>
+    // Se já estiver com o novo layout cinematográfico, não re-renderiza
+    if (document.getElementById('df-hero-cinematic-root')) return;
 
-                <div class="df-form-group">
-                  <label for="df-email">E-mail *</label>
-                  <input type="email" id="df-email" name="email" required placeholder="seu@email.com" autocomplete="email" />
-                  <span class="df-field-error" id="err-email"></span>
-                </div>
+    const heroWrap = document.createElement('div');
+    heroWrap.id = 'df-hero-cinematic-root';
+    heroWrap.innerHTML = `
+      <section class="hero-cinematic-container" aria-label="D'Faria Gastronomia e Eventos">
+        <!-- Vídeo Institucional Real e Puro de Alta Definição -->
+        <video class="hero-cinematic-video" autoplay muted loop playsinline preload="auto" poster="/og-dfaria.jpg">
+          <source src="/video/dfaria-apresentacao.mp4" type="video/mp4" />
+        </video>
 
-                <div class="df-form-group">
-                  <label for="df-whatsapp">WhatsApp (com DDD) *</label>
-                  <input type="tel" id="df-whatsapp" name="whatsapp" required placeholder="(15) 99999-9999" autocomplete="tel" />
-                  <span class="df-field-error" id="err-whatsapp"></span>
-                </div>
+        <!-- Scrim Cinematográfico para Legibilidade Pura (SEM VÉU AMARELO) -->
+        <div class="hero-scrim-overlay"></div>
 
-                <div class="df-form-group">
-                  <label for="df-data">Data do Evento *</label>
-                  <input type="date" id="df-data" name="data_evento" required />
-                  <span class="df-field-error" id="err-data"></span>
-                </div>
-
-                <div class="df-form-group">
-                  <label for="df-convidados">Número de Convidados *</label>
-                  <input type="number" id="df-convidados" name="convidados" required min="10" max="5000" placeholder="Ex: 120" />
-                  <span class="df-field-error" id="err-convidados"></span>
-                </div>
-
-                <div class="df-form-group">
-                  <label for="df-local">Local / Cidade do Evento *</label>
-                  <input type="text" id="df-local" name="local_evento" required placeholder="Ex: Cesário Lange, Tatuí, Chácara..." />
-                  <span class="df-field-error" id="err-local"></span>
-                </div>
-              </div>
-
-              <div class="df-form-group" style="margin-top: 1rem;">
-                <label for="df-obs">Observações / Preferências de Cardápio (Opcional)</label>
-                <textarea id="df-obs" name="observacoes" rows="2" placeholder="Ex: Casamento, churrasco premium, ilha de frios, intolerâncias..."></textarea>
-              </div>
-
-              <div class="df-form-actions">
-                <button type="submit" class="df-submit-btn" id="df-submit-btn">
-                  <span>ENVIAR E SOLICITAR PROPOSTA</span>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </button>
-              </div>
-
-              <p class="df-form-privacy">Seus dados serão utilizados exclusivamente para contato da equipe D'Faria Gastronomia e elaboração de sua proposta.</p>
-            </form>
+        <!-- Conteúdo Textual Majestoso -->
+        <div class="hero-content-wrap">
+          <!-- Tag de Tradição -->
+          <div class="df-heritage-tag">
+            <span class="pulse-dot"></span>
+            <span class="text">Desde 2016 • Cesário Lange • +2.000 Eventos</span>
           </div>
 
-          <div id="df-success-container" class="df-success-view" style="display: none;">
-            <div class="df-success-icon">✓</div>
-            <h3 class="df-success-title">Proposta Enviada com Sucesso!</h3>
-            <p class="df-success-desc">Registramos suas informações. Para agilizar o retorno e obter atendimento imediato com o Chef Cristiano, clique no botão abaixo para conversar no WhatsApp:</p>
+          <!-- Título Principal -->
+          <h1 class="hero-title-main">
+            D’FARIA
+            <span class="hero-title-sub">Gastronomia e Eventos</span>
+          </h1>
 
-            <div class="df-success-summary" id="df-success-summary"></div>
+          <!-- Frase Solicitada pelo Usuário -->
+          <p class="hero-signature-quote">
+            “Excelência em cada evento. Perfeição em cada detalhe.”
+          </p>
 
-            <a id="df-btn-whatsapp-final" href="#" target="_blank" rel="noopener noreferrer" class="df-whatsapp-final-btn whatsapp-direct-link">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Z"></path>
-              </svg>
-              <span>CONTINUAR NO WHATSAPP AGORA</span>
+          <!-- Descrição Editorial -->
+          <p class="hero-body-desc">
+            Experiências gastronômicas autorais, serviço impecável e cenografia sensorial para casamentos, celebrações residenciais e encontros corporativos de alto padrão.
+          </p>
+
+          <!-- Ações Soberanas -->
+          <div class="hero-ctas-group">
+            <button type="button" onclick="window.dfOpenOrcamentoModal()" class="df-btn-gold-solid">
+              <span>Solicitar Orçamento</span>
+              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </button>
+            <a href="/cardapios" class="df-btn-outline-glass">
+              <span>Explorar Cardápios</span>
+              <span class="material-symbols-outlined text-[18px]">restaurant_menu</span>
             </a>
           </div>
+
+          <!-- Indicador de Rolagem -->
+          <div class="hero-scroll-indicator">
+            <span>Descubra a Arte</span>
+            <div class="line"></div>
+          </div>
         </div>
+      </section>
+    `;
+
+    // Substitui a hero antiga pela nova
+    heroOld.parentNode.replaceChild(heroWrap, heroOld);
+  }
+
+  /* ==========================================================================
+     4. CONTRASTE IMPECÁVEL NOS CARDÁPIOS (NUNCA TEXTO BRANCO EM BRANCO)
+     ========================================================================== */
+  function setupCardapiosLuxury() {
+    // 1) Força todo card e link de cardápio para contraste escuro
+    const cards = document.querySelectorAll('a.group.flex.h-full.flex-col, .rounded-3xl.bg-ivory, article, div.rounded-xl.border');
+    cards.forEach(card => {
+      card.style.setProperty('background-color', '#1b1c1a', 'important');
+      card.style.setProperty('border-color', 'rgba(228, 194, 125, 0.25)', 'important');
+      card.style.setProperty('color', '#e4e2de', 'important');
+
+      // Corrige divs filhas que herdaram fundo branco ou claro
+      const innerDivs = card.querySelectorAll('div');
+      innerDivs.forEach(d => {
+        d.style.setProperty('background-color', 'transparent', 'important');
+      });
+
+      // Corrige títulos do card
+      const titles = card.querySelectorAll('h2, h3, .font-display');
+      titles.forEach(t => {
+        t.style.setProperty('color', '#e4e2de', 'important');
+        t.style.setProperty('font-family', "'Playfair Display', Georgia, serif", 'important');
+      });
+
+      // Corrige parágrafos de descrição
+      const paras = card.querySelectorAll('p, .text-stone, .font-brand');
+      paras.forEach(p => {
+        p.style.setProperty('color', '#d0c5b4', 'important');
+        p.style.setProperty('font-family', "'Plus Jakarta Sans', sans-serif", 'important');
+        p.style.setProperty('font-weight', '300', 'important');
+      });
+
+      // Adiciona botão 'Pedir Proposta Deste Cardápio' caso não exista
+      if (!card.querySelector('.df-btn-card-quote')) {
+        const titleEl = card.querySelector('h3, h2');
+        const menuTitle = titleEl ? titleEl.textContent.trim() : 'Cardápio Sob Medida';
+        
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'df-btn-card-quote';
+        btn.innerHTML = `
+          <span class="material-symbols-outlined text-[16px]">receipt_long</span>
+          <span>Pedir Proposta Deste</span>
+        `;
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          window.dfOpenOrcamentoModal(menuTitle);
+        });
+
+        // Insere no container de texto do card
+        const textContainer = card.querySelector('.flex.flex-1.flex-col') || card;
+        textContainer.appendChild(btn);
+      }
+    });
+  }
+
+  /* ==========================================================================
+     5. MODAL DE ORÇAMENTO COM 6 CAMPOS (WHATSAPP + API PHP ENVIAR-ORCAMENTO)
+     ========================================================================== */
+  function setupQuoteModal() {
+    if (document.getElementById('df-quote-modal-root')) return;
+
+    const modalRoot = document.createElement('div');
+    modalRoot.id = 'df-quote-modal-root';
+    modalRoot.className = 'df-modal-backdrop';
+    modalRoot.innerHTML = `
+      <div class="df-modal-box" role="dialog" aria-modal="true" aria-labelledby="df-modal-title">
+        <div class="flex items-center justify-between pb-4 border-b border-[#e4c27d]/20 mb-5">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-[#e4c27d] text-[28px]">stars</span>
+            <div>
+              <h3 id="df-modal-title" class="font-['Playfair_Display'] text-xl text-[#e4e2de] font-normal leading-tight">Solicitar Proposta Exclusiva</h3>
+              <p class="font-['Plus_Jakarta_Sans'] text-xs text-[#998f80]">D'Faria Concierge • Resposta em até 2 horas</p>
+            </div>
+          </div>
+          <button type="button" onclick="window.dfCloseOrcamentoModal()" class="w-9 h-9 flex items-center justify-center text-[#d0c5b4] hover:text-[#e4c27d] transition-colors" aria-label="Fechar Janela">
+            <span class="material-symbols-outlined text-[24px]">close</span>
+          </button>
+        </div>
+
+        <form id="df-modal-quote-form" class="space-y-4">
+          <!-- Campo 1: Nome -->
+          <div>
+            <label for="df-field-nome">Nome Completo *</label>
+            <input type="text" id="df-field-nome" name="nome" required placeholder="Ex: Dra. Mariana Albuquerque" />
+          </div>
+
+          <!-- Campos 2 e 3: WhatsApp e E-mail -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="df-field-whatsapp">WhatsApp *</label>
+              <input type="tel" id="df-field-whatsapp" name="whatsapp" required placeholder="(15) 99999-0000" />
+            </div>
+            <div>
+              <label for="df-field-email">E-mail</label>
+              <input type="email" id="df-field-email" name="email" placeholder="seu@email.com" />
+            </div>
+          </div>
+
+          <!-- Campos 4 e 5: Data e Formato do Evento -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="df-field-data">Data Estimada *</label>
+              <input type="date" id="df-field-data" name="data_evento" required />
+            </div>
+            <div>
+              <label for="df-field-tipo">Tipo de Celebração *</label>
+              <select id="df-field-tipo" name="tipo_evento" required>
+                <option value="">Selecione o formato</option>
+                <option value="Casamento / Bodas">Casamento / Bodas</option>
+                <option value="Parrilla & Fogo de Chão Privado">Parrilla &amp; Fogo de Chão Privado</option>
+                <option value="Aniversário / Festa Privada">Aniversário / Festa Privada</option>
+                <option value="Evento Corporativo / Gala">Evento Corporativo / Gala</option>
+                <option value="Locação de Materiais e Mobiliário">Locação de Materiais &amp; Acervo</option>
+                <option value="Outro Formato Especial">Outro Formato Especial</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Campo 6: Convidados, Cidade e Cardápio Selecionado -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="df-field-convidados">Número de Convidados</label>
+              <input type="number" id="df-field-convidados" name="convidados" min="20" placeholder="Ex: 100" />
+            </div>
+            <div>
+              <label for="df-field-cidade">Cidade / Condomínio *</label>
+              <input type="text" id="df-field-cidade" name="cidade" required placeholder="Ex: Ninho Verde II, Cesário Lange" />
+            </div>
+          </div>
+
+          <!-- Detalhes e Cardápio Preferencial -->
+          <div>
+            <label for="df-field-cardapio">Cardápio de Interesse ou Mensagem</label>
+            <textarea id="df-field-cardapio" name="mensagem" rows="2" placeholder="Conte-nos detalhes ou preferências gastronômicas..."></textarea>
+          </div>
+
+          <!-- Botão de Envio -->
+          <button type="submit" class="w-full py-4 rounded bg-[#e4c27d] text-[#261a00] font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all flex items-center justify-center gap-2 shadow-lg">
+            <span class="material-symbols-outlined text-[18px]">send</span>
+            <span>Enviar ao Concierge D'Faria</span>
+          </button>
+        </form>
       </div>
     `;
 
-    document.body.insertAdjacentHTML('beforeend', modalHtml);
+    document.body.appendChild(modalRoot);
 
-    const modal = document.getElementById('df-orcamento-modal');
-    const closeBtn = document.getElementById('df-modal-close-btn');
-    const form = document.getElementById('df-form-orcamento');
-    const phoneInput = document.getElementById('df-whatsapp');
+    // Funções Globais do Modal
+    window.dfOpenOrcamentoModal = function (preselectedMenu) {
+      const modal = document.getElementById('df-quote-modal-root');
+      if (!modal) return;
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
 
-    // Máscara de telefone
-    if (phoneInput) {
-      phoneInput.addEventListener('input', function (e) {
-        let v = e.target.value.replace(/\D/g, '');
-        if (v.length > 11) v = v.slice(0, 11);
-        if (v.length > 6) {
-          e.target.value = `(${v.slice(0, 2)}) ${v.slice(2, 7)}-${v.slice(7)}`;
-        } else if (v.length > 2) {
-          e.target.value = `(${v.slice(0, 2)}) ${v.slice(2)}`;
-        } else if (v.length > 0) {
-          e.target.value = `(${v}`;
-        }
-      });
-    }
-
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', function (e) {
-      if (e.target === modal) closeModal();
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && modal.classList.contains('is-active')) {
-        closeModal();
+      if (preselectedMenu) {
+        const textarea = document.getElementById('df-field-cardapio');
+        if (textarea) textarea.value = 'Interesse no cardápio: ' + preselectedMenu;
       }
+    };
+
+    window.dfCloseOrcamentoModal = function () {
+      const modal = document.getElementById('df-quote-modal-root');
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+    };
+
+    // Fechar ao clicar fora da caixa
+    modalRoot.addEventListener('click', function (e) {
+      if (e.target === modalRoot) window.dfCloseOrcamentoModal();
     });
 
     // Submissão do formulário
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const nome = document.getElementById('df-nome').value.trim();
-      const email = document.getElementById('df-email').value.trim();
-      const whatsapp = document.getElementById('df-whatsapp').value.trim();
-      const data = document.getElementById('df-data').value;
-      const convidados = document.getElementById('df-convidados').value.trim();
-      const local = document.getElementById('df-local').value.trim();
-      const obs = document.getElementById('df-obs').value.trim();
-
-      if (!nome || !email || !whatsapp || !data || !convidados || !local) {
-        alert('Por favor, preencha todos os campos obrigatórios (*).');
-        return;
-      }
-
-      const submitBtn = document.getElementById('df-submit-btn');
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Enviando proposta...';
-
-      const payload = { nome, email, whatsapp, data, convidados, local, obs };
-
-      // Envia assíncrono para o backend
-      try {
-        fetch('/api/enviar-orcamento.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        }).catch(() => {});
-      } catch (err) {}
-
-      // Monta WhatsApp
-      const dataFormatada = data.split('-').reverse().join('/');
-      const textMsg = `Olá! Gostaria de solicitar um orçamento com o D'Faria Gastronomia e Eventos:\n\n` +
-        `• *Nome:* ${nome}\n` +
-        `• *E-mail:* ${email}\n` +
-        `• *WhatsApp:* ${whatsapp}\n` +
-        `• *Data do Evento:* ${dataFormatada}\n` +
-        `• *Nº de Convidados:* ${convidados}\n` +
-        `• *Local/Cidade:* ${local}\n` +
-        (obs ? `• *Observações:* ${obs}\n\n` : `\n`) +
-        `Aguardo proposta personalizada!`;
-
-      const waUrl = `https://wa.me/5515996834734?text=${encodeURIComponent(textMsg)}`;
-
-      document.getElementById('df-form-container').style.display = 'none';
-      const successView = document.getElementById('df-success-container');
-      successView.style.display = 'block';
-
-      const summary = document.getElementById('df-success-summary');
-      summary.innerHTML = `
-        <p><strong>Nome:</strong> ${nome}</p>
-        <p><strong>Evento:</strong> ${dataFormatada} • ${convidados} convidados</p>
-        <p><strong>Local:</strong> ${local}</p>
-      `;
-
-      const finalWaBtn = document.getElementById('df-btn-whatsapp-final');
-      finalWaBtn.href = waUrl;
-      finalWaBtn.onclick = function (event) {
-        event.stopPropagation();
-        window.open(waUrl, '_blank');
-      };
-    });
-  }
-
-  function openModal(cardapioNome) {
-    initModal();
-    const modal = document.getElementById('df-orcamento-modal');
-    if (!modal) return;
-    document.getElementById('df-form-container').style.display = 'block';
-    document.getElementById('df-success-container').style.display = 'none';
-    
-    const obsInput = document.getElementById('df-obs');
-    if (obsInput && cardapioNome && typeof cardapioNome === 'string') {
-      obsInput.value = 'Interesse no cardápio: ' + cardapioNome.trim();
-    }
-
-    const submitBtn = document.getElementById('df-submit-btn');
-    if (submitBtn) {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = `<span>ENVIAR E SOLICITAR PROPOSTA</span>`;
-    }
-    modal.classList.add('is-active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    const modal = document.getElementById('df-orcamento-modal');
-    if (modal) {
-      modal.classList.remove('is-active');
-      document.body.style.overflow = '';
-    }
-  }
-
-  window.dfOpenOrcamentoModal = openModal;
-  window.dfCloseOrcamentoModal = closeModal;
-
-  /* ==========================================================================
-     5. LIGHTBOX DE ALTA RESOLUÇÃO
-     ========================================================================== */
-  function initLightbox() {
-    if (document.getElementById('df-lightbox-modal')) return;
-
-    const lbHtml = `
-      <div id="df-lightbox-modal" class="df-lightbox" aria-hidden="true">
-        <button type="button" class="df-lightbox-close" id="df-lightbox-btn-close">&times;</button>
-        <div class="df-lightbox-content">
-          <img id="df-lightbox-img" src="" alt="" class="df-lightbox-image" />
-          <div id="df-lightbox-caption" class="df-lightbox-caption"></div>
-        </div>
-      </div>
-    `;
-
-    document.body.insertAdjacentHTML('beforeend', lbHtml);
-
-    const lb = document.getElementById('df-lightbox-modal');
-    const lbImg = document.getElementById('df-lightbox-img');
-    const lbCap = document.getElementById('df-lightbox-caption');
-    const lbClose = document.getElementById('df-lightbox-btn-close');
-
-    function closeLb() {
-      lb.classList.remove('is-open');
-      document.body.style.overflow = '';
-    }
-
-    lbClose.addEventListener('click', closeLb);
-    lb.addEventListener('click', function (e) {
-      if (e.target === lb) closeLb();
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && lb.classList.contains('is-open')) closeLb();
-    });
-  }
-
-  /* ==========================================================================
-     6. DELEGAÇÃO DE EVENTOS GLOBAL
-     ========================================================================== */
-  function bindButtons() {
-    document.querySelectorAll('.js-open-orcamento, .animated-button').forEach(btn => {
-      btn.onclick = function (e) {
+    const form = document.getElementById('df-modal-quote-form');
+    if (form) {
+      form.addEventListener('submit', function (e) {
         e.preventDefault();
-        const customCardapio = btn.getAttribute('data-cardapio') || 
-                               (window.location.pathname.includes('/cardapios/') ? (document.querySelector('h1') ? document.querySelector('h1').textContent.trim() : '') : '');
-        openModal(customCardapio);
-      };
-    });
+
+        const nome = document.getElementById('df-field-nome').value.trim();
+        const whats = document.getElementById('df-field-whatsapp').value.trim();
+        const email = document.getElementById('df-field-email').value.trim();
+        const data = document.getElementById('df-field-data').value;
+        const tipo = document.getElementById('df-field-tipo').value;
+        const convidados = document.getElementById('df-field-convidados').value.trim();
+        const cidade = document.getElementById('df-field-cidade').value.trim();
+        const msg = document.getElementById('df-field-cardapio').value.trim();
+
+        // Envia cópia assíncrona para a API PHP se disponível
+        try {
+          fetch('/api/enviar-orcamento.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nome, whats, email, data, tipo, convidados, cidade, msg })
+          }).catch(() => {});
+        } catch (_) {}
+
+        // Monta mensagem VIP no WhatsApp
+        let textMsg = `Olá Concierge D'Faria! Gostaria de um orçamento exclusivo:%0A%0A`;
+        textMsg += `*Nome:* ${encodeURIComponent(nome)}%0A`;
+        textMsg += `*WhatsApp:* ${encodeURIComponent(whats)}%0A`;
+        if (email) textMsg += `*E-mail:* ${encodeURIComponent(email)}%0A`;
+        textMsg += `*Tipo de Celebração:* ${encodeURIComponent(tipo)}%0A`;
+        textMsg += `*Data Estimada:* ${encodeURIComponent(data)}%0A`;
+        textMsg += `*Local / Cidade:* ${encodeURIComponent(cidade)}%0A`;
+        if (convidados) textMsg += `*Convidados:* ${encodeURIComponent(convidados)} pessoas%0A`;
+        if (msg) textMsg += `*Cardápio / Detalhes:* ${encodeURIComponent(msg)}%0A`;
+
+        window.dfCloseOrcamentoModal();
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${textMsg}`, '_blank');
+      });
+    }
   }
-
-  document.addEventListener('click', function (e) {
-    // Lightbox click
-    const frame = e.target.closest('.df-sculpture-frame, [data-lightbox-src]');
-    if (frame) {
-      const src = frame.getAttribute('data-lightbox-src') || (frame.querySelector('img') ? frame.querySelector('img').src : '');
-      const caption = frame.getAttribute('data-lightbox-caption') || (frame.querySelector('.df-sculpture-title') ? frame.querySelector('.df-sculpture-title').textContent : '');
-      const lb = document.getElementById('df-lightbox-modal');
-      const lbImg = document.getElementById('df-lightbox-img');
-      const lbCap = document.getElementById('df-lightbox-caption');
-      if (lb && lbImg && src) {
-        lbImg.src = src;
-        lbImg.alt = caption;
-        if (lbCap) lbCap.textContent = caption;
-        lb.classList.add('is-open');
-        document.body.style.overflow = 'hidden';
-      }
-      return;
-    }
-
-    // Modal click
-    const trigger = e.target.closest('.js-open-orcamento, .animated-button');
-    if (trigger) {
-      e.preventDefault();
-      openModal();
-    }
-  }, true);
 
   /* ==========================================================================
-     7. MUTATION OBSERVER & INICIALIZAÇÃO
+     6. BOTÃO WHATSAPP FLUTUANTE
      ========================================================================== */
-  function initEngine() {
-    initModal();
-    initLightbox();
-    applyEnhancements();
-
-    // Observa mutações geradas pelo React / TanStack Router
-    const observer = new MutationObserver(function () {
-      applyEnhancements();
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    // Monitora transições de rota
-    window.addEventListener('popstate', applyEnhancements);
-    window.addEventListener('hashchange', applyEnhancements);
-
-    // Verificação periódica inicial
-    let checks = 0;
-    const interval = setInterval(function () {
-      applyEnhancements();
-      checks++;
-      if (checks > 10) clearInterval(interval);
-    }, 400);
+  function setupFloatingWhatsApp() {
+    let btn = document.getElementById('btn-whatsapp-flutuante');
+    if (!btn) {
+      btn = document.createElement('a');
+      btn.id = 'btn-whatsapp-flutuante';
+      btn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20D%27Faria.`;
+      btn.target = '_blank';
+      btn.rel = 'noopener noreferrer';
+      btn.setAttribute('aria-label', 'Atendimento Concierge WhatsApp');
+      btn.innerHTML = `<span class="material-symbols-outlined" style="font-size: 32px;">chat</span>`;
+      document.body.appendChild(btn);
+    }
   }
 
+  /* ==========================================================================
+     7. BADGES DE AUTORIDADE E CONDICIONAIS
+     ========================================================================== */
+  function setupBadgesAndSeals() {
+    // Garante que o selo de Logística Certificada esteja presente nas páginas de condomínio
+    const path = window.location.pathname.toLowerCase();
+    const isCondoPage = path.includes('ninho-verde') || path.includes('colina-das-estrelas') || path.includes('manac') || path.includes('haras');
+    
+    if (isCondoPage && !document.getElementById('df-condo-badge-certified')) {
+      const mainContainer = document.querySelector('main');
+      if (mainContainer) {
+        const badgeBox = document.createElement('div');
+        badgeBox.id = 'df-condo-badge-certified';
+        badgeBox.className = 'mx-auto max-w-4xl px-6 py-6 my-8 rounded-lg bg-[#20352c]/50 border border-[#e4c27d]/30 flex items-center gap-4';
+        badgeBox.innerHTML = `
+          <span class="material-symbols-outlined text-[#e4c27d] text-[36px] shrink-0">verified_user</span>
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-[#e4c27d] block">Logística Homologada</span>
+            <p class="text-sm text-[#d0c5b4] mt-0.5">Operação independente com cozinha de campanha móvel, caminhões climatizados e acesso credenciado às portarias e regimentos internos.</p>
+          </div>
+        `;
+        mainContainer.insertBefore(badgeBox, mainContainer.children[1] || null);
+      }
+    }
+  }
+
+  // Executa no DOMContentLoaded e após possíveis trocas de rota no SPA
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initEngine);
   } else {
     initEngine();
   }
 
+  // Observador de mutação para re-aplicar após hidratação do SPA
+  let timeoutId = null;
+  const observer = new MutationObserver(function () {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(function () {
+      setupCardapiosLuxury();
+      setupHeaderAndDrawer();
+    }, 150);
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
 })();
