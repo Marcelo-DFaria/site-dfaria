@@ -155,6 +155,59 @@
         }
       });
 
+      // E.1) Melhorias nos cards do catálogo de cardápios (/cardapios)
+      if (window.location.pathname === '/cardapios' || window.location.pathname === '/cardapios/') {
+        document.querySelectorAll('a[href^="/cardapios/"]').forEach(cardLink => {
+          if (cardLink.querySelector('.df-cardapio-cta-wrap')) return;
+          const titleEl = cardLink.querySelector('h3');
+          if (!titleEl) return;
+          const cardapioTitle = titleEl.textContent.trim();
+
+          // Identificar perfil do cardápio para badge
+          let badgeHtml = '';
+          const lower = cardapioTitle.toLowerCase();
+          if (lower.includes('churrasco') || lower.includes('fogo de chão') || lower.includes('parrilla')) {
+            badgeHtml = '<span class="df-cardapio-badge bg-gold/20 text-greendeep border border-gold/40">★ Mais Escolhido em Condomínios</span>';
+          } else if (lower.includes('jantar') || lower.includes('clássico') || lower.includes('especial')) {
+            badgeHtml = '<span class="df-cardapio-badge bg-green/15 text-green border border-green/30">✦ Recomendado para Casamentos</span>';
+          } else if (lower.includes('corporativo') || lower.includes('empresas') || lower.includes('feijoada')) {
+            badgeHtml = '<span class="df-cardapio-badge bg-graphite/10 text-graphite border border-graphite/20">◆ Ideal para Grandes Públicos</span>';
+          }
+
+          if (badgeHtml && !cardLink.querySelector('.df-cardapio-badge')) {
+            const imgContainer = cardLink.querySelector('.relative.aspect-\\[4\\/3\\]') || cardLink.firstElementChild;
+            if (imgContainer) {
+              const badgeWrapper = document.createElement('div');
+              badgeWrapper.className = 'absolute top-3 left-3 z-10';
+              badgeWrapper.innerHTML = badgeHtml;
+              imgContainer.appendChild(badgeWrapper);
+            }
+          }
+
+          // Injetar botão 'Solicitar Proposta para este Cardápio'
+          const ctaWrap = document.createElement('div');
+          ctaWrap.className = 'df-cardapio-cta-wrap mt-4 pt-4 border-t border-graphite/10 flex items-center justify-between gap-2';
+          ctaWrap.innerHTML = `
+            <button type="button" class="df-direct-quote-btn text-xs font-semibold uppercase tracking-wider text-green hover:text-greendeep inline-flex items-center gap-1.5 transition-colors">
+              <span>Pedir Proposta Deste</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          `;
+
+          const btn = ctaWrap.querySelector('.df-direct-quote-btn');
+          btn.addEventListener('click', function(ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            openModal(cardapioTitle);
+          });
+
+          const contentDiv = cardLink.querySelector('.flex.flex-1.flex-col');
+          if (contentDiv) {
+            contentDiv.appendChild(ctaWrap);
+          }
+        });
+      }
+
       // E) Garantir título refinado na seção Eventos
       document.querySelectorAll('h2').forEach(h2 => {
         if (h2.textContent && h2.textContent.includes('O formato do dia, do jeito que ele pede')) {
@@ -476,12 +529,18 @@
     });
   }
 
-  function openModal() {
+  function openModal(cardapioNome) {
     initModal();
     const modal = document.getElementById('df-orcamento-modal');
     if (!modal) return;
     document.getElementById('df-form-container').style.display = 'block';
     document.getElementById('df-success-container').style.display = 'none';
+    
+    const obsInput = document.getElementById('df-obs');
+    if (obsInput && cardapioNome && typeof cardapioNome === 'string') {
+      obsInput.value = 'Interesse no cardápio: ' + cardapioNome.trim();
+    }
+
     const submitBtn = document.getElementById('df-submit-btn');
     if (submitBtn) {
       submitBtn.disabled = false;
@@ -547,7 +606,9 @@
     document.querySelectorAll('.js-open-orcamento, .animated-button').forEach(btn => {
       btn.onclick = function (e) {
         e.preventDefault();
-        openModal();
+        const customCardapio = btn.getAttribute('data-cardapio') || 
+                               (window.location.pathname.includes('/cardapios/') ? (document.querySelector('h1') ? document.querySelector('h1').textContent.trim() : '') : '');
+        openModal(customCardapio);
       };
     });
   }
